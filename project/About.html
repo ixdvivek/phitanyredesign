@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Phitany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Festive&family=Google+Sans+Flex:wght@100..700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#000;--white:#fff;--green:#26AE68;--bg:#f5f5f5;--mint:#E6EBE3;--f:'Google Sans',-apple-system,BlinkMacSystemFont,sans-serif;--px:clamp(24px,10.83vw,208px);--py:clamp(64px,8.33vw,160px);--mw:1504px;--r-pill:99px;--r-card:12px;--btn-h:56px;--cm:28px;--cr:28px;--cm-base:28px;--ease:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:#000;color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.section{padding:calc(var(--py)/2) var(--px)}
+.wrap{max-width:var(--mw);margin:0 auto}
+.display{font-size:clamp(48px,4.9vw,94px);line-height:1.15;font-weight:300;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+
+/* NAV */
+.nav-wrap{position:fixed;top:64px;left:0;right:0;z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+nav{pointer-events:all;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:40px;padding:12px;width:min(736px,calc(100% - 48px));box-shadow:0 1px 8px rgba(0,0,0,.06);transform-origin:top center;transition:box-shadow .3s var(--ease),transform .38s var(--ease)}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-icon{width:56px;height:56px;border-radius:44px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-icon img{width:32px;height:32px;object-fit:contain}
+.nav-wordmark{height:22px;object-fit:contain}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-btn-menu{box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.nav-btn{width:56px;height:56px;border-radius:var(--r-pill);border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-btn:hover{background:rgba(0,0,0,.06)}
+.nav-call{display:flex;align-items:center;gap:8px;background:#000;color:#fff;border:none;border-radius:var(--r-pill);padding:0 24px;height:var(--btn-h);font-family:var(--f);font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;isolation:isolate;transition:transform .22s var(--ease),box-shadow .4s var(--ease);white-space:nowrap}
+.nav-call::before{content:'';position:absolute;inset:0;background:var(--green);transform:translateY(105%);transition:transform .55s cubic-bezier(.76,0,.24,1);z-index:-1}
+.nav-call:hover::before{transform:translateY(0)}
+.nav-call:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 24px rgba(38,174,104,.35)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;height:var(--btn-h);padding:0 24px;border-radius:var(--r-pill);font-family:var(--f);font-size:16px;font-weight:700;letter-spacing:.02em;cursor:pointer;border:none;white-space:nowrap;position:relative;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),box-shadow .4s var(--ease),transform .22s var(--ease)}
+.btn::before{content:'';position:absolute;inset:0;background:var(--green);transform:translateY(105%);transition:transform .55s cubic-bezier(.76,0,.24,1);z-index:-1;border-radius:inherit}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{color:#fff;transform:translateY(-3px);box-shadow:0 10px 32px rgba(38,174,104,.32);opacity:1}
+.btn:hover svg,.btn:hover svg path{fill:#fff;stroke:none}
+.btn:active{transform:translateY(-1px)}
+.btn-white{background:#fff;color:#000}
+.btn-black{background:#000;color:#fff}
+.btn-outline-white{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+
+/* DROPDOWN */
+.tw-cursor{display:inline-block;color:var(--green);animation:tw-blink .7s step-end infinite;font-weight:700}
+@keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-dropdown{position:absolute;top:88px;left:50%;transform:translateX(-50%) translateY(-10px) scale(.98);width:min(736px,calc(100% - 48px));border-radius:32px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .35s var(--ease);z-index:10}
+.nav-dropdown.open{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:all}
+.nd-a{background:#fff;padding:32px 40px 28px}
+.nd-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45)}
+.nd-nav-links{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.nd-link{display:block;font-size:clamp(18px,2.3vw,36px);font-weight:400;color:rgba(0,0,0,.2);text-decoration:none;line-height:1.25;transition:color .2s}
+.nd-link.active,.nd-link:hover{color:#000}
+.nd-link.active{font-weight:700}
+.nd-sub{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,.08);padding-top:20px;gap:12px;flex-wrap:wrap}
+.nd-sub-links{display:flex;gap:28px}
+.nd-sub-link{font-size:15px;color:#000;text-decoration:none;opacity:.35;transition:opacity .2s;white-space:nowrap}
+.nd-sub-link.active,.nd-sub-link:hover{opacity:1}
+.nd-sched{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border-radius:99px;padding:11px 20px;font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap;transition:opacity .2s}
+.nd-sched:hover{opacity:.88}
+.nd-b{background:#f5f5f5;padding:18px 40px;display:flex;align-items:center;gap:clamp(16px,3vw,32px);flex-wrap:wrap}
+.nd-social{display:flex;align-items:center;gap:7px;font-size:14px;color:#000;text-decoration:none;opacity:.35;transition:opacity .2s}
+.nd-social:hover{opacity:1}
+
+/* HERO — fixed parallax underlay */
+.hero-fixed{position:fixed;inset:0;z-index:0;background:#000}
+.hero-banner{position:absolute;inset:0;overflow:hidden;transform-origin:center 38%;will-change:transform,filter}
+.hero-banner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.3) 40%,rgba(0,0,0,.85) 80%,#000 100%)}
+.hero-headline{position:absolute;left:calc(var(--cm-base) + var(--px));right:var(--px);bottom:30vh;z-index:2;will-change:transform,opacity}
+.hero-headline h1{color:#fff;font-size:clamp(52px,7vw,128px);font-weight:300;line-height:1;letter-spacing:-.02em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.page{position:relative;z-index:2}
+.hero-spacer{height:74vh;pointer-events:none}
+.content{position:relative;z-index:2;background:var(--bg);width:calc(100% - 2*var(--cm));margin:0 auto;border-radius:var(--cr) var(--cr) 0 0;will-change:width,border-radius}
+
+/* STORY layout: headline top, story bottom, visual full-height */
+.story-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,104px);align-items:stretch;margin-bottom:clamp(48px,6vw,72px)}
+.story-left{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(72px,14vh,200px)}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,104px);align-items:start}
+.story-bottom{display:flex;flex-direction:column}
+.story-lead{font-size:clamp(26px,2.6vw,40px);font-weight:400;line-height:1.2;letter-spacing:.01em;margin-bottom:0;text-wrap:balance}
+.story-h{font-size:clamp(34px,3.6vw,48px);font-weight:500;line-height:1.15;margin-bottom:24px}
+.story-body{font-size:18px;line-height:28px;letter-spacing:.01em;color:#000}
+.story-body p+p{margin-top:20px}
+.story-visual{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:736/568;background:#063}
+.sv-glow{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sv-phone{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:46%;height:auto;z-index:2;border-radius:28px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.sv-bars{position:absolute;left:8%;bottom:16%;z-index:1;display:flex;align-items:flex-end;gap:9px;height:90px;width:300px;max-width:42%;opacity:.5}
+.sv-bars i{flex:1;background:rgba(255,255,255,.85);border-radius:2px}
+.sv-stat{position:absolute;right:9%;bottom:13%;z-index:3;display:flex;flex-direction:column;align-items:flex-end;color:#fff;opacity:.95}
+.sv-stat b{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.01em}
+.sv-stat span{font-size:14px;opacity:.7}
+.stats-row{display:flex;justify-content:space-between;gap:clamp(32px,5vw,64px);margin-top:clamp(40px,5vw,72px);flex-wrap:wrap}
+.stat b{font-size:clamp(34px,3vw,48px);font-weight:900;letter-spacing:-.01em;display:block;line-height:1}
+.stat span{font-size:16px;color:rgba(0,0,0,.45);margin-top:8px;display:block}
+
+/* MISSION */
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,8vw,140px);align-items:center}
+.mission-left{display:flex;flex-direction:column;gap:clamp(24px,3vw,40px)}
+.mission-photo{border-radius:14px;overflow:hidden;aspect-ratio:345/255;background:#e4e4e4}
+.mission-photo img{width:100%;height:100%;object-fit:cover}
+.kerala-badge{display:flex;align-items:center;gap:clamp(16px,2.5vw,40px)}
+.kerala-img{width:clamp(108px,9vw,140px);height:clamp(108px,9vw,140px);border-radius:14px;object-fit:cover;flex-shrink:0}
+.kerala-text{flex:1;text-align:center}
+.kerala-made{font-size:15px;line-height:1.3}
+.kerala-made .scr{font-family:'Festive',cursive;font-size:clamp(38px,3.6vw,54px);line-height:1;display:block;margin-top:2px}
+.kerala-world{font-size:14px;color:rgba(0,0,0,.45);margin-top:6px}
+.mission-right{display:flex;flex-direction:column}
+.mission-h{font-size:clamp(26px,2.4vw,36px);font-weight:400;line-height:1.32;letter-spacing:.01em;margin-bottom:28px;max-width:340px}
+.mission-sub{font-size:14px;line-height:21px;color:rgba(0,0,0,.5);max-width:270px}
+
+/* TIMELINE */
+.tl-head{text-align:center;margin-bottom:clamp(48px,6vw,88px)}
+.tl-title{font-size:clamp(48px,6.5vw,96px);font-weight:300;line-height:1.05;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.tl-sub{font-size:20px;color:rgba(0,0,0,.5);margin-top:14px}
+.tl-scroll{overflow-x:auto;padding-bottom:12px;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.tl-scroll::-webkit-scrollbar{display:none}
+.tl-scroll.dragging{cursor:grabbing}
+.tl-track{display:flex;gap:24px;align-items:flex-start;width:max-content;min-width:100%;padding:0 1px}
+.tl-col{display:flex;flex-direction:column;gap:18px;width:clamp(280px,21vw,316px);flex:0 0 auto}
+.tl-year-row{display:flex;align-items:center;gap:12px;padding:0 4px}
+.tl-year{font-size:24px;font-weight:700;letter-spacing:-.01em;flex-shrink:0}
+.tl-line{flex:1;height:0;border-top:1.5px dashed rgba(0,0,0,.35)}
+.tl-card{background:#fff;border-radius:16px;padding:24px 16px 16px;display:flex;flex-direction:column;gap:18px;align-items:center}
+.tl-card h3{font-size:24px;font-weight:700;text-align:center}
+.tl-inner{background:var(--mint);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;width:100%}
+.tl-inner p{font-size:17px;line-height:26px;letter-spacing:.01em;text-align:center}
+.tl-inner hr{border:none;border-top:1px dashed rgba(0,0,0,.35);opacity:.6}
+
+/* CLIENTS (homepage marquee design) */
+.clients-section{position:relative;overflow:hidden;min-height:clamp(620px,82vh,920px);display:flex;flex-direction:column;justify-content:center;padding:clamp(64px,8vh,120px) 0}
+.clients-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 120% at 28% 16%,#27362f 0%,#141a17 46%,#090c0a 100%)}
+.clients-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.clients-scrim{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.5)}
+.clients-head{position:relative;z-index:2;padding:0 var(--px) 64px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.clients-head .display{color:#fff}
+.clients-section .section-tag{color:rgba(255,255,255,.62);font-size:18px;margin-top:12px;display:block}
+.clients-arrow{width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .25s}
+.clients-arrow:hover{background:rgba(255,255,255,.12)}
+.clients-rows{position:relative;z-index:2;display:flex;flex-direction:column;gap:20px}
+.marquee-outer{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.marquee{display:flex;gap:20px;animation:marquee 45s linear infinite;width:max-content}
+.marquee.rev{animation-direction:reverse}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.client-chip{background:rgba(255,255,255,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px;width:clamp(220px,18vw,290px);height:clamp(112px,9vw,142px);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:24px}
+.cl-word{font-size:clamp(16px,1.4vw,23px);font-weight:700;letter-spacing:.1em;color:#0b0b0b;display:flex;align-items:center;gap:11px}
+.cl-mark{width:26px;height:26px;border-radius:7px;background:#0b0b0b;flex-shrink:0}
+.cl-dept{display:flex;align-items:center;gap:13px;color:#0b0b0b}
+.cl-dept-mark{width:30px;height:30px;border-radius:8px;background:#0b0b0b;flex-shrink:0}
+.cl-dept-tiny{font-size:10px;letter-spacing:.05em;display:block;opacity:.85;margin-bottom:3px}
+.cl-dept-name{font-size:clamp(13px,1.05vw,16px);font-weight:700;line-height:1.15}
+.cl-dept-name em{font-weight:400;font-style:italic}
+
+/* TEAM / IDEA */
+.ti-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,64px);align-items:center}
+.ti-row+.ti-row{margin-top:clamp(48px,6vw,96px)}
+.ti-text{display:flex;justify-content:center}
+.ti-copy{max-width:230px}
+.ti-copy h2{font-size:clamp(24px,2vw,28px);font-weight:400;line-height:1.15;letter-spacing:.01em;margin-bottom:16px}
+.ti-copy p{font-size:14px;line-height:21px;color:rgba(0,0,0,.5)}
+.ti-img{border-radius:12px;overflow:hidden;aspect-ratio:736/452}
+.ti-img img{width:100%;height:100%;object-fit:cover}
+
+/* INSIGHTS */
+.ins-head{text-align:center;margin-bottom:clamp(40px,5vw,72px)}
+.ins-head h2{font-size:clamp(48px,6.5vw,96px);font-weight:300;line-height:1.05;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.ins-head span{font-size:20px;color:rgba(0,0,0,.5);margin-top:10px;display:block}
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.5vw,48px)}
+.ins-card{display:flex;flex-direction:column;cursor:pointer}
+.ins-thumb{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:438/305;margin-bottom:22px}
+.ins-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.ins-card:hover .ins-thumb img{transform:scale(1.04)}
+.ins-read{position:absolute;top:18px;right:18px;background:#fff;border-radius:99px;padding:7px 16px;font-size:14px;font-weight:500;color:#111;box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.ins-author{display:flex;align-items:center;gap:8px;font-size:16px;color:rgba(0,0,0,.45);margin-bottom:14px}
+.ins-author svg{flex-shrink:0;opacity:.5}
+.ins-card h3{font-size:clamp(20px,1.45vw,23px);font-weight:400;line-height:1.32;color:#111;margin-bottom:12px}
+.ins-dates{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:rgba(0,0,0,.38)}
+
+/* WANNA DISCUSS */
+.wd{position:relative;border-radius:24px;overflow:hidden;background:#000}
+.wd-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7;z-index:0}
+.wd-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:clamp(40px,5vw,80px);align-items:stretch;padding:clamp(40px,5vw,80px)}
+.wd-left{display:flex;flex-direction:column;align-items:flex-start;color:#fff}
+.wd-left h2{font-size:clamp(48px,5.5vw,88px);font-weight:400;line-height:1.0;letter-spacing:-.01em}
+.wd-left p{font-size:18px;line-height:28px;color:rgba(255,255,255,.7);max-width:360px;margin-top:24px}
+.wd-book{margin-top:auto;background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.wd-form{background:#fff;border-radius:16px;padding:clamp(28px,3vw,48px);width:min(560px,42vw);min-width:300px;display:flex;flex-direction:column}
+.wd-field{display:flex;flex-direction:column;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,.18);margin-bottom:clamp(22px,2.4vw,34px);transition:border-color .2s}
+.wd-field:focus-within{border-bottom-color:var(--green)}
+.wd-field label{font-size:15px;color:rgba(0,0,0,.5)}
+.wd-field input,.wd-field textarea{border:none;background:transparent;outline:none;font-family:var(--f);font-size:18px;color:#111;width:100%;padding:0}
+.wd-field textarea{resize:none;min-height:28px;line-height:1.5}
+.wd-send{align-self:flex-start;margin-top:6px;background:#0a0a0a;color:#fff}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+footer{background:transparent}
+.fticker{background:var(--green);overflow:hidden;display:flex;height:120px;align-items:center}
+.fticker-inner{display:flex;animation:ftick 22s linear infinite;white-space:nowrap;align-items:center}
+@keyframes ftick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fticker-chunk{display:flex;align-items:center;gap:80px;padding:0 40px}
+.fticker-word{font-size:22px;color:#fff;font-weight:400}
+.footer-body{background:#000;display:grid;grid-template-columns:clamp(160px,26.4vw,508px) 1fr;min-height:clamp(700px,48vw,960px)}
+.footer-art{position:relative;overflow:hidden;background:#000}
+.footer-art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;z-index:1;display:block;-webkit-mask-image:linear-gradient(to right,#000 55%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,#000 55%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.footer-right{padding:clamp(40px,8.3vw,160px) clamp(20px,4.2vw,80px) 0;display:flex;flex-direction:column;justify-content:space-between}
+.footer-top-row{display:flex;gap:clamp(24px,4.2vw,80px);flex-wrap:wrap;align-items:flex-start}
+.fgroup{display:flex;gap:clamp(16px,3.2vw,62px);align-items:baseline}
+.fgroup-label{font-size:18px;line-height:24px;color:rgba(255,255,255,.4);flex-shrink:0;min-width:52px}
+.fgroup-nav{display:flex;flex-direction:column;gap:16px;align-items:flex-start;background:transparent}
+.fgroup-nav a{font-size:18px;color:#fff;text-decoration:none;line-height:24px;display:block;transition:opacity .2s}
+.fgroup-nav a:hover{opacity:.5}
+.fworld-clock{display:flex;flex-direction:column;gap:24px;margin-left:auto;min-width:200px}
+.fclocks-row{display:flex;gap:24px;flex-wrap:wrap}
+.fclock-col{display:flex;flex-direction:column}
+.fclock-label{font-size:18px;line-height:32px;color:rgba(255,255,255,.4)}
+.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:center;gap:8px}
+.footer-sched-btn{justify-content:center}
+.footer-wm-wrap{margin-top:auto;margin-left:0}
+.footer-wm-img{height:clamp(80px,18.7vw,360px);width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block}
+
+@media(max-width:1080px){
+  .clients-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:960px){
+  .footer-body{grid-template-columns:1fr}
+  .footer-art{min-height:220px}
+  .footer-top-row{gap:40px}
+  .story-grid,.mission-grid,.ti-row,.ins-grid,.story-layout{grid-template-columns:1fr}
+  .mission-grid{justify-items:start}
+  .ti-row.rev .ti-img{order:-1}
+  .wd-grid{grid-template-columns:1fr}
+  .wd-form{width:100%}
+  .wd-left h2{margin-bottom:24px}
+  .wd-book{margin-top:8px}
+}
+@media(max-width:640px){
+  .clients-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-row{gap:32px}
+  .fclocks-row{flex-direction:column;gap:12px}
+  .fworld-clock{margin-left:0}
+}
+
+/* ===== RESPONSIVE (shared) ===== */
+.nd-close{display:none}
+@media(max-width:960px){
+  /* NAV — edge-to-edge sticky bar */
+  .nav-wrap{top:0;left:0;right:0;gap:0}
+  nav{width:100%;max-width:none;border-radius:0;padding:12px 24px;box-shadow:none;border-bottom:1px solid rgba(0,0,0,.08)}
+  nav.scrolled{transform:none;box-shadow:none;border-bottom:1px solid rgba(0,0,0,.1)}
+  .nav-icon{width:48px;height:48px}
+  .nav-icon img{width:26px;height:26px}
+  .nav-wordmark{height:20px}
+  .nav-btn{width:48px;height:48px}
+  .nav-call{width:48px;padding:0;gap:0;font-size:0;justify-content:center}
+  .nav-call svg{width:18px;height:18px}
+  .news-ticker{display:none}
+  /* heroes drop below the bar with standard padding */
+  #hero{margin:96px 24px calc(var(--py)/2);min-height:62vh}
+  .hero-fixed{top:96px}
+  .blog-hero-wrap{padding:96px 16px 0}
+  /* FULL-SCREEN MENU */
+  .nav-dropdown{position:fixed;inset:0;width:100%;height:100dvh;max-height:none;transform:none;border-radius:0;opacity:0;pointer-events:none;display:flex;flex-direction:column;overflow-y:auto;background:#fff;box-shadow:none;transition:opacity .32s var(--ease)}
+  .nav-dropdown.open{transform:none;opacity:1;pointer-events:all}
+  .nd-close{display:flex;position:fixed;top:18px;right:18px;z-index:6;width:48px;height:48px;border-radius:50%;border:none;background:rgba(0,0,0,.06);color:#000;align-items:center;justify-content:center;cursor:pointer}
+  .nd-close:active{background:rgba(0,0,0,.12)}
+  .nd-a{flex:1 0 auto;padding:92px 28px 32px;display:flex;flex-direction:column}
+  .nd-header{margin-bottom:30px}
+  .nd-nav-links{gap:8px !important;margin-bottom:30px}
+  .nd-link{font-size:clamp(32px,8.5vw,44px);font-weight:400}
+  .nd-sub{flex-direction:column;align-items:stretch;gap:26px;border-top:1px solid rgba(0,0,0,.08);padding-top:30px;margin-top:auto}
+  .nd-sub-links{flex-direction:column;gap:20px}
+  .nd-sub-link{font-size:20px;opacity:.55}
+  .nd-sched{justify-content:center;padding:16px 24px;font-size:16px}
+  .nd-b{padding:20px 28px 34px;gap:22px;justify-content:flex-start;flex-wrap:wrap}
+  body.nav-open{overflow:hidden}
+  /* PROCESS — every card in its revealed state; numbers static & subtle */
+  .process-steps{flex-direction:column;gap:12px;padding:0 16px}
+  .pstep{min-height:0;background:var(--green);justify-content:flex-start;align-items:stretch;padding:60px 28px 34px;cursor:default}
+  .pstep-num{position:absolute;top:20px;left:22px;font-size:30px;font-weight:300;line-height:1;opacity:.32;color:#fff;transition:none;white-space:nowrap}
+  .pstep:hover .pstep-num,.pstep.active .pstep-num{left:22px}
+  .pstep-illus{position:static;transform:none;opacity:1;width:min(52%,160px);margin:4px auto 18px}
+  .pstep-illus img{width:100%}
+  .pstep-body{position:relative}
+  .pstep-desc{max-height:none;opacity:1;margin-top:12px;transform:none;overflow:visible}
+  /* FOOTER */
+  .footer-body{grid-template-columns:1fr;min-height:0}
+  .footer-art{display:none}
+  .footer-right{padding:48px 28px 40px}
+  .footer-top-row{flex-direction:row;flex-wrap:wrap;gap:36px 24px;align-items:flex-start}
+  .fgroup{flex:1 1 40%;min-width:140px}
+  .fworld-clock{flex-basis:100%;width:100%;margin-left:0;min-width:0}
+  .footer-wm-wrap{margin-top:40px}
+  .footer-wm-img{height:clamp(96px,26vw,220px)}
+}
+@media(max-width:600px){
+  .nd-link{font-size:34px}
+  .footer-top-row{gap:32px}
+  nav{padding:10px 18px}
+  #hero{margin:88px 16px calc(var(--py)/2)}
+  .hero-fixed{top:88px}
+  .blog-hero-wrap{padding:88px 12px 0}
+}
+/* ===== /RESPONSIVE ===== */
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <nav id="main-nav">
+    <a href="Phitany Homepage.html" class="nav-logo">
+      <div class="nav-icon"><img src="assets/logo-icon.svg" alt="Phitany"></div>
+      <img src="assets/phitany-wordmark.svg" alt="Phitany" class="nav-wordmark">
+    </a>
+    <div class="nav-actions">
+      <button class="nav-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.75"><circle cx="8.5" cy="8.5" r="6.5"/><path d="M13.5 13.5L18 18" stroke-linecap="round"/></svg>
+      </button>
+      <button class="nav-call">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="#fff"><path d="M3.6 7.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V17c0 .55-.45 1-1 1C8.02 18 0 9.98 0 .5 0-.05.45-.5 1-.5h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L3.6 7.8z"/></svg>
+        Call Us
+      </button>
+      <button class="nav-btn nav-btn-menu" id="menuBtn" aria-label="Menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="#000"><rect y="0" width="11" height="2" rx="1"/><rect y="6" width="18" height="2" rx="1"/><rect y="12" width="13" height="2" rx="1"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-dropdown" id="navDropdown">
+    <button class="nd-close" aria-label="Close menu" onclick="closeNav()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="nd-a">
+      <div class="nd-header">
+        <span>We create <strong><span id="tw-text">awesomeness</span><span class="tw-cursor">.</span></strong></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <div class="nd-nav-links">
+        <a href="Phitany Homepage.html" class="nd-link">Home</a>
+        <a href="Case Studies.html" class="nd-link">Case Studies</a>
+        <a href="Services.html" class="nd-link">Services</a>
+        <a href="Contact.html" class="nd-link">Contact Us</a>
+      </div>
+      <div class="nd-sub">
+        <div class="nd-sub-links">
+          <a href="About.html" class="nd-sub-link active">About Us</a>
+          <a href="Careers.html" class="nd-sub-link">Careers</a>
+          <a href="Insights.html" class="nd-sub-link">Insights</a>
+        </div>
+        <a href="Contact.html" class="nd-sched">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>
+          Schedule A Call
+        </a>
+      </div>
+    </div>
+    <div class="nd-b">
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>Dribble</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>Github</a>
+      <a href="#" class="nd-social">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO (fixed parallax underlay) -->
+<div class="hero-fixed" data-screen-label="About hero">
+  <div class="hero-banner"><img src="assets/about/hero.jpg" alt=""></div>
+  <div class="hero-headline"><h1>About Phitany</h1></div>
+</div>
+
+<div class="page">
+<div class="hero-spacer"></div>
+<div class="content">
+
+<!-- STORY -->
+<section class="section">
+  <div class="wrap">
+    <div class="story-layout">
+      <div class="story-left">
+        <p class="story-lead">We don't simply deliver services.<br>We build sustainable digital foundations.</p>
+        <div class="story-bottom">
+          <h2 class="story-h">Story</h2>
+          <div class="story-body">
+            <p>Founded in 2012, Phitany Business Solutions Pvt. Ltd. is a technology and digital growth company built on strategic thinking and execution precision.</p>
+            <p>Over the years, we have partnered with businesses across industries to design scalable digital ecosystems — integrating technology, branding, marketing intelligence, and automation into unified growth frameworks.</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-visual">
+        <img class="sv-glow" src="assets/about/green-dashboard.png" alt="">
+        <div class="sv-bars"><i style="height:38%"></i><i style="height:54%"></i><i style="height:42%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:86%"></i><i style="height:64%"></i><i style="height:100%"></i></div>
+        <div class="sv-stat"><b>$48,682</b><span>Last month</span></div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><b>14 +</b><span>Years of Experiences</span></div>
+      <div class="stat"><b>460 +</b><span>Projects Completed</span></div>
+      <div class="stat"><b>40 +</b><span>Specialists On Team</span></div>
+      <div class="stat"><b>12 +</b><span>Countries Served</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="section">
+  <div class="wrap mission-grid">
+    <div class="mission-left">
+      <div class="mission-photo"><img src="assets/about/office.jpg" alt="Our workspace"></div>
+      <div class="kerala-badge">
+        <img class="kerala-img" src="assets/about/kerala.jpg" alt="Kerala">
+        <div class="kerala-text">
+          <div class="kerala-made">Made in <span class="scr">Kerala</span></div>
+          <div class="kerala-world">To Worldwide</div>
+        </div>
+      </div>
+    </div>
+    <div class="mission-right">
+      <h2 class="mission-h">We don't simply deliver services. We build sustainable digital foundations.</h2>
+      <p class="mission-sub">To create intelligent, performance-driven digital solutions that generate measurable business impact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PATH TO INNOVATION -->
+<section class="section">
+  <div class="wrap">
+    <div class="tl-head">
+      <h2 class="tl-title">Path To Innovation</h2>
+      <p class="tl-sub">Our journey of 14 years</p>
+    </div>
+    <div class="tl-scroll">
+      <div class="tl-track">
+        <div class="tl-col">
+          <div class="tl-year-row"><span class="tl-line"></span><span class="tl-year">2012</span><span class="tl-line"></span></div>
+          <div class="tl-card">
+            <h3>The Beginning</h3>
+            <div class="tl-inner">
+              <p>Founded with a vision to create intelligent, performance-driven digital solutions.</p><hr>
+              <p>Laid foundations for our first digital product in the e-commerce sector.</p><hr>
+              <p>Secured initial funds and built a strong and dedicated team.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-year-row"><span class="tl-line"></span><span class="tl-year">2016</span><span class="tl-line"></span></div>
+          <div class="tl-card">
+            <h3>Scaling Up</h3>
+            <div class="tl-inner">
+              <p>Expanded into full-service digital engineering and brand strategy.</p><hr>
+              <p>Opened our first dedicated studio in Cochin.</p><hr>
+              <p>Crossed 100 completed client projects.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-year-row"><span class="tl-line"></span><span class="tl-year">2019</span><span class="tl-line"></span></div>
+          <div class="tl-card">
+            <h3>Going Further</h3>
+            <div class="tl-inner">
+              <p>Built our performance-marketing and analytics practice.</p><hr>
+              <p>Partnered with brands across India and the GCC.</p><hr>
+              <p>Grew the team to 30+ specialists.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-year-row"><span class="tl-line"></span><span class="tl-year">2020</span><span class="tl-line"></span></div>
+          <div class="tl-card">
+            <h3>Resilience</h3>
+            <div class="tl-inner">
+              <p>Shifted to a remote-first, distributed delivery model.</p><hr>
+              <p>Launched automation and CRM solutions for clients.</p><hr>
+              <p>Doubled our recurring retainer partnerships.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-year-row"><span class="tl-line"></span><span class="tl-year">2023</span><span class="tl-line"></span></div>
+          <div class="tl-card">
+            <h3>New Horizons</h3>
+            <div class="tl-inner">
+              <p>Integrated AI into our engineering and growth workflows.</p><hr>
+              <p>Surpassed 460 projects delivered worldwide.</p><hr>
+              <p>Recognised among Kerala's leading digital studios.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-section" data-screen-label="Clients">
+  <div class="clients-bg"><img src="assets/clients-bg.png" alt=""></div>
+  <div class="clients-scrim"></div>
+  <div class="clients-head">
+    <div>
+      <h2 class="display">Clients</h2>
+      <span class="section-tag">Brands we associated with</span>
+    </div>
+    <a href="Case Studies.html" class="clients-arrow" aria-label="View clients"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+  <div class="clients-rows">
+    <div class="marquee-outer">
+      <div class="marquee">
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+      </div>
+    </div>
+    <div class="marquee-outer">
+      <div class="marquee rev">
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+        <div class="client-chip"><div class="cl-dept"><span class="cl-dept-mark"></span><div><span class="cl-dept-tiny">Logoipsum</span><span class="cl-dept-name">Department <em>of</em><br>Fictional Logos</span></div></div></div>
+        <div class="client-chip"><span class="cl-word"><span class="cl-mark"></span>LOGOIPSUM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM / IDEA -->
+<section class="section">
+  <div class="wrap">
+    <div class="ti-row">
+      <div class="ti-text">
+        <div class="ti-copy">
+          <h2>The team</h2>
+          <p>Phitany is a multidisciplinary team of strategists, engineers, analysts, and digital growth experts.</p>
+        </div>
+      </div>
+      <div class="ti-img"><img src="assets/about/team.jpg" alt="The Phitany team"></div>
+    </div>
+    <div class="ti-row rev">
+      <div class="ti-img"><img src="assets/about/office.jpg" alt="Our workspace"></div>
+      <div class="ti-text">
+        <div class="ti-copy">
+          <h2>The idea</h2>
+          <p>We operate with clarity, structure, and accountability — ensuring every solution aligns with long-term business objectives.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="section">
+  <div class="wrap">
+    <div class="ins-head">
+      <h2>Insights.</h2>
+      <span>Latest from our blog</span>
+    </div>
+    <div class="ins-grid">
+      <a href="Blog Detail.html" class="ins-card">
+        <div class="ins-thumb"><img src="assets/demo-tourism.jpg" alt=""><span class="ins-read">3 min read</span></div>
+        <div class="ins-author"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <h3>Designing for trust: how tourism brands convert browsers into bookings.</h3>
+        <div class="ins-dates"><span>Posted on 28 May '26</span><span>Updated on 28 May '26</span></div>
+      </a>
+      <a href="Blog Detail.html" class="ins-card">
+        <div class="ins-thumb"><img src="assets/demo-health.jpg" alt=""><span class="ins-read">4 min read</span></div>
+        <div class="ins-author"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <h3>The performance playbook we use to scale healthcare campaigns.</h3>
+        <div class="ins-dates"><span>Posted on 14 May '26</span><span>Updated on 14 May '26</span></div>
+      </a>
+      <a href="Blog Detail.html" class="ins-card">
+        <div class="ins-thumb"><img src="assets/demo-edu.jpg" alt=""><span class="ins-read">2 min read</span></div>
+        <div class="ins-author"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <h3>Why automation is the quiet engine behind every growing business.</h3>
+        <div class="ins-dates"><span>Posted on 02 May '26</span><span>Updated on 02 May '26</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WANNA DISCUSS -->
+<section class="section">
+  <div class="wrap">
+    <div class="wd">
+      <img class="wd-bg" src="assets/about/cta-bg.jpg" alt="">
+      <div class="wd-grid">
+        <div class="wd-left">
+          <h2>Wanna<br>discuss?</h2>
+          <p>Have a project in mind? Reach out to us, and we'll discuss the best possible way to move forward.</p>
+          <a href="Contact.html" class="btn wd-book"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>Book a call now</a>
+        </div>
+        <form class="wd-form" onsubmit="return false">
+          <div class="wd-field"><label>Name *</label><input type="text" name="name"></div>
+          <div class="wd-field"><label>Email ID *</label><input type="email" name="email"></div>
+          <div class="wd-field"><label>Phone Number *</label><input type="tel" name="phone"></div>
+          <div class="wd-field"><label>Your Message</label><textarea rows="1" name="message"></textarea></div>
+          <button type="submit" id="submitBtn" class="btn wd-send">Send To Us<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="fticker"><div class="fticker-inner" id="ftickerInner"></div></div>
+  <div class="footer-body">
+    <div class="footer-art"><img src="assets/footer-brand-art.png" alt="" class="footer-art-img"></div>
+    <div class="footer-right">
+      <div class="footer-top-row">
+        <div class="fgroup">
+          <span class="fgroup-label">Explore</span>
+          <nav class="fgroup-nav">
+            <a href="Phitany Homepage.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="Case Studies.html">Case Studies</a>
+            <a href="Services.html">Services</a>
+            <a href="Insights.html">Blog</a>
+            <a href="Contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="fgroup">
+          <span class="fgroup-label">Social</span>
+          <nav class="fgroup-nav">
+            <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+            <a href="#">Behance</a>
+            <a href="#">X</a>
+          </nav>
+        </div>
+        <div class="fworld-clock">
+          <div class="fclocks-row">
+            <div class="fclock-col">
+              <div class="fclock-label">Local time</div>
+              <div class="fclock-time"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span id="footer-ist">—</span></div>
+            </div>
+            <div class="fclock-col">
+              <div class="fclock-label">Your time</div>
+              <div class="fclock-time"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span id="footer-local">—</span></div>
+            </div>
+          </div>
+          <a href="Contact.html" class="btn btn-outline-white footer-sched-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>Schedule A Call</a>
+        </div>
+      </div>
+      <div class="footer-wm-wrap"><img src="assets/phitany-wordmark-large.svg" alt="Phitany" class="footer-wm-img"></div>
+    </div>
+  </div>
+</footer>
+</div><!-- /page -->
+
+<script>
+/* Timeline drag-to-scroll */
+(function(){
+  const sc=document.querySelector('.tl-scroll');
+  if(!sc) return;
+  let down=false,startX=0,startLeft=0,moved=false;
+  sc.addEventListener('pointerdown',e=>{down=true;moved=false;startX=e.clientX;startLeft=sc.scrollLeft;sc.classList.add('dragging');try{sc.setPointerCapture(e.pointerId);}catch(_){}});
+  sc.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-startX;if(Math.abs(dx)>3)moved=true;sc.scrollLeft=startLeft-dx;});
+  const end=()=>{down=false;sc.classList.remove('dragging');};
+  sc.addEventListener('pointerup',end);
+  sc.addEventListener('pointercancel',end);
+  sc.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();}},true);
+  sc.addEventListener('dragstart',e=>e.preventDefault());
+})();
+/* Ticker fill */
+(function(){
+  const inner=document.getElementById('ftickerInner');
+  if(!inner) return;
+  const star='<svg width="17" height="17" viewBox="0 0 17 17" fill="rgba(0,0,0,0.4)" style="flex-shrink:0"><path d="M8.5 0L9.47 2.46C10.385 4.779 12.221 6.615 14.54 7.53L17 8.5l-2.46.97C12.221 10.385 10.385 12.221 9.47 14.54L8.5 17l-.97-2.46C6.615 12.221 4.779 10.385 2.46 9.47L0 8.5l2.46-.97C4.779 6.615 6.615 4.779 7.53 2.46Z"/></svg>';
+  const words=['Innovation','Precision','Limitless','Phitany'];
+  let chunk='<div class="fticker-chunk">';
+  for(let i=0;i<8;i++){chunk+='<span class="fticker-word">'+words[i%words.length]+'</span>'+star;}
+  chunk+='</div>';
+  inner.innerHTML=chunk+chunk;
+})();
+/* Typewriter */
+const twWords=['awesomeness','business','opportunities'];
+const twEl=document.getElementById('tw-text');
+let twI=0,twChar=0,twDeleting=false;
+function twTick(){const word=twWords[twI];if(!twDeleting){twEl.textContent=word.slice(0,++twChar);if(twChar===word.length){twDeleting=true;setTimeout(twTick,1400);return;}setTimeout(twTick,72);}else{twEl.textContent=word.slice(0,--twChar);if(twChar===0){twDeleting=false;twI=(twI+1)%twWords.length;setTimeout(twTick,320);return;}setTimeout(twTick,38);}}
+setTimeout(twTick,1800);
+/* Clocks */
+function updateClocks(){
+  const now=new Date();
+  const fmt=(tz)=>now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:tz});
+  const ist=fmt('Asia/Kolkata')+', IST';
+  const userTz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const local=fmt(userTz)+', '+userTz.split('/').pop().replace(/_/g,' ');
+  const fi=document.getElementById('footer-ist');if(fi)fi.textContent=ist;
+  const fl=document.getElementById('footer-local');if(fl)fl.textContent=local;
+}
+updateClocks();setInterval(updateClocks,30000);
+/* Nav */
+const mainNav=document.getElementById('main-nav');
+const docEl=document.documentElement;
+const heroBanner=document.querySelector('.hero-banner');
+const heroHeadline=document.querySelector('.hero-headline');
+function onScroll(){
+  mainNav.classList.toggle('scrolled',window.scrollY>60);
+  const vh=window.innerHeight;
+  const p=Math.min(1,Math.max(0,window.scrollY/(vh*0.72)));
+  docEl.style.setProperty('--cm',(28*(1-p))+'px');
+  docEl.style.setProperty('--cr',(28*(1-p))+'px');
+  if(heroBanner){heroBanner.style.transform='scale('+(1+0.10*(1-p))+')';heroBanner.style.filter='blur('+(6*p)+'px)';}
+  if(heroHeadline){heroHeadline.style.transform='translateY('+(-64*p)+'px)';heroHeadline.style.opacity=(1-0.65*p).toFixed(3);}
+}
+onScroll();
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',onScroll);
+function closeNav(){document.getElementById('navDropdown').classList.remove('open');}
+document.getElementById('menuBtn').addEventListener('click',(e)=>{e.stopPropagation();document.getElementById('navDropdown').classList.toggle('open');});
+document.addEventListener('click',(e)=>{if(!e.target.closest('#navDropdown')&&!e.target.closest('#menuBtn'))closeNav();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+/* Form */
+document.querySelector('.wd-form').addEventListener('submit',function(){
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Sent ✓';btn.style.background='var(--green)';btn.style.color='#fff';
+  setTimeout(()=>{btn.innerHTML='Send To Us<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';btn.style.background='';btn.style.color='';},3000);
+});
+</script>
+<script>
+(function(){
+  if(typeof window.closeNav!=='function'){window.closeNav=function(){var d=document.getElementById('navDropdown');if(d)d.classList.remove('open');};}
+  var d=document.getElementById('navDropdown');
+  if(d){new MutationObserver(function(){document.body.classList.toggle('nav-open',d.classList.contains('open'));}).observe(d,{attributes:true,attributeFilter:['class']});}
+})();
+</script>
+</body>
+</html>

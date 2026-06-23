@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 124" fill="none">
+  <circle cx="130" cy="38" r="30" stroke="#fff" stroke-width="2.4"></circle>
+  <path d="M111 52 L126 26 L141 52 Z" fill="#fff"></path>
+  <circle cx="142" cy="28" r="5" fill="#fff"></circle>
+  <text x="130" y="104" text-anchor="middle" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="7">INTERSIGHT</text>
+</svg>

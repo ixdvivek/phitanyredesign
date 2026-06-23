@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Phitany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Google+Sans+Flex:wght@100..700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#000;--white:#fff;--green:#26AE68;--bg:#f5f5f5;--mint:#E6EBE3;--f:'Google Sans',-apple-system,BlinkMacSystemFont,sans-serif;--px:clamp(24px,10.83vw,208px);--py:clamp(64px,8.33vw,160px);--mw:1504px;--r-pill:99px;--r-card:12px;--btn-h:56px;--ease:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--bg);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.section{padding:calc(var(--py)/2) var(--px)}
+.wrap{max-width:var(--mw);margin:0 auto}
+.display{font-size:clamp(48px,4.9vw,94px);line-height:1.15;font-weight:300;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+
+/* NAV */
+.nav-wrap{position:fixed;top:64px;left:0;right:0;z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+nav{pointer-events:all;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:40px;padding:12px;width:min(736px,calc(100% - 48px));box-shadow:0 1px 8px rgba(0,0,0,.06);transform-origin:top center;transition:box-shadow .3s var(--ease),transform .38s var(--ease)}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-icon{width:56px;height:56px;border-radius:44px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-icon img{width:32px;height:32px;object-fit:contain}
+.nav-wordmark{height:22px;object-fit:contain}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-btn-menu{box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.nav-btn{width:56px;height:56px;border-radius:var(--r-pill);border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-btn:hover{background:rgba(0,0,0,.06)}
+.nav-call{display:flex;align-items:center;gap:8px;background:#000;color:#fff;border:none;border-radius:var(--r-pill);padding:0 24px;height:var(--btn-h);font-family:var(--f);font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;isolation:isolate;transition:transform .22s var(--ease),box-shadow .4s var(--ease);white-space:nowrap}
+.nav-call::before{content:'';position:absolute;inset:0;background:var(--green);transform:translateY(105%);transition:transform .55s cubic-bezier(.76,0,.24,1);z-index:-1}
+.nav-call:hover::before{transform:translateY(0)}
+.nav-call:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 24px rgba(38,174,104,.35)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;height:var(--btn-h);padding:0 24px;border-radius:var(--r-pill);font-family:var(--f);font-size:16px;font-weight:700;letter-spacing:.02em;cursor:pointer;border:none;white-space:nowrap;position:relative;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),box-shadow .4s var(--ease),transform .22s var(--ease)}
+.btn::before{content:'';position:absolute;inset:0;background:var(--green);transform:translateY(105%);transition:transform .55s cubic-bezier(.76,0,.24,1);z-index:-1;border-radius:inherit}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{color:#fff;transform:translateY(-3px);box-shadow:0 10px 32px rgba(38,174,104,.32);opacity:1}
+.btn:hover svg,.btn:hover svg path{fill:#fff;stroke:none}
+.btn:active{transform:translateY(-1px)}
+.btn-black{background:#000;color:#fff}
+.btn-outline-white{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+
+/* DROPDOWN */
+.tw-cursor{display:inline-block;color:var(--green);animation:tw-blink .7s step-end infinite;font-weight:700}
+@keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-dropdown{position:absolute;top:88px;left:50%;transform:translateX(-50%) translateY(-10px) scale(.98);width:min(736px,calc(100% - 48px));border-radius:32px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .35s var(--ease);z-index:10}
+.nav-dropdown.open{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:all}
+.nd-a{background:#fff;padding:32px 40px 28px}
+.nd-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45)}
+.nd-nav-links{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.nd-link{display:block;font-size:clamp(18px,2.3vw,36px);font-weight:400;color:rgba(0,0,0,.2);text-decoration:none;line-height:1.25;transition:color .2s}
+.nd-link.active,.nd-link:hover{color:#000}
+.nd-link.active{font-weight:700}
+.nd-sub{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,.08);padding-top:20px;gap:12px;flex-wrap:wrap}
+.nd-sub-links{display:flex;gap:28px}
+.nd-sub-link{font-size:15px;color:#000;text-decoration:none;opacity:.35;transition:opacity .2s;white-space:nowrap}
+.nd-sub-link.active,.nd-sub-link:hover{opacity:1}
+.nd-sched{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border-radius:99px;padding:11px 20px;font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap;transition:opacity .2s}
+.nd-sched:hover{opacity:.88}
+.nd-b{background:#f5f5f5;padding:18px 40px;display:flex;align-items:center;gap:clamp(16px,3vw,32px);flex-wrap:wrap}
+.nd-social{display:flex;align-items:center;gap:7px;font-size:14px;color:#000;text-decoration:none;opacity:.35;transition:opacity .2s}
+.nd-social:hover{opacity:1}
+
+/* BLOG HERO */
+.blog-hero-wrap{padding:16px 16px 0}
+.blog-hero{position:relative;border-radius:24px;overflow:hidden;height:clamp(560px,82vh,920px);display:flex;align-items:flex-end}
+.blog-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.blog-hero::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.05) 26%,rgba(0,0,0,.12) 50%,rgba(0,0,0,.82) 100%)}
+.blog-hero-read{align-self:flex-start;background:#fff;border-radius:99px;padding:9px 20px;font-size:15px;font-weight:500;color:#111;margin-bottom:20px}
+.blog-hero-inner{position:relative;z-index:2;width:100%;padding:clamp(32px,3.4vw,52px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.blog-hero-headcol{display:flex;flex-direction:column;align-items:flex-start;max-width:760px;order:2}
+.blog-hero-title{color:#fff;font-size:clamp(30px,3.6vw,56px);font-weight:400;line-height:1.18;letter-spacing:-.01em}
+.blog-hero-meta{color:#fff;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;gap:14px;order:1}
+.blog-hero-meta .bm-author{display:flex;align-items:center;gap:8px;font-size:18px;margin-bottom:6px}
+.blog-hero-meta .bm-date{font-size:15px;color:rgba(255,255,255,.7);line-height:1.5}
+.blog-hero-share{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:99px;padding:9px 18px;font-size:15px;font-family:var(--f);cursor:pointer;transition:background .2s}
+.blog-hero-share:hover{background:rgba(255,255,255,.26)}
+.blog-hero-share svg{flex-shrink:0}
+
+/* ARTICLE LAYOUT */
+.article-layout{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:clamp(40px,5vw,96px);align-items:start}
+.article{max-width:760px}
+.article h2{font-size:clamp(26px,2.2vw,32px);font-weight:500;line-height:1.28;letter-spacing:-.01em;margin:0 0 22px}
+.article h2.sub{margin-top:8px}
+.article p{font-size:18px;line-height:30px;color:rgba(0,0,0,.78);margin-bottom:22px}
+.article figure{margin:8px 0 28px}
+.article figure img{border-radius:12px;width:100%}
+.figcap{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:rgba(0,0,0,.45);margin-top:12px}
+.article ul{margin:4px 0 26px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.article li{font-size:18px;line-height:28px;color:rgba(0,0,0,.78);display:flex;gap:12px;align-items:flex-start}
+.article li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:11px;flex-shrink:0}
+.video-embed{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;cursor:pointer;margin-bottom:14px;background:#000}
+.video-embed img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.video-embed:hover img{transform:scale(1.03)}
+.video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:48px;border-radius:13px;background:#f00;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .2s}
+.video-embed:hover .video-play{background:#e00}
+.video-play svg{width:24px;height:24px}
+.video-cap{margin-bottom:26px}
+.video-title{font-size:18px;font-weight:500;margin-bottom:2px}
+.video-views{font-size:14px;color:rgba(0,0,0,.45)}
+.bq{background:#fff;border-radius:12px;padding:clamp(32px,3.4vw,56px);margin:28px 0;display:flex;flex-direction:column;gap:18px}
+.bq-mark{color:var(--green)}
+.bq p{font-size:clamp(18px,1.5vw,21px);line-height:32px;color:rgba(0,0,0,.82);margin:0}
+.reference{font-size:16px;color:rgba(0,0,0,.55);margin:6px 0 22px}
+.reference a{color:var(--green);text-decoration:underline}
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:clamp(36px,4vw,56px) 0;color:rgba(0,0,0,.3)}
+.divider .dl{width:34px;height:1px;background:rgba(0,0,0,.25)}
+.author-bio{background:#fff;border-radius:12px;padding:clamp(28px,3vw,40px);display:flex;gap:clamp(20px,2.4vw,32px);align-items:flex-start}
+.author-avatar{width:clamp(96px,8vw,120px);height:clamp(96px,8vw,120px);border-radius:12px;object-fit:cover;flex-shrink:0}
+.author-info h4{font-size:21px;font-weight:700;line-height:1.4}
+.author-info p{font-size:18px;line-height:28px;color:rgba(0,0,0,.6);margin:10px 0 16px}
+.author-socials{display:flex;gap:16px;margin-bottom:14px}
+.author-socials a{color:#000;display:flex;transition:color .2s}
+.author-socials a:hover{color:var(--green)}
+.author-more{color:var(--green);font-weight:500;font-size:18px;text-decoration:underline}
+
+/* SIDEBAR — Get in touch */
+.sidebar{position:sticky;top:148px}
+.git-card{background:#fff;border-radius:16px;padding:clamp(32px,2.6vw,48px)}
+.git-card h2{font-size:clamp(30px,2.6vw,40px);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:16px}
+.git-sub{font-size:18px;line-height:28px;color:rgba(0,0,0,.55);margin-bottom:clamp(28px,3vw,40px)}
+.ffield{display:flex;flex-direction:column;margin-bottom:clamp(22px,2vw,30px)}
+.ffield label{font-size:16px;color:#111;margin-bottom:14px}
+.finput{display:block;width:100%;border:none;border-bottom:1px solid rgba(0,0,0,.16);background:transparent;font-family:var(--f);font-size:16px;color:#111;outline:none;padding:0 0 10px;transition:border-color .25s var(--ease)}
+.finput::placeholder{color:rgba(0,0,0,.3)}
+.finput:focus{border-bottom-color:var(--green)}
+textarea.finput{resize:none;min-height:48px;line-height:1.5}
+.git-send{display:inline-flex;align-items:center;gap:10px;background:#0a0a0a;color:#fff;border:none;border-radius:99px;padding:16px 26px;font-family:var(--f);font-size:16px;font-weight:700;letter-spacing:.02em;cursor:pointer;margin-top:6px;transition:transform .25s var(--ease),background .25s var(--ease)}
+.git-send:hover{transform:translateY(-2px);background:#1c1c1c}
+.git-fine{margin-top:24px;font-size:14px;line-height:1.5;color:rgba(0,0,0,.45)}
+.git-fine a{color:#111;font-weight:600}
+
+/* MORE ARTICLES */
+.more-head{text-align:center;margin-bottom:clamp(40px,5vw,64px)}
+.more-head h2{font-size:clamp(48px,5.5vw,72px);font-weight:300;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.more-head span{font-size:18px;color:rgba(0,0,0,.5);margin-top:8px;display:block}
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.5vw,48px)}
+.bpost{cursor:pointer;display:flex;flex-direction:column}
+.bpost-thumb{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:438/305;margin-bottom:22px}
+.bpost-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.bpost:hover .bpost-thumb img{transform:scale(1.04)}
+.bpost-read{position:absolute;top:18px;right:18px;background:#fff;border-radius:99px;padding:7px 16px;font-size:14px;font-weight:500;color:#111;box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.bpost-author{display:flex;align-items:center;gap:8px;font-size:16px;color:rgba(0,0,0,.45);margin-bottom:14px}
+.bpost-author svg{flex-shrink:0;opacity:.5}
+.bpost-title{font-size:clamp(20px,1.45vw,23px);font-weight:400;line-height:1.32;color:#111;margin-bottom:12px}
+.bpost-dates{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:rgba(0,0,0,.38)}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+footer{background:transparent}
+.fticker{background:var(--green);overflow:hidden;display:flex;height:120px;align-items:center}
+.fticker-inner{display:flex;animation:ftick 22s linear infinite;white-space:nowrap;align-items:center}
+@keyframes ftick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fticker-chunk{display:flex;align-items:center;gap:80px;padding:0 40px}
+.fticker-word{font-size:22px;color:#fff;font-weight:400}
+.footer-body{background:#000;display:grid;grid-template-columns:clamp(160px,26.4vw,508px) 1fr;min-height:clamp(700px,48vw,960px)}
+.footer-art{position:relative;overflow:hidden;background:#000}
+.footer-art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;z-index:1;display:block;-webkit-mask-image:linear-gradient(to right,#000 55%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,#000 55%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.footer-right{padding:clamp(40px,8.3vw,160px) clamp(20px,4.2vw,80px) 0;display:flex;flex-direction:column;justify-content:space-between}
+.footer-top-row{display:flex;gap:clamp(24px,4.2vw,80px);flex-wrap:wrap;align-items:flex-start}
+.fgroup{display:flex;gap:clamp(16px,3.2vw,62px);align-items:baseline}
+.fgroup-label{font-size:18px;line-height:24px;color:rgba(255,255,255,.4);flex-shrink:0;min-width:52px}
+.fgroup-nav{display:flex;flex-direction:column;gap:16px;align-items:flex-start;background:transparent}
+.fgroup-nav a{font-size:18px;color:#fff;text-decoration:none;line-height:24px;display:block;transition:opacity .2s}
+.fgroup-nav a:hover{opacity:.5}
+.fworld-clock{display:flex;flex-direction:column;gap:24px;margin-left:auto;min-width:200px}
+.fclocks-row{display:flex;gap:24px;flex-wrap:wrap}
+.fclock-col{display:flex;flex-direction:column}
+.fclock-label{font-size:18px;line-height:32px;color:rgba(255,255,255,.4)}
+.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:center;gap:8px}
+.footer-sched-btn{justify-content:center}
+.footer-wm-wrap{margin-top:auto;margin-left:0}
+.footer-wm-img{height:clamp(80px,18.7vw,360px);width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block}
+
+@media(max-width:1080px){
+  .article-layout{grid-template-columns:1fr}
+  .sidebar{position:static;max-width:560px}
+  .article{max-width:none}
+}
+@media(max-width:960px){
+  .footer-body{grid-template-columns:1fr}
+  .footer-art{min-height:220px}
+  .footer-top-row{gap:40px}
+  .more-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .fclocks-row{flex-direction:column;gap:12px}
+  .fworld-clock{margin-left:0}
+  .blog-hero-inner{flex-direction:column;align-items:flex-start}
+  .blog-hero-meta{text-align:left}
+  .blog-hero-meta .bm-author{justify-content:flex-start}
+}
+
+/* ===== RESPONSIVE (shared) ===== */
+.nd-close{display:none}
+@media(max-width:960px){
+  /* NAV — edge-to-edge sticky bar */
+  .nav-wrap{top:0;left:0;right:0;gap:0}
+  nav{width:100%;max-width:none;border-radius:0;padding:12px 24px;box-shadow:none;border-bottom:1px solid rgba(0,0,0,.08)}
+  nav.scrolled{transform:none;box-shadow:none;border-bottom:1px solid rgba(0,0,0,.1)}
+  .nav-icon{width:48px;height:48px}
+  .nav-icon img{width:26px;height:26px}
+  .nav-wordmark{height:20px}
+  .nav-btn{width:48px;height:48px}
+  .nav-call{width:48px;padding:0;gap:0;font-size:0;justify-content:center}
+  .nav-call svg{width:18px;height:18px}
+  .news-ticker{display:none}
+  /* heroes drop below the bar with standard padding */
+  #hero{margin:96px 24px calc(var(--py)/2);min-height:62vh}
+  .hero-fixed{top:96px}
+  .blog-hero-wrap{padding:96px 16px 0}
+  /* FULL-SCREEN MENU */
+  .nav-dropdown{position:fixed;inset:0;width:100%;height:100dvh;max-height:none;transform:none;border-radius:0;opacity:0;pointer-events:none;display:flex;flex-direction:column;overflow-y:auto;background:#fff;box-shadow:none;transition:opacity .32s var(--ease)}
+  .nav-dropdown.open{transform:none;opacity:1;pointer-events:all}
+  .nd-close{display:flex;position:fixed;top:18px;right:18px;z-index:6;width:48px;height:48px;border-radius:50%;border:none;background:rgba(0,0,0,.06);color:#000;align-items:center;justify-content:center;cursor:pointer}
+  .nd-close:active{background:rgba(0,0,0,.12)}
+  .nd-a{flex:1 0 auto;padding:92px 28px 32px;display:flex;flex-direction:column}
+  .nd-header{margin-bottom:30px}
+  .nd-nav-links{gap:8px !important;margin-bottom:30px}
+  .nd-link{font-size:clamp(32px,8.5vw,44px);font-weight:400}
+  .nd-sub{flex-direction:column;align-items:stretch;gap:26px;border-top:1px solid rgba(0,0,0,.08);padding-top:30px;margin-top:auto}
+  .nd-sub-links{flex-direction:column;gap:20px}
+  .nd-sub-link{font-size:20px;opacity:.55}
+  .nd-sched{justify-content:center;padding:16px 24px;font-size:16px}
+  .nd-b{padding:20px 28px 34px;gap:22px;justify-content:flex-start;flex-wrap:wrap}
+  body.nav-open{overflow:hidden}
+  /* PROCESS — every card in its revealed state; numbers static & subtle */
+  .process-steps{flex-direction:column;gap:12px;padding:0 16px}
+  .pstep{min-height:0;background:var(--green);justify-content:flex-start;align-items:stretch;padding:60px 28px 34px;cursor:default}
+  .pstep-num{position:absolute;top:20px;left:22px;font-size:30px;font-weight:300;line-height:1;opacity:.32;color:#fff;transition:none;white-space:nowrap}
+  .pstep:hover .pstep-num,.pstep.active .pstep-num{left:22px}
+  .pstep-illus{position:static;transform:none;opacity:1;width:min(52%,160px);margin:4px auto 18px}
+  .pstep-illus img{width:100%}
+  .pstep-body{position:relative}
+  .pstep-desc{max-height:none;opacity:1;margin-top:12px;transform:none;overflow:visible}
+  /* FOOTER */
+  .footer-body{grid-template-columns:1fr;min-height:0}
+  .footer-art{display:none}
+  .footer-right{padding:48px 28px 40px}
+  .footer-top-row{flex-direction:row;flex-wrap:wrap;gap:36px 24px;align-items:flex-start}
+  .fgroup{flex:1 1 40%;min-width:140px}
+  .fworld-clock{flex-basis:100%;width:100%;margin-left:0;min-width:0}
+  .footer-wm-wrap{margin-top:40px}
+  .footer-wm-img{height:clamp(96px,26vw,220px)}
+}
+@media(max-width:600px){
+  .nd-link{font-size:34px}
+  .footer-top-row{gap:32px}
+  nav{padding:10px 18px}
+  #hero{margin:88px 16px calc(var(--py)/2)}
+  .hero-fixed{top:88px}
+  .blog-hero-wrap{padding:88px 12px 0}
+}
+/* ===== /RESPONSIVE ===== */
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <nav id="main-nav">
+    <a href="Phitany Homepage.html" class="nav-logo">
+      <div class="nav-icon"><img src="assets/logo-icon.svg" alt="Phitany"></div>
+      <img src="assets/phitany-wordmark.svg" alt="Phitany" class="nav-wordmark">
+    </a>
+    <div class="nav-actions">
+      <button class="nav-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.75"><circle cx="8.5" cy="8.5" r="6.5"/><path d="M13.5 13.5L18 18" stroke-linecap="round"/></svg>
+      </button>
+      <button class="nav-call">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="#fff"><path d="M3.6 7.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V17c0 .55-.45 1-1 1C8.02 18 0 9.98 0 .5 0-.05.45-.5 1-.5h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L3.6 7.8z"/></svg>
+        Call Us
+      </button>
+      <button class="nav-btn nav-btn-menu" id="menuBtn" aria-label="Menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="#000"><rect y="0" width="11" height="2" rx="1"/><rect y="6" width="18" height="2" rx="1"/><rect y="12" width="13" height="2" rx="1"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-dropdown" id="navDropdown">
+    <button class="nd-close" aria-label="Close menu" onclick="closeNav()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="nd-a">
+      <div class="nd-header">
+        <span>We create <strong><span id="tw-text">awesomeness</span><span class="tw-cursor">.</span></strong></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <div class="nd-nav-links">
+        <a href="Phitany Homepage.html" class="nd-link">Home</a>
+        <a href="Case Studies.html" class="nd-link">Case Studies</a>
+        <a href="Services.html" class="nd-link">Services</a>
+        <a href="Contact.html" class="nd-link">Contact Us</a>
+      </div>
+      <div class="nd-sub">
+        <div class="nd-sub-links">
+          <a href="About.html" class="nd-sub-link">About Us</a>
+          <a href="Careers.html" class="nd-sub-link">Careers</a>
+          <a href="Insights.html" class="nd-sub-link active">Insights</a>
+        </div>
+        <a href="Contact.html" class="nd-sched">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>
+          Schedule A Call
+        </a>
+      </div>
+    </div>
+    <div class="nd-b">
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>Dribble</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>Github</a>
+      <a href="#" class="nd-social">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG HERO -->
+<div class="blog-hero-wrap">
+  <header class="blog-hero" data-screen-label="Blog detail hero">
+    <img src="assets/about/hero.jpg" alt="">
+    <div class="blog-hero-inner" style="flex-direction: row-reverse">
+      <div class="blog-hero-headcol">
+        <span class="blog-hero-read">2 min read</span>
+        <h1 class="blog-hero-title">How performance marketing is reshaping B2B growth in 2026.</h1>
+      </div>
+      <div class="blog-hero-meta">
+        <div class="bm-author"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <div class="bm-date">Updated on 03 May '26<br>Posted on 03 May '26</div>
+        <button class="blog-hero-share" id="shareBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>Share</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- ARTICLE -->
+<section class="section" style="padding-top:clamp(40px,4.5vw,72px)">
+  <div class="wrap article-layout">
+    <article class="article">
+      <h2>Headline goes here and it can extend to multiple lines.</h2>
+      <p>For years, B2B marketing was measured in impressions and brand lift — vanity metrics that rarely tied back to revenue. That era is ending. Performance marketing has moved from a bottom-of-funnel afterthought to the operating system of modern growth teams, where every rupee of spend is mapped to a measurable outcome.</p>
+      <p>The shift is structural, not cosmetic. Buying committees have grown, sales cycles have lengthened, and attention has fragmented across a dozen channels. Winning teams respond with disciplined experimentation: tight feedback loops, clean attribution, and creative that earns its place in the feed.</p>
+      <p>What follows is a practical look at what is actually working in 2026 — and what to quietly retire.</p>
+
+      <figure>
+        <img src="assets/demo-tourism.jpg" alt="">
+        <figcaption class="figcap"><span>Image description</span><span>Copyright backlink</span></figcaption>
+      </figure>
+
+      <h2 class="sub">Sub headline goes here and yes, it too, can extend to multiple lines.</h2>
+      <p>Intent data is the connective tissue of a performance program. When you can see which accounts are researching your category, you can sequence creative, sales outreach, and retargeting into a single motion rather than three disconnected ones.</p>
+      <p>The teams pulling ahead treat their CRM as a living model of demand — enriched continuously, segmented ruthlessly, and acted on within hours rather than weeks.</p>
+
+      <div class="video-embed" id="videoEmbed">
+        <img src="assets/demo-health.jpg" alt="">
+        <div class="video-play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-cap">
+        <div class="video-title">YouTube video title goes here</div>
+        <div class="video-views">20,468 Views</div>
+      </div>
+
+      <p>Channel mix matters less than channel discipline. A focused program on two channels — run well, measured honestly — outperforms a thin presence on eight. The fundamentals still decide the outcome:</p>
+      <ul>
+        <li>Anchor every campaign to a single, measurable business outcome.</li>
+        <li>Build creative for the platform, not the brand guidelines deck.</li>
+        <li>Instrument attribution before you scale spend, not after.</li>
+        <li>Treat your audience data as a product that compounds over time.</li>
+        <li>Kill underperformers fast; double down on what converts.</li>
+      </ul>
+
+      <div class="bq">
+        <svg class="bq-mark" width="40" height="32" viewBox="0 0 40 32" fill="currentColor"><path d="M0 32V18.5C0 8.3 5.7 1.8 16 0l1.6 4.9c-5.6 1.5-8.6 4.6-9 9.3H17V32H0zm23 0V18.5C23 8.3 28.7 1.8 39 0l1.6 4.9c-5.6 1.5-8.6 4.6-9 9.3H40V32H23z"/></svg>
+        <p>The brands winning in 2026 aren't spending more — they're measuring better and acting faster. Performance is no longer a tactic; it's the entire posture.</p>
+      </div>
+      <p class="reference">Reference: <a href="#">www.example.com</a></p>
+
+      <p>None of this requires a bigger budget. It requires a tighter loop between data, creative, and decision-making — the willingness to read the numbers honestly and reallocate without ego. That is the real unlock.</p>
+
+      <div class="divider"><span class="dl"></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.3)" stroke-width="1.5"><path d="M18.178 8c-1.18 0-2.18.4-3 1.2L12 12.36 8.822 9.2C8 8.4 7 8 5.822 8 3.71 8 2 9.79 2 12s1.71 4 3.822 4c1.18 0 2.18-.4 3-1.2L12 11.64l3.178 3.16c.82.8 1.82 1.2 3 1.2C20.29 16 22 14.21 22 12s-1.71-4-3.822-4z"/></svg><span class="dl"></span></div>
+
+      <div class="author-bio">
+        <img class="author-avatar" src="assets/about/team.jpg" alt="Jack Ryan">
+        <div class="author-info">
+          <h4>Jack Ryan</h4>
+          <p>Jack leads growth strategy at Phitany, helping B2B brands turn marketing spend into measurable, compounding revenue.</p>
+          <div class="author-socials">
+            <a href="#" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07c0 6 4.39 10.97 10.13 11.87v-8.4H7.08v-3.47h3.05V9.43c0-3 1.79-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95H15.83c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.4C19.61 23.04 24 18.07 24 12.07z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+          </div>
+          <a href="Insights.html" class="author-more">More articles from Jack</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="git-card">
+        <h2>Get in touch</h2>
+        <p class="git-sub">Have a project in mind? Reach out to us, and we'll discuss the best possible way to move forward.</p>
+        <form class="git-form" onsubmit="return false">
+          <div class="ffield">
+            <label>Name *</label>
+            <input class="finput" type="text" required>
+          </div>
+          <div class="ffield">
+            <label>Email ID *</label>
+            <input class="finput" type="email" required>
+          </div>
+          <div class="ffield">
+            <label>Phone Number *</label>
+            <input class="finput" type="tel" required>
+          </div>
+          <div class="ffield">
+            <label>Your Message</label>
+            <textarea class="finput" rows="2"></textarea>
+          </div>
+          <button type="submit" class="git-send"><span class="send-label">Send To Us</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg></button>
+          <p class="git-fine">By submitting, you agree to our <a href="Terms.html">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- MORE ARTICLES -->
+<section class="section">
+  <div class="wrap">
+    <div class="more-head">
+      <h2>More Articles.</h2>
+      <span>Latest from our blog</span>
+    </div>
+    <div class="more-grid">
+      <a href="#" class="bpost">
+        <div class="bpost-thumb"><img src="assets/demo-tourism.jpg" alt=""><span class="bpost-read">1 min read</span></div>
+        <div class="bpost-author"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <div class="bpost-title">Designing for trust: how tourism brands convert browsers into bookings.</div>
+        <div class="bpost-dates"><span>Posted on 03 May '26</span><span>Updated on 03 May '26</span></div>
+      </a>
+      <a href="#" class="bpost">
+        <div class="bpost-thumb"><img src="assets/demo-edu.jpg" alt=""><span class="bpost-read">2 min read</span></div>
+        <div class="bpost-author"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <div class="bpost-title">Why automation is the quiet engine behind every growing business.</div>
+        <div class="bpost-dates"><span>Posted on 03 May '26</span><span>Updated on 03 May '26</span></div>
+      </a>
+      <a href="#" class="bpost">
+        <div class="bpost-thumb"><img src="assets/demo-health.jpg" alt=""><span class="bpost-read">2 min read</span></div>
+        <div class="bpost-author"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Jack Ryan</div>
+        <div class="bpost-title">The performance playbook we use to scale healthcare campaigns.</div>
+        <div class="bpost-dates"><span>Posted on 03 May '26</span><span>Updated on 03 May '26</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fticker"><div class="fticker-inner" id="ftickerInner"></div></div>
+  <div class="footer-body">
+    <div class="footer-art"><img src="assets/footer-brand-art.png" alt="" class="footer-art-img"></div>
+    <div class="footer-right">
+      <div class="footer-top-row">
+        <div class="fgroup">
+          <span class="fgroup-label">Explore</span>
+          <nav class="fgroup-nav">
+            <a href="Phitany Homepage.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="Case Studies.html">Case Studies</a>
+            <a href="Services.html">Services</a>
+            <a href="Insights.html">Blog</a>
+            <a href="Contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="fgroup">
+          <span class="fgroup-label">Social</span>
+          <nav class="fgroup-nav">
+            <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+            <a href="#">Behance</a>
+            <a href="#">X</a>
+          </nav>
+        </div>
+        <div class="fworld-clock">
+          <div class="fclocks-row">
+            <div class="fclock-col">
+              <div class="fclock-label">Local time</div>
+              <div class="fclock-time"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span id="footer-ist">—</span></div>
+            </div>
+            <div class="fclock-col">
+              <div class="fclock-label">Your time</div>
+              <div class="fclock-time"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span id="footer-local">—</span></div>
+            </div>
+          </div>
+          <a href="Contact.html" class="btn btn-outline-white footer-sched-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>Schedule A Call</a>
+        </div>
+      </div>
+      <div class="footer-wm-wrap"><img src="assets/phitany-wordmark-large.svg" alt="Phitany" class="footer-wm-img"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Ticker fill */
+(function(){
+  const inner=document.getElementById('ftickerInner');
+  if(!inner) return;
+  const star='<svg width="17" height="17" viewBox="0 0 17 17" fill="rgba(0,0,0,0.4)" style="flex-shrink:0"><path d="M8.5 0L9.47 2.46C10.385 4.779 12.221 6.615 14.54 7.53L17 8.5l-2.46.97C12.221 10.385 10.385 12.221 9.47 14.54L8.5 17l-.97-2.46C6.615 12.221 4.779 10.385 2.46 9.47L0 8.5l2.46-.97C4.779 6.615 6.615 4.779 7.53 2.46Z"/></svg>';
+  const words=['Innovation','Precision','Limitless','Phitany'];
+  let chunk='<div class="fticker-chunk">';
+  for(let i=0;i<8;i++){chunk+='<span class="fticker-word">'+words[i%words.length]+'</span>'+star;}
+  chunk+='</div>';
+  inner.innerHTML=chunk+chunk;
+})();
+/* Typewriter */
+const twWords=['awesomeness','business','opportunities'];
+const twEl=document.getElementById('tw-text');
+let twI=0,twChar=0,twDeleting=false;
+function twTick(){const word=twWords[twI];if(!twDeleting){twEl.textContent=word.slice(0,++twChar);if(twChar===word.length){twDeleting=true;setTimeout(twTick,1400);return;}setTimeout(twTick,72);}else{twEl.textContent=word.slice(0,--twChar);if(twChar===0){twDeleting=false;twI=(twI+1)%twWords.length;setTimeout(twTick,320);return;}setTimeout(twTick,38);}}
+setTimeout(twTick,1800);
+/* Clocks */
+function updateClocks(){
+  const now=new Date();
+  const fmt=(tz)=>now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:tz});
+  const ist=fmt('Asia/Kolkata')+', IST';
+  const userTz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const local=fmt(userTz)+', '+userTz.split('/').pop().replace(/_/g,' ');
+  const fi=document.getElementById('footer-ist');if(fi)fi.textContent=ist;
+  const fl=document.getElementById('footer-local');if(fl)fl.textContent=local;
+}
+updateClocks();setInterval(updateClocks,30000);
+/* Nav */
+const mainNav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{mainNav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
+function closeNav(){document.getElementById('navDropdown').classList.remove('open');}
+document.getElementById('menuBtn').addEventListener('click',(e)=>{e.stopPropagation();document.getElementById('navDropdown').classList.toggle('open');});
+document.addEventListener('click',(e)=>{if(!e.target.closest('#navDropdown')&&!e.target.closest('#menuBtn'))closeNav();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+/* Share */
+const shareBtn=document.getElementById('shareBtn');
+shareBtn.addEventListener('click',async()=>{
+  const data={title:document.title,url:location.href};
+  try{
+    if(navigator.share){await navigator.share(data);}
+    else{await navigator.clipboard.writeText(location.href);const o=shareBtn.querySelector('span')?null:null;shareBtn.childNodes[1].textContent='Link copied';setTimeout(()=>{shareBtn.childNodes[1].textContent='Share';},2000);}
+  }catch(_){}
+});
+/* Video poster → embed (demo) */
+document.getElementById('videoEmbed').addEventListener('click',function(){
+  this.innerHTML='<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+});
+/* Form */
+const gitForm=document.querySelector('.git-form');
+if(gitForm)gitForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('button[type=submit]');
+  const lbl=btn.querySelector('.send-label')||btn;
+  const orig=lbl.textContent;
+  lbl.textContent='Sent ✓';
+  btn.style.background='#26AE68';
+  setTimeout(()=>{lbl.textContent=orig;btn.style.background='';},3000);
+});
+</script>
+<script>
+(function(){
+  if(typeof window.closeNav!=='function'){window.closeNav=function(){var d=document.getElementById('navDropdown');if(d)d.classList.remove('open');};}
+  var d=document.getElementById('navDropdown');
+  if(d){new MutationObserver(function(){document.body.classList.toggle('nav-open',d.classList.contains('open'));}).observe(d,{attributes:true,attributeFilter:['class']});}
+})();
+</script>
+</body>
+</html>

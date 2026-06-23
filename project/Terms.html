@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — Phitany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Google+Sans+Flex:wght@100..700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#000;--white:#fff;--green:#26AE68;--bg:#f5f5f5;--mint:#E6EBE3;--f:'Google Sans',-apple-system,BlinkMacSystemFont,sans-serif;--px:clamp(24px,10.83vw,208px);--py:clamp(64px,8.33vw,160px);--mw:1504px;--r-pill:99px;--r-card:12px;--btn-h:56px;--cm:28px;--cr:28px;--cm-base:28px;--ease:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--bg);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.section{padding:calc(var(--py)/2) var(--px)}
+.wrap{max-width:var(--mw);margin:0 auto}
+.display{font-size:clamp(48px,4.9vw,94px);line-height:1.15;font-weight:300;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+
+/* NAV */
+.nav-wrap{position:fixed;top:64px;left:0;right:0;z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+nav{pointer-events:all;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:40px;padding:12px;width:min(736px,calc(100% - 48px));box-shadow:0 1px 8px rgba(0,0,0,.06);transform-origin:top center;transition:box-shadow .3s var(--ease),transform .38s var(--ease)}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-icon{width:56px;height:56px;border-radius:44px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-icon img{width:32px;height:32px;object-fit:contain}
+.nav-wordmark{height:22px;object-fit:contain}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-btn-menu{box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.nav-btn{width:56px;height:56px;border-radius:var(--r-pill);border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-btn:hover{background:rgba(0,0,0,.06)}
+.nav-call{display:flex;align-items:center;gap:8px;background:#000;color:#fff;border:none;border-radius:var(--r-pill);padding:0 24px;height:var(--btn-h);font-family:var(--f);font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;isolation:isolate;transition:transform .22s var(--ease),box-shadow .4s var(--ease);white-space:nowrap}
+.nav-call::before{content:'';position:absolute;inset:0;background:var(--green);transform:translateY(105%);transition:transform .55s cubic-bezier(.76,0,.24,1);z-index:-1}
+.nav-call:hover::before{transform:translateY(0)}
+.nav-call:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 24px rgba(38,174,104,.35)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;height:var(--btn-h);padding:0 24px;border-radius:var(--r-pill);font-family:var(--f);font-size:16px;font-weight:700;letter-spacing:.02em;cursor:pointer;border:none;white-space:nowrap;position:relative;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),box-shadow .4s var(--ease),transform .22s var(--ease)}
+.btn::before{content:'';position:absolute;inset:0;background:var(--green);transform:translateY(105%);transition:transform .55s cubic-bezier(.76,0,.24,1);z-index:-1;border-radius:inherit}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{color:#fff;transform:translateY(-3px);box-shadow:0 10px 32px rgba(38,174,104,.32);opacity:1}
+.btn:hover svg,.btn:hover svg path{fill:#fff;stroke:none}
+.btn:active{transform:translateY(-1px)}
+.btn-white{background:#fff;color:#000}
+.btn-black{background:#000;color:#fff}
+.btn-outline{background:transparent;color:#000;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.btn-outline-white{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+
+/* DROPDOWN */
+.tw-cursor{display:inline-block;color:var(--green);animation:tw-blink .7s step-end infinite;font-weight:700}
+@keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-dropdown{position:absolute;top:88px;left:50%;transform:translateX(-50%) translateY(-10px) scale(.98);width:min(736px,calc(100% - 48px));border-radius:32px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .35s var(--ease);z-index:10}
+.nav-dropdown.open{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:all}
+.nd-a{background:#fff;padding:32px 40px 28px}
+.nd-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;font-size:14px;color:rgba(0,0,0,.45)}
+.nd-nav-links{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.nd-link{display:block;font-size:clamp(18px,2.3vw,36px);font-weight:400;color:rgba(0,0,0,.2);text-decoration:none;line-height:1.25;transition:color .2s}
+.nd-link.active,.nd-link:hover{color:#000}
+.nd-link.active{font-weight:700}
+.nd-sub{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,.08);padding-top:20px;gap:12px;flex-wrap:wrap}
+.nd-sub-links{display:flex;gap:28px}
+.nd-sub-link{font-size:15px;color:#000;text-decoration:none;opacity:.35;transition:opacity .2s;white-space:nowrap}
+.nd-sub-link.active,.nd-sub-link:hover{opacity:1}
+.nd-sched{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border-radius:99px;padding:11px 20px;font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap;transition:opacity .2s}
+.nd-sched:hover{opacity:.88}
+.nd-b{background:#f5f5f5;padding:18px 40px;display:flex;align-items:center;gap:clamp(16px,3vw,32px);flex-wrap:wrap}
+.nd-social{display:flex;align-items:center;gap:7px;font-size:14px;color:#000;text-decoration:none;opacity:.35;transition:opacity .2s}
+.nd-social:hover{opacity:1}
+
+
+/* PAGE HEADER */
+.page-head{padding:clamp(150px,16vw,240px) var(--px) clamp(40px,5vw,72px)}
+.page-head .crumb{font-size:15px;color:rgba(0,0,0,.4);margin-bottom:20px;display:flex;gap:8px;align-items:center}
+.page-head .crumb a{color:rgba(0,0,0,.4);transition:color .2s}
+.page-head .crumb a:hover{color:#000}
+.page-head h1{font-size:clamp(52px,7vw,120px);font-weight:300;line-height:1;letter-spacing:-.02em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.page-head .updated{margin-top:22px;font-size:17px;color:rgba(0,0,0,.5)}
+.terms-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(40px,5vw,104px);align-items:start;padding-bottom:var(--py)}
+.toc{position:sticky;top:148px}
+#tocNav{display:flex;flex-direction:column;align-items:stretch;background:transparent;padding:0;width:auto;box-shadow:none;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.toc-label{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:rgba(0,0,0,.35);margin-bottom:18px}
+.toc a{display:block;font-size:16px;line-height:1.4;color:rgba(0,0,0,.5);padding:9px 0;border-left:2px solid transparent;padding-left:16px;margin-left:-18px;transition:color .2s,border-color .2s}
+.toc a:hover{color:#000}
+.toc a.active{color:#000;border-color:var(--green);font-weight:500}
+.terms-body{max-width:760px}
+.terms-body .lead{font-size:clamp(20px,1.8vw,24px);line-height:1.5;color:rgba(0,0,0,.78);margin-bottom:clamp(40px,5vw,64px)}
+.terms-sec{padding-top:clamp(28px,3vw,40px);margin-bottom:clamp(20px,2.5vw,36px);scroll-margin-top:140px}
+.terms-sec h2{font-size:clamp(24px,2.2vw,32px);font-weight:500;letter-spacing:-.01em;margin-bottom:18px;display:flex;gap:14px;align-items:baseline}
+.terms-sec h2 .n{font-size:18px;color:var(--green);font-weight:700;flex-shrink:0}
+.terms-sec p{font-size:18px;line-height:30px;color:rgba(0,0,0,.72);margin-bottom:18px}
+.terms-sec ul{margin:6px 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+.terms-sec li{font-size:18px;line-height:28px;color:rgba(0,0,0,.72);display:flex;gap:12px;align-items:flex-start}
+.terms-sec li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:11px;flex-shrink:0}
+.terms-note{background:#fff;border-radius:14px;padding:clamp(24px,2.6vw,36px);margin:8px 0 28px}
+.terms-note p{margin:0;font-size:17px;line-height:27px;color:rgba(0,0,0,.7)}
+.terms-contact{font-size:18px;line-height:30px;color:rgba(0,0,0,.72)}
+.terms-contact a{color:var(--green);font-weight:500;text-decoration:underline}
+@media(max-width:960px){
+  .footer-body{grid-template-columns:1fr}
+  .footer-art{min-height:220px}
+  .footer-top-row{gap:40px}
+  .contact-inner{grid-template-columns:1fr}
+  .terms-layout{grid-template-columns:1fr}
+  .toc{position:static;display:none}
+}
+@media(max-width:640px){.fclocks-row{flex-direction:column;gap:12px}.fworld-clock{margin-left:0}}
+/* GET IN TOUCH (homepage) */
+.git-section{padding:0 var(--px) var(--py);background:var(--bg)}
+.contact-card{position:relative;overflow:hidden;border-radius:28px;background:#0a0a0a;color:#fff;padding:clamp(40px,4vw,72px);min-height:660px;display:flex;align-items:flex-start}
+.contact-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(150% 130% at 72% 50%,#1c1c1c 0%,#0b0b0b 55%,#050505 100%)}
+.contact-inner{position:relative;z-index:1;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,5vw,96px);align-items:start}
+.contact-left{color:#fff;padding-left:clamp(8px,2vw,40px);padding-top:clamp(12px,3vw,52px)}
+.contact-h{font-family:'Google Sans Flex','Google Sans',var(--f);font-size:clamp(48px,6vw,104px);font-weight:300;line-height:1.0;letter-spacing:-.015em;margin-bottom:34px}
+.contact-sub{font-size:clamp(16px,1.15vw,19px);line-height:1.62;color:rgba(255,255,255,.72);max-width:400px}
+.contact-form-card{background:#fff;border-radius:18px;padding:clamp(34px,2.8vw,52px)}
+.contact-form{display:flex;flex-direction:column}
+.ffield{display:flex;flex-direction:column;margin-bottom:clamp(26px,2.4vw,36px)}
+.ffield label{font-size:16px;color:#111;margin-bottom:16px}
+.finput{display:block;width:100%;border:none;border-bottom:1px solid rgba(0,0,0,.16);background:transparent;font-family:var(--f);font-size:16px;color:#111;outline:none;padding:0 0 10px;transition:border-color .25s var(--ease)}
+.finput::placeholder{color:rgba(0,0,0,.3)}
+.finput:focus{border-bottom-color:var(--green)}
+textarea.finput{resize:none;min-height:54px;line-height:1.5}
+.contact-send{display:inline-flex;align-items:center;gap:11px;align-self:flex-start;background:#0a0a0a;color:#fff;border:none;border-radius:99px;padding:16px 28px;font-family:var(--f);font-size:16px;font-weight:600;cursor:pointer;margin-top:6px;transition:transform .25s var(--ease),background .25s var(--ease)}
+.contact-send:hover{transform:translateY(-2px);background:#1c1c1c}
+.contact-send svg{flex-shrink:0}
+.contact-fine{margin-top:28px;font-size:14px;line-height:1.5;color:rgba(0,0,0,.45)}
+.contact-fine a{color:#111;font-weight:600;text-decoration:none}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+footer{background:transparent}
+.fticker{background:var(--green);overflow:hidden;display:flex;height:120px;align-items:center}
+.fticker-inner{display:flex;animation:ftick 22s linear infinite;white-space:nowrap;align-items:center}
+@keyframes ftick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fticker-chunk{display:flex;align-items:center;gap:80px;padding:0 40px}
+.fticker-word{font-size:22px;color:#fff;font-weight:400}
+.footer-body{background:#000;display:grid;grid-template-columns:clamp(160px,26.4vw,508px) 1fr;min-height:clamp(700px,48vw,960px)}
+.footer-art{position:relative;overflow:hidden;background:#000}
+.footer-art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;z-index:1;display:block;-webkit-mask-image:linear-gradient(to right,#000 55%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,#000 55%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.footer-right{padding:clamp(40px,8.3vw,160px) clamp(20px,4.2vw,80px) 0;display:flex;flex-direction:column;justify-content:space-between}
+.footer-top-row{display:flex;gap:clamp(24px,4.2vw,80px);flex-wrap:wrap;align-items:flex-start}
+.fgroup{display:flex;gap:clamp(16px,3.2vw,62px);align-items:baseline}
+.fgroup-label{font-size:18px;line-height:24px;color:rgba(255,255,255,.4);flex-shrink:0;min-width:52px}
+.fgroup-nav{display:flex;flex-direction:column;gap:16px;align-items:flex-start;background:transparent}
+.fgroup-nav a{font-size:18px;color:#fff;text-decoration:none;line-height:24px;display:block;transition:opacity .2s}
+.fgroup-nav a:hover{opacity:.5}
+.fworld-clock{display:flex;flex-direction:column;gap:24px;margin-left:auto;min-width:200px}
+.fclocks-row{display:flex;gap:24px;flex-wrap:wrap}
+.fclock-col{display:flex;flex-direction:column}
+.fclock-label{font-size:18px;line-height:32px;color:rgba(255,255,255,.4)}
+.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:center;gap:8px}
+.footer-sched-btn{justify-content:center}
+.footer-wm-wrap{margin-top:auto;margin-left:0}
+.footer-wm-img{height:clamp(80px,18.7vw,360px);width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block}
+
+
+/* ===== RESPONSIVE (shared) ===== */
+.nd-close{display:none}
+@media(max-width:960px){
+  /* NAV — edge-to-edge sticky bar */
+  .nav-wrap{top:0;left:0;right:0;gap:0}
+  nav{width:100%;max-width:none;border-radius:0;padding:12px 24px;box-shadow:none;border-bottom:1px solid rgba(0,0,0,.08)}
+  nav.scrolled{transform:none;box-shadow:none;border-bottom:1px solid rgba(0,0,0,.1)}
+  .nav-icon{width:48px;height:48px}
+  .nav-icon img{width:26px;height:26px}
+  .nav-wordmark{height:20px}
+  .nav-btn{width:48px;height:48px}
+  .nav-call{width:48px;padding:0;gap:0;font-size:0;justify-content:center}
+  .nav-call svg{width:18px;height:18px}
+  .news-ticker{display:none}
+  /* heroes drop below the bar with standard padding */
+  #hero{margin:96px 24px calc(var(--py)/2);min-height:62vh}
+  .hero-fixed{top:96px}
+  .blog-hero-wrap{padding:96px 16px 0}
+  /* FULL-SCREEN MENU */
+  .nav-dropdown{position:fixed;inset:0;width:100%;height:100dvh;max-height:none;transform:none;border-radius:0;opacity:0;pointer-events:none;display:flex;flex-direction:column;overflow-y:auto;background:#fff;box-shadow:none;transition:opacity .32s var(--ease)}
+  .nav-dropdown.open{transform:none;opacity:1;pointer-events:all}
+  .nd-close{display:flex;position:fixed;top:18px;right:18px;z-index:6;width:48px;height:48px;border-radius:50%;border:none;background:rgba(0,0,0,.06);color:#000;align-items:center;justify-content:center;cursor:pointer}
+  .nd-close:active{background:rgba(0,0,0,.12)}
+  .nd-a{flex:1 0 auto;padding:92px 28px 32px;display:flex;flex-direction:column}
+  .nd-header{margin-bottom:30px}
+  .nd-nav-links{gap:8px !important;margin-bottom:30px}
+  .nd-link{font-size:clamp(32px,8.5vw,44px);font-weight:400}
+  .nd-sub{flex-direction:column;align-items:stretch;gap:26px;border-top:1px solid rgba(0,0,0,.08);padding-top:30px;margin-top:auto}
+  .nd-sub-links{flex-direction:column;gap:20px}
+  .nd-sub-link{font-size:20px;opacity:.55}
+  .nd-sched{justify-content:center;padding:16px 24px;font-size:16px}
+  .nd-b{padding:20px 28px 34px;gap:22px;justify-content:flex-start;flex-wrap:wrap}
+  body.nav-open{overflow:hidden}
+  /* PROCESS — every card in its revealed state; numbers static & subtle */
+  .process-steps{flex-direction:column;gap:12px;padding:0 16px}
+  .pstep{min-height:0;background:var(--green);justify-content:flex-start;align-items:stretch;padding:60px 28px 34px;cursor:default}
+  .pstep-num{position:absolute;top:20px;left:22px;font-size:30px;font-weight:300;line-height:1;opacity:.32;color:#fff;transition:none;white-space:nowrap}
+  .pstep:hover .pstep-num,.pstep.active .pstep-num{left:22px}
+  .pstep-illus{position:static;transform:none;opacity:1;width:min(52%,160px);margin:4px auto 18px}
+  .pstep-illus img{width:100%}
+  .pstep-body{position:relative}
+  .pstep-desc{max-height:none;opacity:1;margin-top:12px;transform:none;overflow:visible}
+  /* FOOTER */
+  .footer-body{grid-template-columns:1fr;min-height:0}
+  .footer-art{display:none}
+  .footer-right{padding:48px 28px 40px}
+  .footer-top-row{flex-direction:row;flex-wrap:wrap;gap:36px 24px;align-items:flex-start}
+  .fgroup{flex:1 1 40%;min-width:140px}
+  .fworld-clock{flex-basis:100%;width:100%;margin-left:0;min-width:0}
+  .footer-wm-wrap{margin-top:40px}
+  .footer-wm-img{height:clamp(96px,26vw,220px)}
+}
+@media(max-width:600px){
+  .nd-link{font-size:34px}
+  .footer-top-row{gap:32px}
+  nav{padding:10px 18px}
+  #hero{margin:88px 16px calc(var(--py)/2)}
+  .hero-fixed{top:88px}
+  .blog-hero-wrap{padding:88px 12px 0}
+}
+/* ===== /RESPONSIVE ===== */
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <nav id="main-nav">
+    <a href="Phitany Homepage.html" class="nav-logo">
+      <div class="nav-icon"><img src="assets/logo-icon.svg" alt="Phitany"></div>
+      <img src="assets/phitany-wordmark.svg" alt="Phitany" class="nav-wordmark">
+    </a>
+    <div class="nav-actions">
+      <button class="nav-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.75"><circle cx="8.5" cy="8.5" r="6.5"/><path d="M13.5 13.5L18 18" stroke-linecap="round"/></svg>
+      </button>
+      <button class="nav-call">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="#fff"><path d="M3.6 7.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V17c0 .55-.45 1-1 1C8.02 18 0 9.98 0 .5 0-.05.45-.5 1-.5h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L3.6 7.8z"/></svg>
+        Call Us
+      </button>
+      <button class="nav-btn nav-btn-menu" id="menuBtn" aria-label="Menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="#000"><rect y="0" width="11" height="2" rx="1"/><rect y="6" width="18" height="2" rx="1"/><rect y="12" width="13" height="2" rx="1"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-dropdown" id="navDropdown">
+    <button class="nd-close" aria-label="Close menu" onclick="closeNav()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="nd-a">
+      <div class="nd-header">
+        <span>We create <strong><span id="tw-text">awesomeness</span><span class="tw-cursor">.</span></strong></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <div class="nd-nav-links">
+        <a href="Phitany Homepage.html" class="nd-link">Home</a>
+        <a href="Case Studies.html" class="nd-link">Case Studies</a>
+        <a href="Services.html" class="nd-link">Services</a>
+        <a href="Contact.html" class="nd-link">Contact Us</a>
+      </div>
+      <div class="nd-sub">
+        <div class="nd-sub-links">
+          <a href="About.html" class="nd-sub-link">About Us</a>
+          <a href="Careers.html" class="nd-sub-link">Careers</a>
+          <a href="Insights.html" class="nd-sub-link">Insights</a>
+        </div>
+        <a href="Contact.html" class="nd-sched">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>
+          Schedule A Call
+        </a>
+      </div>
+    </div>
+    <div class="nd-b">
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>Dribble</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+      <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>Github</a>
+      <a href="#" class="nd-social">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- PAGE HEADER -->
+<header class="page-head" data-screen-label="Terms header">
+  <div class="crumb"><a href="Phitany Homepage.html">Home</a><span>/</span><span>Terms &amp; Conditions</span></div>
+  <h1>Terms &amp;<br>Conditions</h1>
+  <p class="updated">Last updated: June 2026</p>
+</header>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap terms-layout">
+    <aside class="toc">
+      <div class="toc-label">On this page</div>
+      <nav id="tocNav">
+        <a href="#sec-1" class="active">01. Acceptance of terms</a>
+        <a href="#sec-2" data-comment-anchor="f1c5b01a02-a">02. Use of our services</a>
+        <a href="#sec-3">03. Intellectual property</a>
+        <a href="#sec-4">04. Project engagements</a>
+        <a href="#sec-5">05. Limitation of liability</a>
+        <a href="#sec-6">06. Third-party links</a>
+        <a href="#sec-7">07. Changes to these terms</a>
+        <a href="#sec-8">08. Contact us</a>
+      </nav>
+    </aside>
+    <div class="terms-body">
+      <p class="lead">Please read these terms carefully before using our website and services. They set out the rules and guidelines for engaging with Phitany.</p>
+      <section class="terms-sec" id="sec-1">
+        <h2><span class="n">01</span>Acceptance of terms</h2>
+        <p>By accessing or using the Phitany website and any associated services, you agree to be bound by these Terms &amp; Conditions and our Privacy Policy. If you do not agree with any part of these terms, please discontinue use of our website and services.</p><p>These terms apply to all visitors, users, and others who access or use the service.</p>
+      </section>
+      <section class="terms-sec" id="sec-2">
+        <h2><span class="n">02</span>Use of our services</h2>
+        <p>You agree to use our website and services only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the website.</p><ul><li>Do not misuse, interfere with, or attempt to disrupt our services or servers.</li><li>Do not attempt to gain unauthorised access to any portion of the website.</li><li>Do not use our services to transmit any harmful or malicious code.</li></ul>
+      </section>
+      <section class="terms-sec" id="sec-3">
+        <h2><span class="n">03</span>Intellectual property</h2>
+        <p>All content on this website — including text, graphics, logos, icons, images, and software — is the property of Phitany Business Solutions Pvt. Ltd. or its content suppliers and is protected by applicable intellectual property laws.</p><p>You may not reproduce, distribute, or create derivative works from any material without our prior written consent.</p>
+      </section>
+      <section class="terms-sec" id="sec-4">
+        <h2><span class="n">04</span>Project engagements</h2>
+        <p>Any project, retainer, or service engagement is governed by a separate written agreement or statement of work. In the event of a conflict between these terms and a signed agreement, the signed agreement shall prevail for that engagement.</p>
+      </section>
+      <section class="terms-sec" id="sec-5">
+        <h2><span class="n">05</span>Limitation of liability</h2>
+        <p>Phitany provides its website and services on an "as is" and "as available" basis. To the fullest extent permitted by law, we disclaim all warranties, express or implied, and shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.</p><div class="terms-note"><p>Nothing in these terms limits or excludes liability that cannot be limited or excluded under applicable law.</p></div>
+      </section>
+      <section class="terms-sec" id="sec-6">
+        <h2><span class="n">06</span>Third-party links</h2>
+        <p>Our website may contain links to third-party websites or services that are not owned or controlled by Phitany. We have no control over, and assume no responsibility for, the content or practices of any third-party sites.</p>
+      </section>
+      <section class="terms-sec" id="sec-7">
+        <h2><span class="n">07</span>Changes to these terms</h2>
+        <p>We reserve the right to modify or replace these terms at any time at our sole discretion. Material changes will be reflected by updating the "Last updated" date at the top of this page. Your continued use of the service after any changes constitutes acceptance of the new terms.</p>
+      </section>
+      <section class="terms-sec" id="sec-8">
+        <h2><span class="n">08</span>Contact us</h2>
+        <p class="terms-contact">If you have any questions about these Terms &amp; Conditions, please reach out to us at <a href="Contact.html">hello@phitany.com</a> or through our <a href="Contact.html">contact page</a>.</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- GET IN TOUCH (from homepage) -->
+<section class="git-section">
+  <div class="wrap">
+    <div class="contact-card">
+      <div class="contact-bg"></div>
+      <div class="contact-inner">
+        <div class="contact-left">
+          <h2 class="contact-h">Get in<br>touch</h2>
+          <p class="contact-sub">Have a project in mind? Reach out to us, and we&rsquo;ll discuss the best possible way to move forward.</p>
+        </div>
+        <form class="contact-form-card contact-form" onsubmit="return false">
+          <div class="ffield">
+            <label>Name *</label>
+            <input class="finput" type="text" required>
+          </div>
+          <div class="ffield">
+            <label>Email ID *</label>
+            <input class="finput" type="email" required>
+          </div>
+          <div class="ffield">
+            <label>Phone Number *</label>
+            <input class="finput" type="tel" required>
+          </div>
+          <div class="ffield">
+            <label>Your Message</label>
+            <textarea class="finput" rows="2"></textarea>
+          </div>
+          <button type="submit" class="contact-send"><span class="send-label">Send To Us</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg></button>
+          <p class="contact-fine">By submitting, you agree to our <a href="Terms.html">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="fticker"><div class="fticker-inner" id="ftickerInner"></div></div>
+  <div class="footer-body">
+    <div class="footer-art"><img src="assets/footer-brand-art.png" alt="" class="footer-art-img"></div>
+    <div class="footer-right">
+      <div class="footer-top-row">
+        <div class="fgroup">
+          <span class="fgroup-label">Explore</span>
+          <nav class="fgroup-nav">
+            <a href="Phitany Homepage.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="Case Studies.html">Case Studies</a>
+            <a href="Services.html">Services</a>
+            <a href="Insights.html">Blog</a>
+            <a href="Contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="fgroup">
+          <span class="fgroup-label">Social</span>
+          <nav class="fgroup-nav">
+            <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+            <a href="#">Behance</a>
+            <a href="#">X</a>
+          </nav>
+        </div>
+        <div class="fworld-clock">
+          <div class="fclocks-row">
+            <div class="fclock-col">
+              <div class="fclock-label">Local time</div>
+              <div class="fclock-time"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span id="footer-ist">—</span></div>
+            </div>
+            <div class="fclock-col">
+              <div class="fclock-label">Your time</div>
+              <div class="fclock-time"><svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span id="footer-local">—</span></div>
+            </div>
+          </div>
+          <a href="Contact.html" class="btn btn-outline-white footer-sched-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>Schedule A Call</a>
+        </div>
+      </div>
+      <div class="footer-wm-wrap"><img src="assets/phitany-wordmark-large.svg" alt="Phitany" class="footer-wm-img"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Ticker fill */
+(function(){
+  const inner=document.getElementById('ftickerInner');
+  if(!inner) return;
+  const star='<svg width="17" height="17" viewBox="0 0 17 17" fill="rgba(0,0,0,0.4)" style="flex-shrink:0"><path d="M8.5 0L9.47 2.46C10.385 4.779 12.221 6.615 14.54 7.53L17 8.5l-2.46.97C12.221 10.385 10.385 12.221 9.47 14.54L8.5 17l-.97-2.46C6.615 12.221 4.779 10.385 2.46 9.47L0 8.5l2.46-.97C4.779 6.615 6.615 4.779 7.53 2.46Z"/></svg>';
+  const words=['Innovation','Precision','Limitless','Phitany'];
+  let chunk='<div class="fticker-chunk">';
+  for(let i=0;i<8;i++){chunk+='<span class="fticker-word">'+words[i%words.length]+'</span>'+star;}
+  chunk+='</div>';
+  inner.innerHTML=chunk+chunk;
+})();
+const twWords=['awesomeness','business','opportunities'];
+const twEl=document.getElementById('tw-text');
+let twI=0,twChar=0,twDeleting=false;
+function twTick(){const word=twWords[twI];if(!twDeleting){twEl.textContent=word.slice(0,++twChar);if(twChar===word.length){twDeleting=true;setTimeout(twTick,1400);return;}setTimeout(twTick,72);}else{twEl.textContent=word.slice(0,--twChar);if(twChar===0){twDeleting=false;twI=(twI+1)%twWords.length;setTimeout(twTick,320);return;}setTimeout(twTick,38);}}
+setTimeout(twTick,1800);
+function updateClocks(){
+  const now=new Date();
+  const fmt=(tz)=>now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:tz});
+  const ist=fmt('Asia/Kolkata')+', IST';
+  const userTz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const local=fmt(userTz)+', '+userTz.split('/').pop().replace(/_/g,' ');
+  const fi=document.getElementById('footer-ist');if(fi)fi.textContent=ist;
+  const fl=document.getElementById('footer-local');if(fl)fl.textContent=local;
+}
+updateClocks();setInterval(updateClocks,30000);
+const mainNav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{mainNav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
+function closeNav(){document.getElementById('navDropdown').classList.remove('open');}
+document.getElementById('menuBtn').addEventListener('click',(e)=>{e.stopPropagation();document.getElementById('navDropdown').classList.toggle('open');});
+document.addEventListener('click',(e)=>{if(!e.target.closest('#navDropdown')&&!e.target.closest('#menuBtn'))closeNav();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+const csForm=document.querySelector('.git-section .contact-form');
+if(csForm)csForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('button[type=submit]');
+  const lbl=btn.querySelector('.send-label')||btn;
+  const orig=lbl.textContent;
+  lbl.textContent='Sent ✓';
+  btn.style.background='#26AE68';
+  setTimeout(()=>{lbl.textContent=orig;btn.style.background='';},3000);
+});
+/* TOC active on scroll */
+const tocLinks=[...document.querySelectorAll('#tocNav a')];
+const secs=tocLinks.map(a=>document.querySelector(a.getAttribute('href')));
+function onTocScroll(){
+  let idx=0;
+  secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=160)idx=i;});
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===idx));
+}
+window.addEventListener('scroll',onTocScroll,{passive:true});onTocScroll();
+</script>
+<script>
+(function(){
+  if(typeof window.closeNav!=='function'){window.closeNav=function(){var d=document.getElementById('navDropdown');if(d)d.classList.remove('open');};}
+  var d=document.getElementById('navDropdown');
+  if(d){new MutationObserver(function(){document.body.classList.toggle('nav-open',d.classList.contains('open'));}).observe(d,{attributes:true,attributeFilter:['class']});}
+})();
+</script>
+</body>
+</html>
