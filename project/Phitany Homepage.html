@@ -390,7 +390,7 @@ footer{background:transparent}
   .faq-left,.faq-more,.faq-list{grid-column:1;grid-row:auto}
   .faq-left{order:1}
   .faq-list{order:2}
-  .faq-more{order:3}
+  .faq-more{order:3;margin-top:32px}
   .footer-photo{min-height:200px}
   .stats-grid{grid-template-columns:1fr 1fr;min-width:0}
   .process-steps{flex-direction:column;gap:10px}
@@ -472,16 +472,15 @@ footer{background:transparent}
   .nd-sched{justify-content:center;padding:16px 24px;font-size:16px}
   .nd-b{padding:20px 28px 34px;justify-content:space-between;flex-wrap:wrap}
   body.nav-open{overflow:hidden}
-  /* PROCESS — always show the default/idle card; no hover or tap-hold animation on mobile */
+  /* PROCESS — keep the full green/illustration/text look always visible on mobile; just kill the tap animation */
   .process-steps{flex-direction:column;gap:12px;padding:0 16px}
-  .pstep{min-height:200px;cursor:default}
-  .pstep:hover,.pstep.active{background:#1a1a1d}
-  .pstep-num{font-size:clamp(64px,18vw,110px)}
-  .pstep:hover .pstep-num,.pstep.active .pstep-num{left:-0.28em}
-  .pstep-illus{opacity:0}
-  .pstep:hover .pstep-illus,.pstep.active .pstep-illus{opacity:0}
-  .pstep-desc{max-height:0;opacity:0}
-  .pstep:hover .pstep-desc,.pstep.active .pstep-desc{max-height:0;opacity:0}
+  .pstep{min-height:0;background:var(--green);justify-content:flex-start;align-items:stretch;padding:60px 28px 34px;cursor:default;transition:none}
+  .pstep-num{position:absolute;top:20px;left:22px;font-size:30px;font-weight:300;line-height:1;opacity:.32;color:#fff;transition:none;white-space:nowrap}
+  .pstep:hover .pstep-num,.pstep.active .pstep-num{left:22px}
+  .pstep-illus{position:static;transform:none;opacity:1;width:min(52%,160px);margin:4px auto 18px;transition:none}
+  .pstep-illus img{width:100%}
+  .pstep-body{position:relative}
+  .pstep-desc{max-height:none;opacity:1;margin-top:12px;transform:none;overflow:visible;transition:none}
   /* FOOTER */
   .footer-body{grid-template-columns:1fr;min-height:0}
   .footer-art{display:none}
