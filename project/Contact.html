@@ -153,7 +153,8 @@ footer{background:transparent}
 .fclocks-row{display:flex;gap:24px;flex-wrap:wrap}
 .fclock-col{display:flex;flex-direction:column}
 .fclock-label{font-size:18px;line-height:32px;color:rgba(255,255,255,.4)}
-.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:center;gap:8px}
+.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:flex-start;gap:8px}
+.fclock-time svg{margin-top:7px;flex-shrink:0}
 .footer-sched-btn{justify-content:center}
 .footer-wm-wrap{margin-top:auto;margin-left:0}
 .footer-wm-img{height:clamp(80px,18.7vw,360px);width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block}
@@ -172,6 +173,7 @@ footer{background:transparent}
 @media(max-width:860px){.bk{grid-template-columns:1fr}.bk-l,.bk-m{border-right:none;border-bottom:1px solid #eef0f2}}
 @media(max-width:760px){.gt-grid,.places{grid-template-columns:1fr}.footer-body{grid-template-columns:1fr}}
 
+@media(max-width:640px){:root{--px:20px}}
 /* ===== RESPONSIVE (shared) ===== */
 .nd-close{display:none}
 @media(max-width:960px){
@@ -183,7 +185,7 @@ footer{background:transparent}
   .nav-icon img{width:26px;height:26px}
   .nav-wordmark{height:20px}
   .nav-btn{width:48px;height:48px}
-  .nav-call{width:48px;padding:0;gap:0;font-size:0;justify-content:center}
+  .nav-call{width:48px;height:48px;padding:0;gap:0;font-size:0;justify-content:center}
   .nav-call svg{width:18px;height:18px}
   .news-ticker{display:none}
   /* heroes drop below the bar with standard padding */
@@ -203,7 +205,7 @@ footer{background:transparent}
   .nd-sub-links{flex-direction:column;gap:20px}
   .nd-sub-link{font-size:20px;opacity:.55}
   .nd-sched{justify-content:center;padding:16px 24px;font-size:16px}
-  .nd-b{padding:20px 28px 34px;gap:22px;justify-content:flex-start;flex-wrap:wrap}
+  .nd-b{padding:20px 28px 34px;justify-content:space-between;flex-wrap:wrap}
   body.nav-open{overflow:hidden}
   /* PROCESS — every card in its revealed state; numbers static & subtle */
   .process-steps{flex-direction:column;gap:12px;padding:0 16px}
@@ -263,7 +265,7 @@ footer{background:transparent}
         <a href="Contact.html" class="nd-sched">Schedule A Call</a>
       </div>
     </div>
-    <div class="nd-b"><a href="#" class="nd-social">Dribble</a><a href="#" class="nd-social">LinkedIn</a><a href="#" class="nd-social">Instagram</a><a href="#" class="nd-social">Github</a><a href="#" class="nd-social">WhatsApp</a></div>
+    <div class="nd-b"><a href="#" class="nd-social">Dribble</a><a href="#" class="nd-social">LinkedIn</a><a href="#" class="nd-social">Instagram</a><a href="#" class="nd-social">Github</a></div>
   </div>
 </div>
 

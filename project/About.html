@@ -97,7 +97,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .sv-stat{position:absolute;right:9%;bottom:13%;z-index:3;display:flex;flex-direction:column;align-items:flex-end;color:#fff;opacity:.95}
 .sv-stat b{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.01em}
 .sv-stat span{font-size:14px;opacity:.7}
-.stats-row{display:flex;justify-content:space-between;gap:clamp(32px,5vw,64px);margin-top:clamp(40px,5vw,72px);flex-wrap:wrap}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(32px,5vw,64px);margin-top:clamp(40px,5vw,72px)}
 .stat b{font-size:clamp(34px,3vw,48px);font-weight:900;letter-spacing:-.01em;display:block;line-height:1}
 .stat span{font-size:16px;color:rgba(0,0,0,.45);margin-top:8px;display:block}
 
@@ -120,10 +120,10 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .tl-head{text-align:center;margin-bottom:clamp(48px,6vw,88px)}
 .tl-title{font-size:clamp(48px,6.5vw,96px);font-weight:300;line-height:1.05;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
 .tl-sub{font-size:20px;color:rgba(0,0,0,.5);margin-top:14px}
-.tl-scroll{overflow-x:auto;padding-bottom:12px;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.tl-scroll{position:relative;left:50%;width:100vw;margin-left:-50vw;overflow-x:auto;padding-bottom:12px;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;user-select:none;-webkit-user-select:none}
 .tl-scroll::-webkit-scrollbar{display:none}
 .tl-scroll.dragging{cursor:grabbing}
-.tl-track{display:flex;gap:24px;align-items:flex-start;width:max-content;min-width:100%;padding:0 1px}
+.tl-track{display:flex;gap:24px;align-items:flex-start;width:max-content;min-width:100%;padding:0 clamp(24px,8vw,160px)}
 .tl-col{display:flex;flex-direction:column;gap:18px;width:clamp(280px,21vw,316px);flex:0 0 auto}
 .tl-year-row{display:flex;align-items:center;gap:12px;padding:0 4px}
 .tl-year{font-size:24px;font-weight:700;letter-spacing:-.01em;flex-shrink:0}
@@ -220,7 +220,8 @@ footer{background:transparent}
 .fclocks-row{display:flex;gap:24px;flex-wrap:wrap}
 .fclock-col{display:flex;flex-direction:column}
 .fclock-label{font-size:18px;line-height:32px;color:rgba(255,255,255,.4)}
-.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:center;gap:8px}
+.fclock-time{font-size:18px;line-height:32px;color:#fff;display:flex;align-items:flex-start;gap:8px}
+.fclock-time svg{margin-top:7px;flex-shrink:0}
 .footer-sched-btn{justify-content:center}
 .footer-wm-wrap{margin-top:auto;margin-left:0}
 .footer-wm-img{height:clamp(80px,18.7vw,360px);width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block}
@@ -234,7 +235,7 @@ footer{background:transparent}
   .footer-top-row{gap:40px}
   .story-grid,.mission-grid,.ti-row,.ins-grid,.story-layout{grid-template-columns:1fr}
   .mission-grid{justify-items:start}
-  .ti-row.rev .ti-img{order:-1}
+  .ti-row.rev .ti-text{order:-1}
   .wd-grid{grid-template-columns:1fr}
   .wd-form{width:100%}
   .wd-left h2{margin-bottom:24px}
@@ -242,11 +243,12 @@ footer{background:transparent}
 }
 @media(max-width:640px){
   .clients-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-row{gap:32px}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:32px 24px}
   .fclocks-row{flex-direction:column;gap:12px}
   .fworld-clock{margin-left:0}
 }
 
+@media(max-width:640px){:root{--px:20px}}
 /* ===== RESPONSIVE (shared) ===== */
 .nd-close{display:none}
 @media(max-width:960px){
@@ -258,7 +260,7 @@ footer{background:transparent}
   .nav-icon img{width:26px;height:26px}
   .nav-wordmark{height:20px}
   .nav-btn{width:48px;height:48px}
-  .nav-call{width:48px;padding:0;gap:0;font-size:0;justify-content:center}
+  .nav-call{width:48px;height:48px;padding:0;gap:0;font-size:0;justify-content:center}
   .nav-call svg{width:18px;height:18px}
   .news-ticker{display:none}
   /* heroes drop below the bar with standard padding */
@@ -278,7 +280,7 @@ footer{background:transparent}
   .nd-sub-links{flex-direction:column;gap:20px}
   .nd-sub-link{font-size:20px;opacity:.55}
   .nd-sched{justify-content:center;padding:16px 24px;font-size:16px}
-  .nd-b{padding:20px 28px 34px;gap:22px;justify-content:flex-start;flex-wrap:wrap}
+  .nd-b{padding:20px 28px 34px;justify-content:space-between;flex-wrap:wrap}
   body.nav-open{overflow:hidden}
   /* PROCESS — every card in its revealed state; numbers static & subtle */
   .process-steps{flex-direction:column;gap:12px;padding:0 16px}
@@ -362,7 +364,6 @@ footer{background:transparent}
       <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
       <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
       <a href="#" class="nd-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>Github</a>
-      <a href="#" class="nd-social">WhatsApp</a>
     </div>
   </div>
 </div>
@@ -433,7 +434,8 @@ footer{background:transparent}
       <h2 class="tl-title">Path To Innovation</h2>
       <p class="tl-sub">Our journey of 14 years</p>
     </div>
-    <div class="tl-scroll">
+  </div>
+  <div class="tl-scroll">
       <div class="tl-track">
         <div class="tl-col">
           <div class="tl-year-row"><span class="tl-line"></span><span class="tl-year">2012</span><span class="tl-line"></span></div>
@@ -492,7 +494,6 @@ footer{background:transparent}
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- CLIENTS -->
@@ -605,7 +606,7 @@ footer{background:transparent}
         <div class="wd-left">
           <h2>Wanna<br>discuss?</h2>
           <p>Have a project in mind? Reach out to us, and we'll discuss the best possible way to move forward.</p>
-          <a href="Contact.html" class="btn wd-book"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>Book a call now</a>
+          <a href="Contact.html" class="btn wd-book"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h1v2h2V5h8v2h2V5h1v1z"/></svg>Book A Call Now</a>
         </div>
         <form class="wd-form" onsubmit="return false">
           <div class="wd-field"><label>Name *</label><input type="text" name="name"></div>
@@ -683,6 +684,10 @@ footer{background:transparent}
   sc.addEventListener('pointercancel',end);
   sc.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();}},true);
   sc.addEventListener('dragstart',e=>e.preventDefault());
+  requestAnimationFrame(()=>{
+    const first=sc.querySelector('.tl-col');
+    if(first) sc.scrollLeft=Math.max(0,first.offsetLeft-(sc.clientWidth-first.offsetWidth)/2);
+  });
 })();
 /* Ticker fill */
 (function(){
