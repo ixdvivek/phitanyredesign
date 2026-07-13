@@ -25,6 +25,8 @@ html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
+.page-fade{position:fixed;inset:0;z-index:9999;background:#0a0a0a;pointer-events:none;opacity:1;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
+.page-fade.is-hidden{opacity:0}
 
 /* ── NAV ────────────────────────────────────────────── */
 .nav-wrap{position:fixed;top:24px;left:0;right:0;z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
@@ -503,6 +505,28 @@ footer{background:transparent}
 </style>
 </head>
 <body>
+<div class="page-fade"></div>
+<script>
+(function(){
+  var overlay=document.currentScript.previousElementSibling;
+  function reveal(){requestAnimationFrame(function(){overlay.classList.add('is-hidden')});}
+  if(document.readyState==='complete') reveal(); else window.addEventListener('load',reveal);
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+    var a=e.target.closest('a');
+    if(!a||!a.href||a.target==='_blank'||a.hasAttribute('download')) return;
+    var href=a.getAttribute('href')||'';
+    if(!href||href.charAt(0)==='#'||href.indexOf('mailto:')===0||href.indexOf('tel:')===0) return;
+    var url;
+    try{url=new URL(a.href,window.location.href);}catch(err){return;}
+    if(url.origin!==window.location.origin) return;
+    if(url.pathname===window.location.pathname&&url.search===window.location.search) return;
+    e.preventDefault();
+    overlay.classList.remove('is-hidden');
+    setTimeout(function(){window.location.href=a.href;},420);
+  },true);
+})();
+</script>
 
 <!-- ── NAV ─────────────────────────────────────── -->
 <div class="nav-wrap">
