@@ -25,6 +25,8 @@ html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
+.lens-viewport{perspective:1400px}
+.scroll-lens{transform-origin:top center;will-change:transform}
 
 /* ── NAV ────────────────────────────────────────────── */
 .nav-wrap{position:fixed;top:24px;left:0;right:0;z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
@@ -118,9 +120,6 @@ section{scroll-margin-top:140px}
 .cs2-logo img{width:clamp(140px,30%,205px);height:auto;filter:drop-shadow(0 2px 14px rgba(0,0,0,.45))}
 .cs2-vert{position:absolute;left:14px;bottom:14px;z-index:3;display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:13px;font-weight:500;letter-spacing:.01em;padding:8px 16px;border-radius:8px}
 @media(max-width:760px){.cs-grid{grid-template-columns:1fr}}
-
-/* ARC REVEAL — wavy mask that sweeps up and clears on scroll-in (driven by JS, see script) */
-.cs2-arc-mask{position:absolute;inset:0;z-index:4;background:var(--bg);pointer-events:none}
 
 /* ── IMPACT ─────────────────────────────────────────── */
 #impact{background:var(--bg);position:relative;overflow:hidden}
@@ -572,6 +571,8 @@ footer{background:transparent}
   </div>
 </div>
 
+<div class="lens-viewport">
+<div class="scroll-lens">
 <!-- ── HERO ─────────────────────────────────────── -->
 <section id="hero">
   <div class="hero-bg"></div>
@@ -666,7 +667,7 @@ footer{background:transparent}
         <div class="cs2-scrim"></div>
         <div class="cs2-logo"><img src="assets/logo-intersight.svg" alt="Intersight Holidays"></div>
         <span class="cs2-vert">Tourism</span>
-        <div class="cs2-arc-mask"></div>
+
       </div>
       </a>
       <a href="Case Study Detail.html" class="cs2-card">
@@ -679,7 +680,7 @@ footer{background:transparent}
         <div class="cs2-scrim"></div>
         <div class="cs2-logo"><img src="assets/logo-sar.svg" alt="SAR Healthline"></div>
         <span class="cs2-vert">Healthcare</span>
-        <div class="cs2-arc-mask"></div>
+
       </div>
       </a>
       <a href="Case Study Detail.html" class="cs2-card">
@@ -692,7 +693,7 @@ footer{background:transparent}
         <div class="cs2-scrim"></div>
         <div class="cs2-logo"><img src="assets/logo-emc.svg" alt="EMC International Desk"></div>
         <span class="cs2-vert">Education</span>
-        <div class="cs2-arc-mask"></div>
+
       </div>
       </a>
       <a href="Case Study Detail.html" class="cs2-card">
@@ -705,7 +706,7 @@ footer{background:transparent}
         <div class="cs2-scrim"></div>
         <div class="cs2-logo"><img src="assets/logo-intersight.svg" alt="Intersight Holidays"></div>
         <span class="cs2-vert">Tourism</span>
-        <div class="cs2-arc-mask"></div>
+
       </div>
       </a>
     </div>
@@ -1218,8 +1219,42 @@ footer{background:transparent}
     </div>
   </div>
 </div>
+</div><!-- /scroll-lens -->
+</div><!-- /lens-viewport -->
 
 <script>
+/* ── SCROLL LENS BEND ──────────────────────────────
+   Whole-page perspective tilt driven by scroll velocity.
+   transform-origin:top means the bottom of the viewport
+   swings away/toward the viewer as scroll speed changes,
+   then eases back flat once scrolling settles. */
+(function(){
+  const lens=document.querySelector('.scroll-lens');
+  if(!lens) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let lastY=window.scrollY, velocity=0, currentRot=0, raf=null;
+  function onScroll(){
+    const y=window.scrollY;
+    velocity=y-lastY;
+    lastY=y;
+    if(!raf) raf=requestAnimationFrame(tick);
+  }
+  function tick(){
+    const maxDeg=3.2;
+    const targetRot=Math.max(-maxDeg,Math.min(maxDeg,-velocity*0.45));
+    currentRot+=(targetRot-currentRot)*0.14;
+    velocity*=0.8;
+    lens.style.transform='rotateX('+currentRot.toFixed(3)+'deg)';
+    if(Math.abs(currentRot)>0.01||Math.abs(velocity)>0.5){
+      raf=requestAnimationFrame(tick);
+    } else {
+      lens.style.transform='';
+      raf=null;
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+})();
+
 /* ── TYPEWRITER ─────────────────────────────────── */
 const twWords=['awesomeness','business','opportunities'];
 const twEl=document.getElementById('tw-text');
@@ -1271,49 +1306,6 @@ document.querySelectorAll('.faq-q').forEach(q=>{
     if(!wasOpen) item.classList.add('open');
   });
 });
-
-/* ── CASE STUDY ARC REVEAL ────────────────────────── */
-(function(){
-  const cards=Array.from(document.querySelectorAll('#case-studies .cs2-card'));
-  if(!cards.length) return;
-  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const MAXAMP=10;
-  function waveClip(eased){
-    const centerY=100*(1-eased);
-    const amp=MAXAMP*Math.sin(Math.PI*eased);
-    const xs=[100,90,80,70,60,50,40,30,20,10,0];
-    const pts=['0% 0%','100% 0%'];
-    xs.forEach((x,i)=>{
-      let y=centerY+(i%2===0?amp:-amp);
-      y=Math.max(0,Math.min(100,y));
-      pts.push(x+'% '+y+'%');
-    });
-    return 'polygon('+pts.join(',')+')';
-  }
-  function reveal(mask){
-    if(reduceMotion){ mask.style.display='none'; return; }
-    const dur=1100, start=Date.now();
-    function step(){
-      const t=Math.min(1,(Date.now()-start)/dur);
-      const eased=1-Math.pow(1-t,3);
-      if(t>=1){ mask.style.display='none'; return; }
-      mask.style.clipPath=waveClip(eased);
-      setTimeout(step,16);
-    }
-    step();
-  }
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const idx=cards.indexOf(entry.target);
-        const mask=entry.target.querySelector('.cs2-arc-mask');
-        setTimeout(()=>reveal(mask),idx*130);
-        io.unobserve(entry.target);
-      }
-    });
-  },{threshold:.2});
-  cards.forEach(c=>io.observe(c));
-})();
 
 /* ── PROCESS STEPS ───────────────────────────────── */
 document.querySelectorAll('.pstep').forEach(step=>{
