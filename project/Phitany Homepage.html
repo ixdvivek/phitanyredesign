@@ -446,6 +446,11 @@ footer{background:transparent}
 .nd-social:hover{opacity:1}
 
 @media(max-width:640px){:root{--px:20px}}
+/* ===== SHORT-VIEWPORT HERO (desktop width, reduced height — e.g. 1920x1080 @125% OS scaling) ===== */
+@media(min-width:961px) and (max-height:950px){
+  .hero-content{padding-top:clamp(16px,9vh,96px);padding-bottom:clamp(16px,9vh,96px)}
+  .hero-text h1{font-size:clamp(32px,4.6vw,72px)}
+}
 /* ===== RESPONSIVE (shared) ===== */
 .nd-close{display:none}
 @media(max-width:960px){
