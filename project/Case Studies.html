@@ -11,12 +11,16 @@
 <style>
 :root{--black:#000;--white:#fff;--green:#26AE68;--bg:#f5f5f5;--f:'Google Sans',-apple-system,BlinkMacSystemFont,sans-serif;--px:clamp(24px,10.83vw,208px);--py:clamp(64px,8.33vw,160px);--mw:1504px;--r-pill:99px;--r-card:12px;--btn-h:56px;--ease:cubic-bezier(.4,0,.2,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--green);color:#fff}
 html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 .page-fade{position:fixed;inset:0;z-index:9999;background:#0a0a0a;pointer-events:none;opacity:1;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
 .page-fade.is-hidden{opacity:0}
+.page-fade{display:flex;align-items:center;justify-content:center}
+.page-fade-icon{width:48px;height:auto;filter:brightness(0) invert(1);opacity:.92;transform:scale(.9);transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .5s cubic-bezier(.4,0,.2,1)}
+.page-fade.is-hidden .page-fade-icon{transform:scale(1.06);opacity:0}
 .section{padding:var(--py) var(--px)}
 .wrap{max-width:var(--mw);margin:0 auto}
 .display{font-size:clamp(48px,4.9vw,94px);line-height:1.15;font-weight:300;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
@@ -234,7 +238,7 @@ footer{background:transparent}
 </style>
 </head>
 <body>
-<div class="page-fade"></div>
+<div class="page-fade"><img src="assets/logo-icon.svg" alt="" class="page-fade-icon"></div>
 <script>
 (function(){
   var overlay=document.currentScript.previousElementSibling;
