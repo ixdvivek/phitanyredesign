@@ -523,10 +523,11 @@ footer{background:transparent}
    ══════════════════════════════════════════════════════ */
 html[data-theme="dark"] body{background:#0d0d0d;color:#f5f5f5}
 
-/* nav + dropdown */
-html[data-theme="dark"] nav{background:rgba(20,20,20,.75)}
-html[data-theme="dark"] .nav-btn-menu{box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
-html[data-theme="dark"] .nav-btn:hover{background:rgba(255,255,255,.08)}
+/* nav — stays white/light in both themes; icons stay black to match */
+html[data-theme="dark"] nav svg[stroke="#000"]{stroke:#000}
+html[data-theme="dark"] nav svg[fill="#000"]{fill:#000}
+
+/* nav dropdown */
 html[data-theme="dark"] .nd-a{background:#1a1a1a}
 html[data-theme="dark"] .nd-header{color:rgba(255,255,255,.45)}
 html[data-theme="dark"] .nd-link{color:rgba(255,255,255,.25)}
