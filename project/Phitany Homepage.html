@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{var t=localStorage.getItem('phitany-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phitany — Building performance driven digital solutions</title>
@@ -514,6 +515,105 @@ footer{background:transparent}
   .blog-hero-wrap{padding:88px 12px 0}
 }
 /* ===== /RESPONSIVE ===== */
+
+/* ══════════════════════════════════════════════════════
+   DARK MODE — toggled via the bulb icon in the nav menu.
+   Purely additive: overrides existing selectors under
+   html[data-theme="dark"], light mode is untouched.
+   ══════════════════════════════════════════════════════ */
+html[data-theme="dark"] body{background:#0d0d0d;color:#f5f5f5}
+
+/* nav + dropdown */
+html[data-theme="dark"] nav{background:rgba(20,20,20,.75)}
+html[data-theme="dark"] .nav-btn-menu{box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+html[data-theme="dark"] .nav-btn:hover{background:rgba(255,255,255,.08)}
+html[data-theme="dark"] .nd-a{background:#1a1a1a}
+html[data-theme="dark"] .nd-header{color:rgba(255,255,255,.45)}
+html[data-theme="dark"] .nd-link{color:rgba(255,255,255,.25)}
+html[data-theme="dark"] .nd-link:first-child,
+html[data-theme="dark"] .nd-link:hover{color:#fff}
+html[data-theme="dark"] .nd-sub{border-top-color:rgba(255,255,255,.1)}
+html[data-theme="dark"] .nd-sub-link{color:#fff}
+html[data-theme="dark"] .nd-b{background:#141414}
+html[data-theme="dark"] .nd-social{color:#fff}
+html[data-theme="dark"] .nd-close{background:rgba(255,255,255,.08);color:#fff}
+html[data-theme="dark"] .nd-close:active{background:rgba(255,255,255,.14)}
+
+/* section backgrounds previously var(--bg) */
+html[data-theme="dark"] #about,
+html[data-theme="dark"] #case-studies,
+html[data-theme="dark"] #impact,
+html[data-theme="dark"] #process,
+html[data-theme="dark"] #services,
+html[data-theme="dark"] #tech,
+html[data-theme="dark"] #testimonials,
+html[data-theme="dark"] #insights,
+html[data-theme="dark"] #faq,
+html[data-theme="dark"] #contact{background:#0d0d0d}
+
+/* about */
+html[data-theme="dark"] .clock-block{border-top-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .clock-label{color:#f5f5f5}
+
+/* case studies cards */
+html[data-theme="dark"] .cs2-card{background:#1a1a1a}
+html[data-theme="dark"] .cs2-name,
+html[data-theme="dark"] .cs2-arrow{color:#f5f5f5}
+
+/* impact cards */
+html[data-theme="dark"] .icard{background:#1a1a1a}
+html[data-theme="dark"] .icard-body{color:rgba(255,255,255,.75)}
+html[data-theme="dark"] .icard750-cta{border-color:rgba(255,255,255,.5);color:#f5f5f5}
+html[data-theme="dark"] .impact-desc{color:rgba(255,255,255,.82)}
+
+/* services */
+html[data-theme="dark"] .svc-row{border-top-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .svc-row:last-child{border-bottom-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .svc-arrow{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+
+/* tech stack */
+html[data-theme="dark"] .tech-item{background:#1a1a1a}
+html[data-theme="dark"] .tech-tile{background:#262626}
+html[data-theme="dark"] .tech-name{color:#f5f5f5}
+html[data-theme="dark"] .tech-cat,
+html[data-theme="dark"] .tech-ph{color:rgba(255,255,255,.4)}
+
+/* testimonials */
+html[data-theme="dark"] .testi-desc{color:rgba(255,255,255,.82)}
+html[data-theme="dark"] .testi-arrow{border-color:rgba(255,255,255,.25)}
+html[data-theme="dark"] .tcard{background:#1a1a1a}
+html[data-theme="dark"] .t-quote,
+html[data-theme="dark"] .t-name{color:#f5f5f5}
+html[data-theme="dark"] .t-avatar{background:#2a2a2a;color:rgba(255,255,255,.5)}
+html[data-theme="dark"] .t-role{color:rgba(255,255,255,.5)}
+
+/* insights */
+html[data-theme="dark"] .ipost-read{background:#1a1a1a;color:#f5f5f5;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+html[data-theme="dark"] .ipost-author{color:rgba(255,255,255,.5)}
+html[data-theme="dark"] .ipost-title{color:#f5f5f5}
+html[data-theme="dark"] .ipost-dates{color:rgba(255,255,255,.4)}
+
+/* faq */
+html[data-theme="dark"] .faq-item{background:#1a1a1a}
+
+/* contact — form card stays white in both themes */
+
+/* outline/solid black CTA buttons used on now-dark sections */
+html[data-theme="dark"] .btn-outline-black{color:#f5f5f5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+html[data-theme="dark"] .btn-black{background:#f5f5f5;color:#0d0d0d}
+
+/* inline SVG icons carrying literal dark colors */
+html[data-theme="dark"] svg[fill="#000"],
+html[data-theme="dark"] svg[fill="#111"]{fill:#f5f5f5}
+html[data-theme="dark"] svg[stroke="#000"],
+html[data-theme="dark"] svg[stroke="#111"]{stroke:#f5f5f5}
+html[data-theme="dark"] svg[fill="rgba(0,0,0,0.4)"]{fill:rgba(255,255,255,.5)}
+html[data-theme="dark"] svg[stroke="rgba(0,0,0,.35)"]{stroke:rgba(255,255,255,.5)}
+
+/* theme toggle button */
+#themeToggle{background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:opacity .2s}
+#themeToggle:hover{opacity:.65}
+#themeToggle.lit svg{stroke:var(--green)}
 </style>
 </head>
 <body>
@@ -576,7 +676,7 @@ footer{background:transparent}
     <div class="nd-a">
       <div class="nd-header">
         <span>We create <strong id="typewriter-word"><span id="tw-text">awesomeness</span><span class="tw-cursor">.</span></strong></span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <button id="themeToggle" type="button" aria-label="Toggle dark mode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></button>
       </div>
       <div class="nd-nav-links" style="gap: 24px">
         <a href="Phitany Homepage.html" class="nd-link active" onclick="closeNav()">Home</a>
@@ -1332,6 +1432,21 @@ document.addEventListener('click',(e)=>{
   if(!e.target.closest('#navDropdown')&&!e.target.closest('#menuBtn'))closeNav();
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+
+/* ── DARK MODE ───────────────────────────────────── */
+(function(){
+  const toggle=document.getElementById('themeToggle');
+  const isDark=()=>document.documentElement.getAttribute('data-theme')==='dark';
+  const sync=()=>toggle.classList.toggle('lit',isDark());
+  sync();
+  toggle.addEventListener('click',()=>{
+    const next=isDark()?'':'dark';
+    if(next)document.documentElement.setAttribute('data-theme',next);
+    else document.documentElement.removeAttribute('data-theme');
+    try{localStorage.setItem('phitany-theme',next);}catch(e){}
+    sync();
+  });
+})();
 
 /* ── IMPACT STAT COUNTERS ────────────────────────── */
 (function(){
