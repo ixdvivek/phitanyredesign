@@ -614,6 +614,9 @@ html[data-theme="dark"] svg[stroke="rgba(0,0,0,.35)"]{stroke:rgba(255,255,255,.5
 /* theme toggle button */
 #themeToggle{background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:opacity .2s}
 #themeToggle:hover{opacity:.65}
+#themeToggle .theme-icon-moon{display:none}
+html[data-theme="dark"] #themeToggle .theme-icon-sun{display:none}
+html[data-theme="dark"] #themeToggle .theme-icon-moon{display:block}
 #themeToggle.lit svg{stroke:var(--green)}
 </style>
 </head>
@@ -677,7 +680,10 @@ html[data-theme="dark"] svg[stroke="rgba(0,0,0,.35)"]{stroke:rgba(255,255,255,.5
     <div class="nd-a">
       <div class="nd-header">
         <span>We create <strong id="typewriter-word"><span id="tw-text">awesomeness</span><span class="tw-cursor">.</span></strong></span>
-        <button id="themeToggle" type="button" aria-label="Toggle dark mode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></button>
+        <button id="themeToggle" type="button" aria-label="Toggle dark mode">
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
       </div>
       <div class="nd-nav-links" style="gap: 24px">
         <a href="Phitany Homepage.html" class="nd-link active" onclick="closeNav()">Home</a>
