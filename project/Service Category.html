@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services — Phitany</title>
+<title>Digital Engineering — Phitany</title>
 <link rel="icon" type="image/svg+xml" href="assets/PhitanyLogoIcon-Green.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +88,8 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .hero-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.3) 40%,rgba(0,0,0,.85) 80%,#000 100%)}
 .hero-headline{position:absolute;left:calc(var(--cm-base) + var(--px));right:var(--px);bottom:30vh;z-index:2;will-change:transform,opacity}
 .hero-headline h1{color:#fff;font-size:clamp(50px,7vw,126px);font-weight:300;line-height:1;letter-spacing:-.02em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;color:#fff;font-size:15px;letter-spacing:.04em;margin-bottom:18px;opacity:.85}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
 .page{position:relative;z-index:2}
 .hero-spacer{height:74vh;pointer-events:none}
 .content{position:relative;z-index:2;background:var(--bg);width:calc(100% - 2*var(--cm));margin:0 auto;border-radius:var(--cr) var(--cr) 0 0;will-change:width,border-radius}
@@ -114,6 +116,23 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .svc-title{font-size:clamp(20px,2.5vw,46px);font-weight:500;line-height:1.17;transition:color .25s var(--ease)}
 .svc-title.green{color:var(--green)}
 .svc-arrow{width:56px;height:56px;border-radius:var(--r-pill);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,box-shadow .2s}
+
+/* CATEGORY INTRO */
+.cat-intro{font-size:16px;line-height:30px;color:rgba(0,0,0,.62);max-width:760px}
+
+/* SERVICE ROWS (richer — image + copy, same numbered rhythm as .svc-row) */
+.svc-detail-row{position:relative;isolation:isolate;display:grid;grid-template-columns:72px 1fr;gap:32px;padding:clamp(48px,5vw,88px) 0;border-top:1px solid rgba(0,0,0,.12)}
+.svc-detail-row:last-child{border-bottom:1px solid rgba(0,0,0,.12)}
+.svc-detail-num{font-size:16px;opacity:.4;padding-top:6px}
+.svc-detail-body{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center}
+.svc-detail-img{border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:#ddd}
+.svc-detail-img img{width:100%;height:100%;object-fit:cover}
+.svc-detail-content{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.svc-detail-title{font-size:clamp(24px,2.4vw,38px);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+.svc-detail-desc{font-size:16px;line-height:26px;color:rgba(0,0,0,.6);max-width:540px}
+.svc-detail-cta{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#000;margin-top:6px}
+.svc-detail-cta svg{transition:transform .3s var(--ease)}
+.svc-detail-row:hover .svc-detail-cta svg{transform:translateX(4px)}
 
 /* SERVICE DETAIL CARDS */
 .svc-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
@@ -188,12 +207,16 @@ footer{background:transparent}
 
 @media(max-width:960px){
   .svc-header,.svc-detail-grid,.contact-inner,.footer-body{grid-template-columns:1fr}
+  .svc-detail-body{grid-template-columns:1fr}
+  .svc-detail-img{aspect-ratio:16/9}
 }
 @media(max-width:640px){
   .svc-row{grid-template-columns:40px 1fr}
   .svc-num{grid-column:1;grid-row:1}
   .svc-right{grid-column:2;grid-row:1}
   .svc-subs{grid-column:2;grid-row:2}
+  .svc-detail-row{grid-template-columns:40px 1fr}
+  .svc-detail-num{padding-top:2px}
 }
 
 @media(max-width:640px){:root{--px:20px}}
@@ -326,91 +349,80 @@ footer{background:transparent}
 </div>
 
 <!-- HERO (fixed parallax underlay) -->
-<div class="hero-fixed" data-screen-label="Services hero">
+<div class="hero-fixed" data-screen-label="Service category hero">
   <div class="hero-banner"><img src="assets/about/hero.jpg" alt=""></div>
-  <div class="hero-headline"><h1>Services</h1></div>
+  <div class="hero-headline">
+    <span class="hero-eyebrow"><span class="dot"></span>Our Services</span>
+    <h1>Digital Engineering</h1>
+  </div>
 </div>
 
 <div class="page">
 <div class="hero-spacer"></div>
 <div class="content">
 
-<!-- SERVICES LIST -->
-<section id="services" class="section">
+<!-- CATEGORY INTRO -->
+<section class="section">
   <div class="wrap">
     <div class="svc-header">
       <div>
-        <h2 class="display">What we do</h2>
-        <span class="section-tag">Our services</span>
+        <h2 class="display">Digital Engineering</h2>
+        <span class="section-tag">What&rsquo;s included</span>
       </div>
-      <p class="svc-header-right">Defining businesses through timeless digital design. We bridge the gap between vision and audience with experiences built to last.</p>
+      <p class="cat-intro">We design and build the digital foundations businesses run on — corporate websites, custom applications, e-commerce platforms, and the architecture behind them. Every engagement starts with your goals, not a template: we choose the stack, the structure, and the level of complexity that actually fits what you're trying to achieve, then engineer it to stay fast, secure, and easy to grow for years after launch.</p>
     </div>
-    <div class="svc-row">
-      <span class="svc-num">01</span>
-      <!-- Sub-service links all point to the one populated example page for now
-           (Corporate & Institutional Websites) — duplicate Service Detail.html
-           per service and repoint these once the other 3 pages exist. -->
-      <div class="svc-subs">
-        <a href="Service Detail.html" class="svc-sub">Corporate &amp; Institutional Websites</a>
-        <a href="Service Detail.html" class="svc-sub">Custom Web Applications</a>
-        <a href="Service Detail.html" class="svc-sub">End-to-End E-Commerce Platforms</a>
-        <a href="Service Detail.html" class="svc-sub">Secure, Scalable Architecture</a>
-      </div>
-      <a href="Service Category.html" class="svc-right">
-        <span class="svc-title">Digital<br>Engineering</span>
-        <div class="svc-arrow"><svg width="16" height="10" viewBox="0 0 18 10" fill="#000"><path d="M13 0l5 5-5 5-1.41-1.41L14.17 6H0V4h14.17L11.59 1.41z"/></svg></div>
-      </a>
-    </div>
-    <a href="Service Detail.html" class="svc-row">
-      <span class="svc-num">02</span>
-      <div class="svc-subs">
-        <div class="svc-sub">Performance Marketing Campaigns</div>
-        <div class="svc-sub">Lead Generation Systems</div>
-        <div class="svc-sub">Enhanced Social Media Growth Strategy</div>
-        <div class="svc-sub">Conversion Optimization</div>
-      </div>
-      <div class="svc-right">
-        <span class="svc-title green">Digital Marketing<br>&amp; Performance Strategy</span>
-        <div class="svc-arrow"><svg width="16" height="10" viewBox="0 0 18 10" fill="#000"><path d="M13 0l5 5-5 5-1.41-1.41L14.17 6H0V4h14.17L11.59 1.41z"/></svg></div>
+  </div>
+</section>
+
+<!-- SERVICE ROWS -->
+<section id="services" class="section" style="padding-top:0">
+  <div class="wrap">
+    <!-- SERVICE ROW: repeat per service -->
+    <a href="Service Detail.html" class="svc-detail-row">
+      <span class="svc-detail-num">01</span>
+      <div class="svc-detail-body">
+        <div class="svc-detail-img"><img src="assets/about/office.jpg" alt=""></div>
+        <div class="svc-detail-content">
+          <span class="svc-detail-title">Corporate &amp; Institutional Websites</span>
+          <p class="svc-detail-desc">Fast, accessible, and beautifully structured websites that position your organisation as a leader in its field — built to scale and engineered to convert visitors into enquiries.</p>
+          <span class="svc-detail-cta">Explore this service <svg width="15" height="13" viewBox="0 0 18 15" fill="currentColor"><path d="M0 14.5V0l17.21 7.25L0 14.5zm1.5-2.25l11.85-5L1.5 2.25v3.69l5.42 1.31-5.42 1.31v3.69z"/></svg></span>
+        </div>
       </div>
     </a>
-    <a href="Service Detail.html" class="svc-row">
-      <span class="svc-num">03</span>
-      <div class="svc-subs">
-        <div class="svc-sub">Keyword &amp; Competitor Strategy</div>
-        <div class="svc-sub">On-Page &amp; Off-Page Optimization</div>
-        <div class="svc-sub">Long-Term Organic Growth Planning</div>
-        <div class="svc-sub">Technical SEO</div>
-      </div>
-      <div class="svc-right">
-        <span class="svc-title">Search Engine<br>Optimization (SEO)</span>
-        <div class="svc-arrow"><svg width="16" height="10" viewBox="0 0 18 10" fill="#000"><path d="M13 0l5 5-5 5-1.41-1.41L14.17 6H0V4h14.17L11.59 1.41z"/></svg></div>
-      </div>
-    </a>
-    <a href="Service Detail.html" class="svc-row">
-      <span class="svc-num">04</span>
-      <div class="svc-subs">
-        <div class="svc-sub">Brand Strategy &amp; Positioning</div>
-        <div class="svc-sub">Logo &amp; Visual Systems</div>
-        <div class="svc-sub">Messaging Framework</div>
-        <div class="svc-sub">Rebranding &amp; Digital Revamp</div>
-      </div>
-      <div class="svc-right">
-        <span class="svc-title">Branding<br>&amp; Identity</span>
-        <div class="svc-arrow"><svg width="16" height="10" viewBox="0 0 18 10" fill="#000"><path d="M13 0l5 5-5 5-1.41-1.41L14.17 6H0V4h14.17L11.59 1.41z"/></svg></div>
+    <!-- SERVICE ROW: repeat per service -->
+    <a href="Service Detail.html" class="svc-detail-row">
+      <span class="svc-detail-num">02</span>
+      <div class="svc-detail-body">
+        <div class="svc-detail-img"><img src="assets/about/team.jpg" alt=""></div>
+        <div class="svc-detail-content">
+          <span class="svc-detail-title">Custom Web Applications</span>
+          <p class="svc-detail-desc">From internal tools to customer-facing platforms, we design and engineer web applications around your actual workflow — secure, maintainable, and built to be a pleasure to use every day.</p>
+          <span class="svc-detail-cta">Explore this service <svg width="15" height="13" viewBox="0 0 18 15" fill="currentColor"><path d="M0 14.5V0l17.21 7.25L0 14.5zm1.5-2.25l11.85-5L1.5 2.25v3.69l5.42 1.31-5.42 1.31v3.69z"/></svg></span>
+        </div>
       </div>
     </a>
-    <a href="Service Detail.html" class="svc-row">
-      <span class="svc-num">05</span>
-      <div class="svc-subs">
-        <div class="svc-sub">Custom CRM Development</div>
-        <div class="svc-sub">Sales &amp; Workflow Automation</div>
-        <div class="svc-sub">WhatsApp &amp; API Integrations</div>
-        <div class="svc-sub">AI-Powered Engagement Systems</div>
+    <!-- SERVICE ROW: repeat per service -->
+    <a href="Service Detail.html" class="svc-detail-row">
+      <span class="svc-detail-num">03</span>
+      <div class="svc-detail-body">
+        <div class="svc-detail-img"><img src="assets/demo-tourism.jpg" alt=""></div>
+        <div class="svc-detail-content">
+          <span class="svc-detail-title">End-to-End E-Commerce Platforms</span>
+          <p class="svc-detail-desc">Conversion-focused storefronts and the systems behind them — payments, inventory, and fulfilment — tuned for performance at scale, from first sale to peak season.</p>
+          <span class="svc-detail-cta">Explore this service <svg width="15" height="13" viewBox="0 0 18 15" fill="currentColor"><path d="M0 14.5V0l17.21 7.25L0 14.5zm1.5-2.25l11.85-5L1.5 2.25v3.69l5.42 1.31-5.42 1.31v3.69z"/></svg></span>
+        </div>
       </div>
-      <div class="svc-right">
-        <span class="svc-title">CRM &amp; Intelligent<br>Automation</span>
-        <div class="svc-arrow"><svg width="16" height="10" viewBox="0 0 18 10" fill="#000"><path d="M13 0l5 5-5 5-1.41-1.41L14.17 6H0V4h14.17L11.59 1.41z"/></svg></div>
+    </a>
+    <!-- SERVICE ROW: repeat per service -->
+    <a href="Service Detail.html" class="svc-detail-row">
+      <span class="svc-detail-num">04</span>
+      <div class="svc-detail-body">
+        <div class="svc-detail-img"><img src="assets/demo-health.jpg" alt=""></div>
+        <div class="svc-detail-content">
+          <span class="svc-detail-title">Secure, Scalable Architecture</span>
+          <p class="svc-detail-desc">Cloud-native foundations with security, observability, and growth built in from day one — so your product stays fast and reliable as usage grows.</p>
+          <span class="svc-detail-cta">Explore this service <svg width="15" height="13" viewBox="0 0 18 15" fill="currentColor"><path d="M0 14.5V0l17.21 7.25L0 14.5zm1.5-2.25l11.85-5L1.5 2.25v3.69l5.42 1.31-5.42 1.31v3.69z"/></svg></span>
+        </div>
       </div>
     </a>
   </div>
