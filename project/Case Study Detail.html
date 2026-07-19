@@ -127,6 +127,29 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .csd-tech-card img{width:34px;height:34px;object-fit:contain}
 .csd-tech-card span{font-size:16px;font-weight:600;letter-spacing:-.01em;color:#111}
 
+/* GALLERY — large hero image + asymmetric 2-up split, placeholder fills (no
+   case-study screenshots exist in assets/ yet — swap .csd-gallery-ph divs
+   for real <img> once available) */
+.csd-gallery{display:flex;flex-direction:column;gap:clamp(24px,2.6vw,36px)}
+.csd-gallery-ph{width:100%;height:100%;border-radius:inherit;background:repeating-linear-gradient(-45deg,#c8c8c8,#c8c8c8 2px,#d8d8d8 2px,#d8d8d8 24px)}
+.csd-gallery-hero{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/8}
+.csd-gallery-split{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(20px,2.2vw,32px)}
+.csd-gallery-item{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3}
+.csd-gallery-split .csd-gallery-item:last-child{aspect-ratio:3/4}
+.csd-gallery-cap{margin-top:16px;display:flex;align-items:baseline;gap:10px}
+.csd-gallery-cap .num{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--green);flex-shrink:0}
+.csd-gallery-cap .lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,0,0,.4)}
+
+/* TECHNOLOGIES — standalone tinted band, peer to Overview, chips reuse the
+   pill silhouette of .cs2-vert (case-study category badge) in light-surface
+   colors, since no light-background chip component exists elsewhere yet */
+.csd-tech-band{background:var(--mint);border-radius:24px;padding:clamp(40px,4.5vw,64px) clamp(28px,4vw,56px)}
+.csd-tech-head{margin-bottom:clamp(28px,3vw,40px);max-width:560px}
+.csd-tech-list{display:flex;flex-wrap:wrap;gap:12px}
+.csd-tech-chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:var(--r-pill);padding:10px 20px 10px 14px}
+.csd-tech-chip img{width:20px;height:20px;object-fit:contain;flex-shrink:0}
+.csd-tech-chip span{font-size:15px;font-weight:500;letter-spacing:-.01em;color:#111}
+
 /* OUTCOME STATS */
 .csd-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(32px,3.5vw,48px)}
 .csd-stat{background:#fff;border-radius:16px;padding:clamp(24px,2.2vw,34px);min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
@@ -176,8 +199,16 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
   .csd-stats{grid-template-columns:1fr 1fr}
   .hero-nav{display:none}
   .csd-meta-logo{aspect-ratio:16/9}
+  .csd-tech-head{max-width:none}
 }
-@media(max-width:600px){.csd-stats,.cs-grid,.csd-tech-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .csd-stats,.cs-grid,.csd-tech-grid{grid-template-columns:1fr}
+  .csd-gallery-split{grid-template-columns:1fr}
+  .csd-gallery-hero{aspect-ratio:4/3}
+  .csd-gallery-split .csd-gallery-item,
+  .csd-gallery-split .csd-gallery-item:last-child{aspect-ratio:4/3}
+  .csd-tech-band{padding:28px 20px;border-radius:18px}
+}
 @media(max-width:640px){.fclocks-row{gap:16px}.fworld-clock{margin-left:0}}
 /* GET IN TOUCH (homepage) */
 .git-section{padding:0 var(--px) var(--py);background:var(--bg)}
@@ -435,20 +466,48 @@ footer{background:transparent}
   </div>
 </section>
 
-<!-- TECHNOLOGIES + IMPLEMENTATION/OUTCOME -->
+<!-- GALLERY -->
 <section class="section" style="padding-top:0">
-  <div class="wrap csd-2col">
+  <div class="wrap csd-gallery">
     <div>
-      <h2 class="csd-2col-h">Technologies</h2>
-      <div class="csd-tech-grid">
-        <div class="csd-tech-card"><img src="assets/tech/laravel.svg" alt=""><span>Laravel</span></div>
-        <div class="csd-tech-card"><img src="assets/tech/strapi.svg" alt=""><span>Strapi</span></div>
-        <div class="csd-tech-card"><img src="assets/tech/nodejs.svg" alt=""><span>Node JS</span></div>
-        <div class="csd-tech-card"><img src="assets/tech/nextjs.svg" alt=""><span>Next.js</span></div>
-        <div class="csd-tech-card"><img src="assets/tech/wordpress.svg" alt=""><span>WordPress</span></div>
+      <div class="csd-gallery-hero"><div class="csd-gallery-ph"></div></div>
+      <p class="csd-gallery-cap"><span class="num">01</span><span class="lbl">Homepage — Desktop</span></p>
+    </div>
+    <div class="csd-gallery-split">
+      <div>
+        <div class="csd-gallery-item"><div class="csd-gallery-ph"></div></div>
+        <p class="csd-gallery-cap"><span class="num">02</span><span class="lbl">Product Catalogue</span></p>
+      </div>
+      <div>
+        <div class="csd-gallery-item"><div class="csd-gallery-ph"></div></div>
+        <p class="csd-gallery-cap"><span class="num">03</span><span class="lbl">Mobile View</span></p>
       </div>
     </div>
-    <div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="csd-tech-band">
+      <div class="csd-tech-head">
+        <h2 class="csd-2col-h" style="font-size:clamp(30px,3.2vw,44px)">Technologies</h2>
+        <span class="section-tag">Tools &amp; platforms used to build this project</span>
+      </div>
+      <div class="csd-tech-list">
+        <span class="csd-tech-chip"><img src="assets/tech/laravel.svg" alt="">Laravel</span>
+        <span class="csd-tech-chip"><img src="assets/tech/strapi.svg" alt="">Strapi</span>
+        <span class="csd-tech-chip"><img src="assets/tech/nodejs.svg" alt="">Node JS</span>
+        <span class="csd-tech-chip"><img src="assets/tech/nextjs.svg" alt="">Next.js</span>
+        <span class="csd-tech-chip"><img src="assets/tech/wordpress.svg" alt="">WordPress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION / OUTCOME -->
+<section class="section" style="padding-top:0">
+  <div class="wrap" style="max-width:864px">
       <div class="csd-sub">
         <h3>Implementation</h3>
         <p>Suspendisse potenti. Maecenas at metus turpis. Cras nec felis at nunc facilisis maximus nisi class aptent. Maecenas dapibus, leo a auctor, a commun lalus mollis bum placerat. Aenean lacinia neque erat, ut vehicula tellus vestibulum placerat.</p>
@@ -467,7 +526,6 @@ footer{background:transparent}
         <div class="csd-stat"><b>88%</b><span>Customer retention</span></div>
         <div class="csd-stat"><b>64%</b><span>Visitor to lead conversion</span></div>
       </div>
-    </div>
   </div>
 </section>
 
