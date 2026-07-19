@@ -114,6 +114,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 /* OVERVIEW / IMPLEMENTATION 2-col */
 .csd-2col{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,120px);align-items:start}
 .csd-2col-h{font-size:clamp(38px,4.6vw,70px);font-weight:300;line-height:1;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
+.csd-sticky-h{position:sticky;top:110px}
 .csd-lead{font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:#111;margin-bottom:clamp(36px,4vw,56px)}
 .csd-sub{margin-bottom:clamp(28px,3vw,44px)}
 .csd-sub:last-child{margin-bottom:0}
@@ -200,6 +201,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
   .hero-nav{display:none}
   .csd-meta-logo{aspect-ratio:16/9}
   .csd-tech-head{max-width:none}
+  .csd-sticky-h{position:static}
 }
 @media(max-width:600px){
   .csd-stats,.cs-grid,.csd-tech-grid{grid-template-columns:1fr}
@@ -446,10 +448,12 @@ footer{background:transparent}
   </div>
 </section>
 
-<!-- OVERVIEW -->
+<!-- OVERVIEW (Challenge, Proposed Solution, Implementation & Outcome all read
+     as one continuous narrative; the "Overview" label stays pinned via
+     position:sticky while this column scrolls past it) -->
 <section class="section" style="padding-top:0">
   <div class="wrap csd-2col">
-    <h2 class="csd-2col-h">Overview</h2>
+    <h2 class="csd-2col-h csd-sticky-h">Overview</h2>
     <div>
       <p class="csd-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies pellentesque velit at fermentum. Phasellus a vestibulum nibh. Sed lacinia ac elit vitae auctor.</p>
       <div class="csd-sub">
@@ -460,6 +464,16 @@ footer{background:transparent}
       <div class="csd-sub">
         <h3>Proposed Solution</h3>
         <p>Suspendisse potenti. Maecenas at metus turpis. Cras nec felis at nunc facilisis maximus nisi class aptent. Maecenas dapibus, leo a auctor, a commun lalus mollis bum placerat.</p>
+        <p>Vivamus pretium vestibulum faucibus. Aliquam a lorem arcu. Ut nisl justo, lobortis sed eros, sodales faucibus velit. Nam mollis at ex sagittis, integer fermentum lacinia velit malesuada at.</p>
+      </div>
+      <div class="csd-sub">
+        <h3>Implementation</h3>
+        <p>Suspendisse potenti. Maecenas at metus turpis. Cras nec felis at nunc facilisis maximus nisi class aptent. Maecenas dapibus, leo a auctor, a commun lalus mollis bum placerat. Aenean lacinia neque erat, ut vehicula tellus vestibulum placerat.</p>
+        <p>Vivamus pretium vestibulum faucibus. Aliquam a lorem arcu. Ut nisl justo, lobortis sed eros, sodales faucibus velit. Nam mollis at ex sagittis, integer fermentum lacinia velit malesuada.</p>
+      </div>
+      <div class="csd-sub">
+        <h3>Outcome</h3>
+        <p>Suspendisse potenti. Maecenas at metus turpis. Cras nec felis at nunc facilisis maximus nisi class aptent. Maecenas dapibus, leo a auctor, a commun lalus mollis bum placerat. Aenean lacinia neque erat.</p>
         <p>Vivamus pretium vestibulum faucibus. Aliquam a lorem arcu. Ut nisl justo, lobortis sed eros, sodales faucibus velit. Nam mollis at ex sagittis, integer fermentum lacinia velit malesuada at.</p>
       </div>
     </div>
@@ -505,27 +519,16 @@ footer{background:transparent}
   </div>
 </section>
 
-<!-- IMPLEMENTATION / OUTCOME -->
+<!-- STATS -->
 <section class="section" style="padding-top:0">
-  <div class="wrap" style="max-width:864px">
-      <div class="csd-sub">
-        <h3>Implementation</h3>
-        <p>Suspendisse potenti. Maecenas at metus turpis. Cras nec felis at nunc facilisis maximus nisi class aptent. Maecenas dapibus, leo a auctor, a commun lalus mollis bum placerat. Aenean lacinia neque erat, ut vehicula tellus vestibulum placerat.</p>
-        <p>Vivamus pretium vestibulum faucibus. Aliquam a lorem arcu. Ut nisl justo, lobortis sed eros, sodales faucibus velit. Nam mollis at ex sagittis, integer fermentum lacinia velit malesuada.</p>
-      </div>
-      <div class="csd-sub">
-        <h3>Outcome</h3>
-        <p>Suspendisse potenti. Maecenas at metus turpis. Cras nec felis at nunc facilisis maximus nisi class aptent. Maecenas dapibus, leo a auctor, a commun lalus mollis bum placerat. Aenean lacinia neque erat.</p>
-        <p>Vivamus pretium vestibulum faucibus. Aliquam a lorem arcu. Ut nisl justo, lobortis sed eros, sodales faucibus velit. Nam mollis at ex sagittis, integer fermentum lacinia velit malesuada at.</p>
-      </div>
-      <!-- stats -->
-      <div class="csd-stats">
-        <div class="csd-stat green"><b>95%</b><span>Customer satisfaction rate</span></div>
-        <div class="csd-stat"><b>88%</b><span>Customer retention</span></div>
-        <div class="csd-stat"><b>64%</b><span>Visitor to lead conversion</span></div>
-        <div class="csd-stat"><b>88%</b><span>Customer retention</span></div>
-        <div class="csd-stat"><b>64%</b><span>Visitor to lead conversion</span></div>
-      </div>
+  <div class="wrap">
+    <div class="csd-stats">
+      <div class="csd-stat green"><b>95%</b><span>Customer satisfaction rate</span></div>
+      <div class="csd-stat"><b>88%</b><span>Customer retention</span></div>
+      <div class="csd-stat"><b>64%</b><span>Visitor to lead conversion</span></div>
+      <div class="csd-stat"><b>88%</b><span>Customer retention</span></div>
+      <div class="csd-stat"><b>64%</b><span>Visitor to lead conversion</span></div>
+    </div>
   </div>
 </section>
 
