@@ -141,15 +141,13 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .csd-gallery-cap .num{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--green);flex-shrink:0}
 .csd-gallery-cap .lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,0,0,.4)}
 
-/* TECHNOLOGIES — standalone tinted band, peer to Overview, chips reuse the
-   pill silhouette of .cs2-vert (case-study category badge) in light-surface
-   colors, since no light-background chip component exists elsewhere yet */
-.csd-tech-band{background:var(--mint);border-radius:24px;padding:clamp(40px,4.5vw,64px) clamp(28px,4vw,56px)}
-.csd-tech-head{margin-bottom:clamp(28px,3vw,40px);max-width:560px}
-.csd-tech-list{display:flex;flex-wrap:wrap;gap:12px}
-.csd-tech-chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:var(--r-pill);padding:10px 20px 10px 14px}
-.csd-tech-chip img{width:20px;height:20px;object-fit:contain;flex-shrink:0}
-.csd-tech-chip span{font-size:15px;font-weight:500;letter-spacing:-.01em;color:#111}
+/* TECHNOLOGIES — icon + name + usage-description cards (matches Service Detail.html) */
+.tech-usage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tech-usage-card{background:#fff;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.tech-usage-icon{width:52px;height:52px;border-radius:14px;background:#efeff0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tech-usage-icon img{width:26px;height:26px;object-fit:contain}
+.tech-usage-name{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.tech-usage-desc{font-size:14px;line-height:23px;color:rgba(0,0,0,.55)}
 
 /* OUTCOME STATS */
 .csd-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(32px,3.5vw,48px)}
@@ -197,19 +195,17 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 @media(max-width:960px){
   .footer-body{grid-template-columns:1fr}.footer-art{min-height:220px}.footer-top-row{gap:40px}
   .contact-inner,.csd-meta,.csd-2col,.csd-testi{grid-template-columns:1fr}
-  .csd-stats{grid-template-columns:1fr 1fr}
+  .csd-stats,.tech-usage-grid{grid-template-columns:1fr 1fr}
   .hero-nav{display:none}
   .csd-meta-logo{aspect-ratio:16/9}
-  .csd-tech-head{max-width:none}
   .csd-sticky-h{position:static}
 }
 @media(max-width:600px){
-  .csd-stats,.cs-grid,.csd-tech-grid{grid-template-columns:1fr}
+  .csd-stats,.cs-grid,.csd-tech-grid,.tech-usage-grid{grid-template-columns:1fr}
   .csd-gallery-split{grid-template-columns:1fr}
   .csd-gallery-hero{aspect-ratio:4/3}
   .csd-gallery-split .csd-gallery-item,
   .csd-gallery-split .csd-gallery-item:last-child{aspect-ratio:4/3}
-  .csd-tech-band{padding:28px 20px;border-radius:18px}
 }
 @media(max-width:640px){.fclocks-row{gap:16px}.fworld-clock{margin-left:0}}
 /* GET IN TOUCH (homepage) */
@@ -503,17 +499,39 @@ footer{background:transparent}
 <!-- TECHNOLOGIES -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="csd-tech-band">
-      <div class="csd-tech-head">
-        <h2 class="csd-2col-h" style="font-size:clamp(30px,3.2vw,44px)">Technologies</h2>
-        <span class="section-tag">Tools &amp; platforms used to build this project</span>
+    <div class="svc-header" style="margin-bottom:32px">
+      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Technologies</h2><span class="section-tag">Tools &amp; platforms used to build this project</span></div>
+    </div>
+    <div class="tech-usage-grid">
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/laravel.svg" alt=""></div>
+        <div class="tech-usage-name">Laravel</div>
+        <p class="tech-usage-desc">Powers the back-end — product catalogue, inquiry routing, and admin tooling for the manufacturing team.</p>
       </div>
-      <div class="csd-tech-list">
-        <span class="csd-tech-chip"><img src="assets/tech/laravel.svg" alt="">Laravel</span>
-        <span class="csd-tech-chip"><img src="assets/tech/strapi.svg" alt="">Strapi</span>
-        <span class="csd-tech-chip"><img src="assets/tech/nodejs.svg" alt="">Node JS</span>
-        <span class="csd-tech-chip"><img src="assets/tech/nextjs.svg" alt="">Next.js</span>
-        <span class="csd-tech-chip"><img src="assets/tech/wordpress.svg" alt="">WordPress</span>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/strapi.svg" alt=""></div>
+        <div class="tech-usage-name">Strapi</div>
+        <p class="tech-usage-desc">Structures the product and compound data so the catalogue can be updated without touching code.</p>
+      </div>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/nodejs.svg" alt=""></div>
+        <div class="tech-usage-name">Node JS</div>
+        <p class="tech-usage-desc">Handles form submissions and inquiry notifications, routing leads straight to the sales team.</p>
+      </div>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/nextjs.svg" alt=""></div>
+        <div class="tech-usage-name">Next.js</div>
+        <p class="tech-usage-desc">Renders the public site for fast load times and clean, crawlable pages across the product catalogue.</p>
+      </div>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/wordpress.svg" alt=""></div>
+        <div class="tech-usage-name">WordPress</div>
+        <p class="tech-usage-desc">Runs the company blog and news updates, giving the marketing team an easy publishing workflow.</p>
       </div>
     </div>
   </div>
