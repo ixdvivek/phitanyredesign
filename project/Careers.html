@@ -146,6 +146,17 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .jm-actions{display:flex;gap:10px;margin-top:6px}
 .jm-actions .contact-send{margin-top:0}
 
+@media(max-width:760px){
+  .modal-overlay{padding:0}
+  .job-modal{width:100%;max-width:none;height:100dvh;max-height:none;border-radius:0}
+  .job-modal-inner{display:block;height:100%;max-height:none;padding:88px 20px 40px;overflow-y:auto}
+  .jm-close{top:16px;right:16px}
+  .jm-left{padding-top:0;margin-bottom:36px}
+  .jm-title{font-size:clamp(28px,7vw,36px)}
+  .jm-actions{flex-wrap:wrap}
+  .jm-actions .contact-send,.jm-actions .btn-outline{flex:1 1 auto;justify-content:center}
+}
+
 /* CTA split — skill / internship */
 .cta-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,96px);align-items:center}
 .cta-split+.cta-split{margin-top:clamp(48px,6vw,96px)}
@@ -581,7 +592,9 @@ footer{background:transparent}
   </div>
 </footer>
 
-<!-- APPLY MODAL -->
+</div><!-- /page -->
+
+<!-- APPLY MODAL (sibling of .page so its z-index isn't capped by .page's stacking context) -->
 <div class="modal-overlay" id="jobModal">
   <div class="job-modal">
     <div class="job-modal-bg"></div>
@@ -627,7 +640,6 @@ footer{background:transparent}
     </div>
   </div>
 </div>
-</div><!-- /page -->
 
 <script>
 /* Ticker fill */
