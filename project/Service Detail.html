@@ -85,7 +85,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .hero-banner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.3) 40%,rgba(0,0,0,.85) 80%,#000 100%)}
 .hero-headline{position:absolute;left:calc(var(--cm-base) + var(--px));right:var(--px);bottom:34vh;z-index:2;will-change:transform,opacity}
-.hero-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;color:#fff;font-size:15px;letter-spacing:.01em;margin-bottom:18px;opacity:.85}
+.hero-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:#fff;font-size:13px;letter-spacing:.01em;margin-bottom:12px;opacity:.85}
 .hero-crumbs a{opacity:.72;transition:opacity .2s}
 .hero-crumbs a:hover{opacity:1}
 .hero-crumbs span.sep{opacity:.4}
@@ -99,32 +99,56 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .sd-writeup{text-align:center;padding:clamp(56px,7vw,120px) 0}
 .sd-writeup p{font-size:clamp(24px,3vw,44px);font-weight:400;line-height:1.28;letter-spacing:-.01em;max-width:1040px;margin:0 auto;text-wrap:balance}
 
-/* Details — label-left / paragraph-right (from Case Study Detail's Overview) */
-.csd-2col{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,120px);align-items:start}
-.csd-2col-h{font-size:clamp(38px,4.6vw,70px);font-weight:300;line-height:1;letter-spacing:-.01em;font-family:'Google Sans Flex','Google Sans',sans-serif}
-.csd-sub{margin-bottom:clamp(28px,3vw,44px)}
-.csd-sub:last-child{margin-bottom:0}
-.csd-sub h3{font-size:clamp(18px,1.6vw,22px);font-weight:600;margin-bottom:16px;letter-spacing:-.01em}
-.csd-sub p{font-size:15px;line-height:26px;color:rgba(0,0,0,.62);margin-bottom:16px}
-.csd-sub p:last-child{margin-bottom:0}
+/* Shared diagonal-stripe image placeholder (same convention used on
+   Case Study Detail / Insights / homepage for missing assets) */
+.img-ph{width:100%;height:100%;background:repeating-linear-gradient(-45deg,#c8c8c8,#c8c8c8 2px,#d8d8d8 2px,#d8d8d8 24px)}
+
+/* Details — image support + conversational headline + CTAs (sd-note) */
+.sd-note{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,96px);align-items:center}
+.sd-note-img{border-radius:16px;overflow:hidden;aspect-ratio:600/520}
+.sd-note-img img{width:100%;height:100%;object-fit:cover}
+.sd-note-h{font-size:clamp(28px,3.4vw,50px);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:24px}
+.sd-note p{font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:rgba(0,0,0,.66);margin-bottom:36px;max-width:480px}
+.sd-note-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Shared tint band — Process and Related Industries (Technologies no
+   longer uses this treatment; freed up for reuse here) */
+.tint-band{background:var(--mint);border-radius:24px;padding:clamp(40px,4.5vw,64px) clamp(28px,4vw,56px)}
 
 /* Process — numbered rows (svc-num rhythm) */
-.svc-process-step{position:relative;display:grid;grid-template-columns:72px 1fr;gap:32px;padding:clamp(32px,3.4vw,48px) 0;border-top:1px solid rgba(0,0,0,.12)}
-.svc-process-step:last-child{border-bottom:1px solid rgba(0,0,0,.12)}
+.svc-process-step{position:relative;display:grid;grid-template-columns:72px 1fr;gap:32px;padding:clamp(28px,3vw,40px) 0;border-top:1px solid rgba(0,0,0,.14)}
+.svc-process-step:last-child{border-bottom:1px solid rgba(0,0,0,.14)}
 .svc-process-num{font-size:16px;opacity:.4;padding-top:4px}
 .svc-process-title{font-size:clamp(19px,1.7vw,25px);font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
 .svc-process-desc{font-size:15px;line-height:26px;color:rgba(0,0,0,.62);max-width:640px}
 
-/* Technologies — reused chip band (Case Study Detail) */
-.csd-tech-band{background:var(--mint);border-radius:24px;padding:clamp(40px,4.5vw,64px) clamp(28px,4vw,56px)}
-.csd-tech-head{margin-bottom:clamp(28px,3vw,40px);max-width:560px}
-.csd-tech-list{display:flex;flex-wrap:wrap;gap:12px}
-.csd-tech-chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:var(--r-pill);padding:10px 20px 10px 14px}
-.csd-tech-chip img{width:20px;height:20px;object-fit:contain;flex-shrink:0}
-.csd-tech-chip span{font-size:15px;font-weight:500;letter-spacing:-.01em;color:#111}
-/* Related industries reuse the same chip, text-only, on the page background */
-.ind-chip{display:inline-flex;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:var(--r-pill);padding:10px 20px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#111}
-.ind-list{display:flex;flex-wrap:wrap;gap:12px}
+/* Technologies — plain cards: icon, name, usage note (no background box) */
+.tech-usage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tech-usage-card{background:#fff;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.tech-usage-icon{width:52px;height:52px;border-radius:14px;background:#efeff0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tech-usage-icon img{width:26px;height:26px;object-fit:contain}
+.tech-usage-name{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.tech-usage-desc{font-size:14px;line-height:23px;color:rgba(0,0,0,.55)}
+
+/* Related industries — cards (image top, name + description), tinted band */
+.ind-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ind-card{background:#fff;border-radius:16px;overflow:hidden}
+.ind-card-img{aspect-ratio:4/3}
+.ind-card-img img{width:100%;height:100%;object-fit:cover}
+.ind-card-body{padding:20px}
+.ind-card-name{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
+.ind-card-desc{font-size:14px;line-height:22px;color:rgba(0,0,0,.55)}
+
+/* Related services — horizontal cards (image left), deliberately
+   different from the Related Industries card layout above */
+.rs-list{display:flex;flex-direction:column;gap:16px}
+.rs-card{display:grid;grid-template-columns:180px 1fr;gap:24px;background:#fff;border-radius:16px;overflow:hidden;align-items:center;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.rs-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.rs-card-img{aspect-ratio:1/1;align-self:stretch}
+.rs-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.rs-card-body{padding:20px 24px 20px 0}
+.rs-card-name{font-size:19px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+.rs-card-desc{font-size:14px;line-height:22px;color:rgba(0,0,0,.55)}
 
 /* Case study widget (cs2-card, from Case Studies.html) */
 .sd-headrow{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
@@ -173,13 +197,18 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 
 @media(max-width:960px){
   .footer-body{grid-template-columns:1fr}.footer-art{min-height:220px}.footer-top-row{gap:40px}
-  .contact-inner,.csd-2col{grid-template-columns:1fr}
-  .cs-grid,.bpost-grid{grid-template-columns:1fr 1fr}
+  .contact-inner,.sd-note{grid-template-columns:1fr}
+  .sd-note-img{order:-1}
+  .cs-grid,.bpost-grid,.tech-usage-grid,.ind-card-grid{grid-template-columns:1fr 1fr}
   .faq-layout{grid-template-columns:1fr}
 }
-@media(max-width:760px){.cs-grid,.bpost-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.cs-grid,.bpost-grid,.tech-usage-grid,.ind-card-grid{grid-template-columns:1fr}}
 @media(max-width:640px){
   .fclocks-row{gap:16px}.fworld-clock{margin-left:0}
+  .rs-card{grid-template-columns:100px 1fr}
+  .rs-card-img{aspect-ratio:1/1}
+  .rs-card-body{padding:14px 16px 14px 0}
+  .tint-band{padding:28px 20px;border-radius:18px}
   .svc-process-step{grid-template-columns:40px 1fr}
 }
 /* GET IN TOUCH (homepage) */
@@ -369,12 +398,12 @@ footer{background:transparent}
 <div class="hero-fixed" data-screen-label="Service detail hero">
   <div class="hero-banner"><img src="assets/about/office.jpg" alt=""></div>
   <div class="hero-headline">
-    <nav class="hero-crumbs" aria-label="Breadcrumb">
+    <div class="hero-crumbs" role="navigation" aria-label="Breadcrumb">
       <a href="Phitany Homepage.html">Home</a><span class="sep">/</span>
       <a href="Services.html">Services</a><span class="sep">/</span>
       <a href="Service Category.html">Digital Engineering</a><span class="sep">/</span>
       <span class="current">Corporate &amp; Institutional Websites</span>
-    </nav>
+    </div>
     <h1>Corporate &amp; Institutional Websites</h1>
   </div>
 </div>
@@ -388,18 +417,16 @@ footer{background:transparent}
   <div class="wrap"><p>Your website is the <span class="hl">first handshake</span> with every customer — we make sure it's confident, clear, and impossible to ignore.</p></div>
 </section>
 
-<!-- DETAILS (label-left / paragraph-right, from Case Study Detail's Overview) -->
+<!-- DETAILS (image support + conversational headline + CTAs) -->
 <section class="section" style="padding-top:0">
-  <div class="wrap csd-2col">
-    <h2 class="csd-2col-h">Details</h2>
+  <div class="wrap sd-note">
+    <div class="sd-note-img"><div class="img-ph"></div></div>
     <div>
-      <div class="csd-sub">
-        <h3>What's included</h3>
-        <p>A fully custom corporate or institutional website — information architecture, UI design, responsive front-end build, and a content-editable CMS your team can actually use. We handle copy structure, accessibility, and performance from the first wireframe, not as an afterthought.</p>
-      </div>
-      <div class="csd-sub">
-        <h3>Our approach</h3>
-        <p>We start with your audience and your goals, not a template. Every page is designed to answer the visitor's next question and move them toward a call, a form, or a meeting — while staying fast, accessible, and easy for your team to maintain long after we hand it over.</p>
+      <h2 class="sd-note-h">Let's build a website that works as hard as you do.</h2>
+      <p>We design and build fully custom corporate and institutional websites — information architecture, UI design, a responsive front-end build, and a content-editable CMS your team can actually use. Every page is built to answer your visitor's next question and move them toward a call, a form, or a meeting, while staying fast, accessible, and easy to maintain long after we hand it over.</p>
+      <div class="sd-note-cta">
+        <a href="Contact.html" class="btn btn-black">Build your website</a>
+        <a href="Contact.html" class="btn btn-outline">Schedule a meeting</a>
       </div>
     </div>
   </div>
@@ -408,39 +435,41 @@ footer{background:transparent}
 <!-- PROCESS -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="svc-header" style="margin-bottom:16px">
-      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Process</h2><span class="section-tag">How we get there</span></div>
-    </div>
-    <!-- PROCESS STEP: repeat per step -->
-    <div class="svc-process-step">
-      <span class="svc-process-num">01</span>
-      <div>
-        <div class="svc-process-title">Discovery</div>
-        <p class="svc-process-desc">We learn your business, your audience, and your competitors, then define what the site needs to achieve before a single pixel is drawn.</p>
+    <div class="tint-band">
+      <div class="svc-header" style="margin-bottom:16px">
+        <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Process</h2><span class="section-tag">How we get there</span></div>
       </div>
-    </div>
-    <!-- PROCESS STEP: repeat per step -->
-    <div class="svc-process-step">
-      <span class="svc-process-num">02</span>
-      <div>
-        <div class="svc-process-title">Design</div>
-        <p class="svc-process-desc">Information architecture and UI design come together into a full visual system — reviewed with you at every key milestone, not just at the end.</p>
+      <!-- PROCESS STEP: repeat per step -->
+      <div class="svc-process-step">
+        <span class="svc-process-num">01</span>
+        <div>
+          <div class="svc-process-title">Discovery</div>
+          <p class="svc-process-desc">We learn your business, your audience, and your competitors, then define what the site needs to achieve before a single pixel is drawn.</p>
+        </div>
       </div>
-    </div>
-    <!-- PROCESS STEP: repeat per step -->
-    <div class="svc-process-step">
-      <span class="svc-process-num">03</span>
-      <div>
-        <div class="svc-process-title">Build</div>
-        <p class="svc-process-desc">We develop on a modern, maintainable stack with performance and accessibility built in, and hand you a CMS your team can run without our help.</p>
+      <!-- PROCESS STEP: repeat per step -->
+      <div class="svc-process-step">
+        <span class="svc-process-num">02</span>
+        <div>
+          <div class="svc-process-title">Design</div>
+          <p class="svc-process-desc">Information architecture and UI design come together into a full visual system — reviewed with you at every key milestone, not just at the end.</p>
+        </div>
       </div>
-    </div>
-    <!-- PROCESS STEP: repeat per step -->
-    <div class="svc-process-step">
-      <span class="svc-process-num">04</span>
-      <div>
-        <div class="svc-process-title">Launch &amp; Support</div>
-        <p class="svc-process-desc">We handle a clean, tested launch and stay on for post-launch support — monitoring, updates, and optimization as your traffic grows.</p>
+      <!-- PROCESS STEP: repeat per step -->
+      <div class="svc-process-step">
+        <span class="svc-process-num">03</span>
+        <div>
+          <div class="svc-process-title">Build</div>
+          <p class="svc-process-desc">We develop on a modern, maintainable stack with performance and accessibility built in, and hand you a CMS your team can run without our help.</p>
+        </div>
+      </div>
+      <!-- PROCESS STEP: repeat per step -->
+      <div class="svc-process-step">
+        <span class="svc-process-num">04</span>
+        <div>
+          <div class="svc-process-title">Launch &amp; Support</div>
+          <p class="svc-process-desc">We handle a clean, tested launch and stay on for post-launch support — monitoring, updates, and optimization as your traffic grows.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -449,18 +478,39 @@ footer{background:transparent}
 <!-- TECHNOLOGIES -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="csd-tech-band">
-      <div class="csd-tech-head">
-        <h2 class="csd-2col-h" style="font-size:clamp(30px,3.2vw,44px)">Technologies</h2>
-        <span class="section-tag">The tools we rely on for this service</span>
+    <div class="svc-header" style="margin-bottom:32px">
+      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Technologies</h2><span class="section-tag">The tools we rely on for this service</span></div>
+    </div>
+    <div class="tech-usage-grid">
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/nextjs.svg" alt=""></div>
+        <div class="tech-usage-name">Next.js</div>
+        <p class="tech-usage-desc">Powers the front-end build for fast page loads and clean, crawlable pages that help your site rank.</p>
       </div>
-      <div class="csd-tech-list">
-        <!-- TECH CHIP: repeat per technology -->
-        <span class="csd-tech-chip"><img src="assets/tech/nextjs.svg" alt="">Next.js</span>
-        <span class="csd-tech-chip"><img src="assets/tech/wordpress.svg" alt="">WordPress</span>
-        <span class="csd-tech-chip"><img src="assets/tech/webflow.svg" alt="">Webflow</span>
-        <span class="csd-tech-chip"><img src="assets/tech/nodejs.svg" alt="">Node JS</span>
-        <span class="csd-tech-chip"><img src="assets/tech/strapi.svg" alt="">Strapi</span>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/wordpress.svg" alt=""></div>
+        <div class="tech-usage-name">WordPress</div>
+        <p class="tech-usage-desc">Gives your team a familiar, content-editable CMS for updating pages, news, and leadership bios without a developer.</p>
+      </div>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/webflow.svg" alt=""></div>
+        <div class="tech-usage-name">Webflow</div>
+        <p class="tech-usage-desc">Used to prototype and refine the visual design system before it's built out into production code.</p>
+      </div>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/nodejs.svg" alt=""></div>
+        <div class="tech-usage-name">Node JS</div>
+        <p class="tech-usage-desc">Runs the contact and inquiry form handling behind the scenes, routing submissions to your team reliably.</p>
+      </div>
+      <!-- TECH CARD: repeat per technology -->
+      <div class="tech-usage-card">
+        <div class="tech-usage-icon"><img src="assets/tech/strapi.svg" alt=""></div>
+        <div class="tech-usage-name">Strapi</div>
+        <p class="tech-usage-desc">Structures reusable content — team members, offices, press mentions — so it can be managed once and shown anywhere on the site.</p>
       </div>
     </div>
   </div>
@@ -470,7 +520,7 @@ footer{background:transparent}
 <section id="case-studies" class="section" style="padding-top:0">
   <div class="wrap">
     <div class="sd-headrow">
-      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Selected projects</h2><span class="section-tag">Built with this service</span></div>
+      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Case studies on Corporate &amp; Institutional Websites</h2><span class="section-tag">Real projects delivered with this service</span></div>
       <a href="Case Studies.html" class="btn btn-outline">View All<svg width="15" height="13" viewBox="0 0 18 15" fill="currentColor"><path d="M0 14.5V0l17.21 7.25L0 14.5zm1.5-2.25l11.85-5L1.5 2.25v3.69l5.42 1.31-5.42 1.31v3.69z"/></svg></a>
     </div>
     <div class="cs-grid">
@@ -539,16 +589,95 @@ footer{background:transparent}
 <!-- RELATED INDUSTRIES -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="svc-header" style="margin-bottom:32px">
-      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Related industries</h2><span class="section-tag">Where this service fits</span></div>
+    <div class="tint-band">
+      <div class="svc-header" style="margin-bottom:32px">
+        <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Related industries</h2><span class="section-tag">Where this service fits</span></div>
+      </div>
+      <div class="ind-card-grid">
+        <!-- INDUSTRY CARD: repeat per industry -->
+        <div class="ind-card">
+          <div class="ind-card-img"><div class="img-ph"></div></div>
+          <div class="ind-card-body">
+            <div class="ind-card-name">Healthcare</div>
+            <p class="ind-card-desc">Trust-building sites for hospitals and clinics, built around clear information and easy appointment paths.</p>
+          </div>
+        </div>
+        <!-- INDUSTRY CARD: repeat per industry -->
+        <div class="ind-card">
+          <div class="ind-card-img"><div class="img-ph"></div></div>
+          <div class="ind-card-body">
+            <div class="ind-card-name">Manufacturing</div>
+            <p class="ind-card-desc">Corporate sites that present capabilities, certifications, and facilities to enterprise buyers.</p>
+          </div>
+        </div>
+        <!-- INDUSTRY CARD: repeat per industry -->
+        <div class="ind-card">
+          <div class="ind-card-img"><div class="img-ph"></div></div>
+          <div class="ind-card-body">
+            <div class="ind-card-name">Education</div>
+            <p class="ind-card-desc">Institutional websites for schools and universities that serve prospective students, staff, and alumni alike.</p>
+          </div>
+        </div>
+        <!-- INDUSTRY CARD: repeat per industry -->
+        <div class="ind-card">
+          <div class="ind-card-img"><div class="img-ph"></div></div>
+          <div class="ind-card-body">
+            <div class="ind-card-name">Hospitality &amp; Tourism</div>
+            <p class="ind-card-desc">Corporate and brand sites for hospitality groups that pair visual storytelling with easy booking access.</p>
+          </div>
+        </div>
+        <!-- INDUSTRY CARD: repeat per industry -->
+        <div class="ind-card">
+          <div class="ind-card-img"><div class="img-ph"></div></div>
+          <div class="ind-card-body">
+            <div class="ind-card-name">Finance</div>
+            <p class="ind-card-desc">Institutional sites for financial firms that need to convey credibility, compliance, and clarity.</p>
+          </div>
+        </div>
+        <!-- INDUSTRY CARD: repeat per industry -->
+        <div class="ind-card">
+          <div class="ind-card-img"><div class="img-ph"></div></div>
+          <div class="ind-card-body">
+            <div class="ind-card-name">Non-Profit</div>
+            <p class="ind-card-desc">Mission-driven corporate sites that communicate impact clearly and make giving and volunteering simple.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="ind-list">
-      <span class="ind-chip">Healthcare</span>
-      <span class="ind-chip">Manufacturing</span>
-      <span class="ind-chip">Education</span>
-      <span class="ind-chip">Hospitality &amp; Tourism</span>
-      <span class="ind-chip">Finance</span>
-      <span class="ind-chip">Non-Profit</span>
+  </div>
+</section>
+
+<!-- RELATED SERVICES -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="svc-header" style="margin-bottom:32px">
+      <div><h2 class="display" style="font-size:clamp(34px,3.4vw,56px)">Related services</h2><span class="section-tag">Also in Digital Engineering</span></div>
+    </div>
+    <div class="rs-list">
+      <!-- RELATED SERVICE CARD: repeat per service -->
+      <a href="Service Detail.html" class="rs-card">
+        <div class="rs-card-img"><div class="img-ph"></div></div>
+        <div class="rs-card-body">
+          <div class="rs-card-name">Custom Web Applications</div>
+          <p class="rs-card-desc">Bespoke, database-driven applications built around your team's exact workflows, not a generic template.</p>
+        </div>
+      </a>
+      <!-- RELATED SERVICE CARD: repeat per service -->
+      <a href="Service Detail.html" class="rs-card">
+        <div class="rs-card-img"><div class="img-ph"></div></div>
+        <div class="rs-card-body">
+          <div class="rs-card-name">End-to-End E-Commerce Platforms</div>
+          <p class="rs-card-desc">Full-funnel storefronts covering catalog, checkout, and payments, built to convert and scale with your catalog.</p>
+        </div>
+      </a>
+      <!-- RELATED SERVICE CARD: repeat per service -->
+      <a href="Service Detail.html" class="rs-card">
+        <div class="rs-card-img"><div class="img-ph"></div></div>
+        <div class="rs-card-body">
+          <div class="rs-card-name">Secure Scalable Architecture</div>
+          <p class="rs-card-desc">Infrastructure and back-end architecture engineered to stay secure and performant as your traffic grows.</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
