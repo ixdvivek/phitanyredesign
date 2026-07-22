@@ -447,6 +447,7 @@ footer{background:transparent}
 .nav-search{position:relative;width:min(736px,calc(100% - 48px));pointer-events:all;display:none}
 .nav-wrap.search-open .nav-search{display:block}
 .nav-wrap.search-open nav{display:none}
+.nav-wrap.search-open .news-ticker{display:none}
 .ns-bar{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--r-pill);padding:9px 9px 9px 22px;box-shadow:0 1px 8px rgba(0,0,0,.06)}
 .ns-icon{flex-shrink:0;opacity:.4}
 .ns-input{flex:1;min-width:0;border:none;background:transparent;outline:none;font-family:var(--f);font-size:15px;color:#000}

@@ -2772,6 +2772,10 @@ footer{
   display:none
 }
 
+.nav-wrap.search-open .news-ticker{
+  display:none
+}
+
 .ns-bar{
   display:flex;
   align-items:center;
