@@ -94,6 +94,7 @@
       }
       wrap.classList.add('search-open');
       syncBodyLock();
+      render('');
       setTimeout(function () { input.focus(); }, 60);
     }
     function closeSearch() {
@@ -101,7 +102,18 @@
       wrap.classList.remove('search-open');
       syncBodyLock();
       input.value = '';
-      render('');
+      // Deflate the panel back to nothing as part of closing, mirroring the
+      // grow-in on open, instead of just leaving whatever content-height it
+      // last held to disappear with the container's own fade.
+      if (getComputedStyle(panel).position === 'absolute') {
+        var startH = panel.getBoundingClientRect().height;
+        panel.style.height = startH + 'px';
+        void panel.offsetHeight;
+        requestAnimationFrame(function () { panel.style.height = '0px'; });
+        setTimeout(function () { panel.innerHTML = ''; }, 320);
+      } else {
+        panel.innerHTML = '';
+      }
     }
 
     searchBtn.addEventListener('click', function (e) {
@@ -121,17 +133,58 @@
       if (e.key === 'Escape') closeSearch();
     });
 
+    // On desktop the panel is an absolutely-positioned dropdown sized to its
+    // content (capped by max-height + scroll); on mobile it's a flex:1 pane
+    // filling the full-screen overlay instead, so there's no "natural
+    // content height" for it to grow toward there — skip the height
+    // animation on that layout and just swap content in directly.
+    //
+    // The explicit inline height set below is the box's permanent driver
+    // from this point on (recomputed fresh on every call), not just a
+    // transition scratch value cleared afterward — clearing it back to ''
+    // would fall through to the base CSS's height:0 (used as the pre-first-
+    // render collapsed state) and snap the panel shut right after every
+    // animation finished.
+    function growPanelTo(html) {
+      if (getComputedStyle(panel).position !== 'absolute') {
+        panel.innerHTML = html;
+        return;
+      }
+      var startH = panel.getBoundingClientRect().height;
+      panel.innerHTML = html;
+      // Measure the new content's natural height with height:auto first —
+      // if a previous render left an inline height near max-height (e.g. a
+      // broad query), scrollHeight can never read back below whatever
+      // height is currently set (it's max(clientHeight, content height)),
+      // so a subsequent shorter query would look stuck at the old height
+      // forever. max-height still clips the auto box during this
+      // measurement, but scrollHeight always reports the true content
+      // extent regardless of that clipping.
+      panel.style.height = 'auto';
+      var maxH = parseFloat(getComputedStyle(panel).maxHeight);
+      if (!isFinite(maxH)) maxH = panel.scrollHeight;
+      var targetH = Math.min(panel.scrollHeight, maxH);
+      panel.style.height = startH + 'px';
+      // Force a reflow so the browser registers the starting height as its
+      // own frame before we change it — otherwise both assignments collapse
+      // into one and there's nothing to transition from.
+      void panel.offsetHeight;
+      requestAnimationFrame(function () {
+        panel.style.height = targetH + 'px';
+      });
+    }
+
     function render(qRaw) {
       var q = qRaw.trim().toLowerCase();
       if (!q) {
-        panel.innerHTML = '<div class="ns-empty">Start typing to search case studies, services, and insights.</div>';
+        growPanelTo('<div class="ns-empty">Start typing to search case studies, services, and insights.</div>');
         return;
       }
       var matches = SEARCH_INDEX.filter(function (it) {
         return it.name.toLowerCase().indexOf(q) !== -1;
       });
       if (!matches.length) {
-        panel.innerHTML = '<div class="ns-empty">No results for “' + escapeHtml(qRaw.trim()) + '”.</div>';
+        growPanelTo('<div class="ns-empty">No results for “' + escapeHtml(qRaw.trim()) + '”.</div>');
         return;
       }
       var html = '';
@@ -147,12 +200,13 @@
         });
         html += '</div>';
       });
-      panel.innerHTML = html;
+      growPanelTo(html);
     }
 
     // Subtle refresh cue on each keystroke: a quick dip in opacity while the
     // (instant, synchronous) filter re-runs, so the results feel like they
-    // update rather than just snap to a new list.
+    // update rather than just snap to a new list — the panel itself grows or
+    // shrinks to the new content's height via growPanelTo() above.
     input.addEventListener('input', function () {
       var q = input.value;
       panel.classList.add('ns-refresh');

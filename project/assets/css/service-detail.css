@@ -690,11 +690,12 @@ nav.scrolled{
   box-shadow:0 16px 56px rgba(0,0,0,.18);
   padding:10px;
   max-height:min(60vh,520px);
+  height:0;
   overflow-y:auto;
   opacity:0;
   transform:translateY(-8px);
   pointer-events:none;
-  transition:opacity .25s .05s var(--ease),transform .3s .05s var(--ease)
+  transition:opacity .25s .05s var(--ease),transform .3s .05s var(--ease),height .3s var(--ease)
 }
 
 .ns-panel.ns-refresh{
@@ -2127,12 +2128,20 @@ footer{
 
 /* ===== /RESPONSIVE ===== */
 
+.collapse{
+  visibility:collapse
+}
+
 .static{
   position:static
 }
 
 .fixed{
   position:fixed
+}
+
+.absolute{
+  position:absolute
 }
 
 .mb-4{
@@ -2328,4 +2337,12 @@ footer{
 
 .filter{
   filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
+
+.transition{
+  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration:150ms
 }
