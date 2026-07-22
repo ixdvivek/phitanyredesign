@@ -1,0 +1,24 @@
+{
+  "name": "repo",
+  "version": "1.0.0",
+  "description": "This is a **handoff bundle** from Claude Design (claude.ai/design).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "bash scripts/build-css.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ixdvivek/phitanyredesign.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ixdvivek/phitanyredesign/issues"
+  },
+  "homepage": "https://github.com/ixdvivek/phitanyredesign#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
