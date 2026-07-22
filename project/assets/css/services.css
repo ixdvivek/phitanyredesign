@@ -203,6 +203,11 @@ a{
   padding-bottom:var(--py)
 }
 
+.\!wrap{
+  max-width:var(--mw) !important;
+  margin:0 auto !important
+}
+
 .wrap{
   max-width:var(--mw);
   margin:0 auto
@@ -550,6 +555,148 @@ nav.scrolled{
 
 .nd-social:hover{
   opacity:1
+}
+
+/* SEARCH */
+
+.nav-search{
+  position:relative;
+  width:min(736px,calc(100% - 48px));
+  pointer-events:all;
+  display:none
+}
+
+.nav-wrap.search-open .nav-search{
+  display:block
+}
+
+.nav-wrap.search-open nav{
+  display:none
+}
+
+.ns-bar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:var(--r-pill);
+  padding:9px 9px 9px 22px;
+  box-shadow:0 1px 8px rgba(0,0,0,.06)
+}
+
+.ns-icon{
+  flex-shrink:0;
+  opacity:.4
+}
+
+.ns-input{
+  flex:1;
+  min-width:0;
+  border:none;
+  background:transparent;
+  outline:none;
+  font-family:var(--f);
+  font-size:15px;
+  color:#000
+}
+
+.ns-input::-moz-placeholder{
+  color:rgba(0,0,0,.35)
+}
+
+.ns-input::placeholder{
+  color:rgba(0,0,0,.35)
+}
+
+.ns-close{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  background:rgba(0,0,0,.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  flex-shrink:0;
+  transition:background .2s
+}
+
+.ns-close:hover{
+  background:rgba(0,0,0,.12)
+}
+
+.ns-panel{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  right:0;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 16px 56px rgba(0,0,0,.18);
+  padding:10px;
+  max-height:min(60vh,520px);
+  overflow-y:auto;
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+  transition:opacity .25s var(--ease),transform .3s var(--ease)
+}
+
+.nav-wrap.search-open .ns-panel{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:all
+}
+
+.ns-group{
+  padding:12px 10px 4px
+}
+
+.ns-group-label{
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(0,0,0,.35);
+  font-weight:700;
+  margin-bottom:4px;
+  display:block
+}
+
+.ns-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px;
+  border-radius:14px;
+  transition:background .16s;
+  color:#000
+}
+
+.ns-item:hover{
+  background:rgba(0,0,0,.05)
+}
+
+.ns-item-name{
+  font-size:15px;
+  font-weight:500
+}
+
+.ns-item-tag{
+  font-size:12px;
+  color:rgba(0,0,0,.4);
+  flex-shrink:0;
+  white-space:nowrap
+}
+
+.ns-empty{
+  padding:26px 14px;
+  font-size:14px;
+  color:rgba(0,0,0,.4);
+  text-align:center
 }
 
 /* BUTTONS */
@@ -1364,6 +1511,44 @@ footer{
     transition:opacity .32s var(--ease)
   }
 
+  .nav-search{
+    position:fixed;
+    inset:0;
+    width:100%;
+    z-index:250;
+    display:none
+  }
+
+  .nav-wrap.search-open .nav-search{
+    display:flex;
+    flex-direction:column;
+    background:#fff
+  }
+
+  .ns-bar{
+    border-radius:0;
+    padding:18px 16px;
+    box-shadow:none;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none
+  }
+
+  .ns-close{
+    width:48px;
+    height:48px
+  }
+
+  .ns-panel{
+    position:static;
+    flex:1;
+    margin:0;
+    border-radius:0;
+    box-shadow:none;
+    max-height:none;
+    overflow-y:auto
+  }
+
   .nav-dropdown.open{
     transform:none;
     opacity:1;
@@ -1584,14 +1769,6 @@ footer{
   position:fixed
 }
 
-.relative{
-  position:relative
-}
-
-.sticky{
-  position:sticky
-}
-
 .mb-4{
   margin-bottom:1rem
 }
@@ -1610,6 +1787,10 @@ footer{
 
 .block{
   display:block
+}
+
+.inline{
+  display:inline
 }
 
 .flex{
@@ -1680,6 +1861,10 @@ footer{
   flex-direction:row
 }
 
+.\!flex-row-reverse{
+  flex-direction:row-reverse !important
+}
+
 .flex-col{
   flex-direction:column
 }
@@ -1726,6 +1911,10 @@ footer{
   padding-top:0px
 }
 
+.pt-\[clamp\(40px\2c 4\.5vw\2c 72px\)\]{
+  padding-top:clamp(40px, 4.5vw, 72px)
+}
+
 .text-left{
   text-align:left
 }
@@ -1734,24 +1923,24 @@ footer{
   text-align:center
 }
 
-.font-flex{
-  font-family:"Google Sans Flex", "Google Sans", sans-serif
+.\!font-flex{
+  font-family:"Google Sans Flex", "Google Sans", sans-serif !important
+}
+
+.\!text-\[96px\]{
+  font-size:96px !important
 }
 
 .text-\[16px\]{
   font-size:16px
 }
 
-.text-\[96px\]{
-  font-size:96px
-}
-
 .text-\[clamp\(34px\2c 3\.4vw\2c 56px\)\]{
   font-size:clamp(34px, 3.4vw, 56px)
 }
 
-.font-light{
-  font-weight:300
+.\!font-light{
+  font-weight:300 !important
 }
 
 .leading-\[1\.35\]{
@@ -1768,11 +1957,6 @@ footer{
 
 .blur{
   --tw-blur:blur(8px);
-  filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
-}
-
-.invert{
-  --tw-invert:invert(100%);
   filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
 }
 

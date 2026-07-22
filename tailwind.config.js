@@ -3,7 +3,10 @@
  *  page-specific component classes never collide with one another, but they
  *  all draw from this single, canonical design-token source. */
 module.exports = {
-  content: ['./project/**/*.html'],
+  // search.js builds a few result-row classes (.ns-item, .ns-group, etc.) at
+  // runtime via innerHTML rather than writing them literally in any .html
+  // file, so the content scanner needs the JS glob too or it purges them.
+  content: ['./project/**/*.html', './project/**/*.js'],
   corePlugins: {
     // Every page already ships its own complete reset (box-sizing, margin,
     // heading sizes, svg display, etc.) that the whole design was built
