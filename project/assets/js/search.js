@@ -150,7 +150,19 @@
       panel.innerHTML = html;
     }
 
-    input.addEventListener('input', function () { render(input.value); });
+    // Subtle refresh cue on each keystroke: a quick dip in opacity while the
+    // (instant, synchronous) filter re-runs, so the results feel like they
+    // update rather than just snap to a new list.
+    input.addEventListener('input', function () {
+      var q = input.value;
+      panel.classList.add('ns-refresh');
+      requestAnimationFrame(function () {
+        render(q);
+        requestAnimationFrame(function () {
+          panel.classList.remove('ns-refresh');
+        });
+      });
+    });
     render('');
   }
 

@@ -230,6 +230,11 @@ a{
   pointer-events:none
 }
 
+.nav-slot{
+  position:relative;
+  width:min(736px,calc(100% - 48px))
+}
+
 nav{
   pointer-events:all;
   display:flex;
@@ -240,10 +245,10 @@ nav{
   -webkit-backdrop-filter:blur(20px);
   border-radius:var(--r-pill);
   padding:9px;
-  width:min(736px,calc(100% - 48px));
+  width:100%;
   box-shadow:0 1px 8px rgba(0,0,0,.06);
   transform-origin:top center;
-  transition:box-shadow .3s var(--ease),transform .38s var(--ease)
+  transition:box-shadow .3s var(--ease),transform .38s var(--ease),opacity .2s var(--ease)
 }
 
 nav.scrolled{
@@ -301,11 +306,15 @@ nav.scrolled{
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:background .2s
+  transition:background .2s,transform .15s var(--ease)
 }
 
 .nav-btn:hover{
   background:rgba(0,0,0,.06)
+}
+
+.nav-btn:active{
+  transform:scale(.88)
 }
 
 .nav-call{
@@ -572,18 +581,24 @@ nav.scrolled{
 /* SEARCH */
 
 .nav-search{
-  position:relative;
-  width:min(736px,calc(100% - 48px));
-  pointer-events:all;
-  display:none
+  position:absolute;
+  inset:0;
+  width:100%;
+  pointer-events:none;
+  opacity:0;
+  transform:scale(.96);
+  transition:opacity .22s var(--ease),transform .28s var(--ease)
 }
 
 .nav-wrap.search-open .nav-search{
-  display:block
+  opacity:1;
+  transform:scale(1);
+  pointer-events:all
 }
 
 .nav-wrap.search-open nav{
-  display:none
+  opacity:0;
+  pointer-events:none
 }
 
 .ns-bar{
@@ -654,7 +669,12 @@ nav.scrolled{
   opacity:0;
   transform:translateY(-8px);
   pointer-events:none;
-  transition:opacity .25s var(--ease),transform .3s var(--ease)
+  transition:opacity .25s .05s var(--ease),transform .3s .05s var(--ease)
+}
+
+.ns-panel.ns-refresh{
+  transition:opacity .12s var(--ease);
+  opacity:.45
 }
 
 .nav-wrap.search-open .ns-panel{
@@ -1618,18 +1638,27 @@ footer{
     transition:opacity .32s var(--ease)
   }
 
+  .nav-slot{
+    width:100%
+  }
+
   .nav-search{
     position:fixed;
     inset:0;
     width:100%;
     z-index:250;
-    display:none
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    opacity:0;
+    transform:none;
+    pointer-events:none;
+    transition:opacity .28s var(--ease)
   }
 
   .nav-wrap.search-open .nav-search{
-    display:flex;
-    flex-direction:column;
-    background:#fff
+    opacity:1;
+    pointer-events:all
   }
 
   .ns-bar{
