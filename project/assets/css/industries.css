@@ -914,6 +914,38 @@ nav.scrolled{
   padding-top:clamp(12px,3vw,52px)
 }
 
+.contact-clients{
+  margin-top:48px
+}
+
+.contact-clients-logos{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:28px;
+  margin-bottom:16px
+}
+
+.cc-logo{
+  height:34px;
+  width:auto;
+  -o-object-fit:contain;
+     object-fit:contain;
+  opacity:.8;
+  transition:opacity .25s var(--ease)
+}
+
+.cc-logo:hover{
+  opacity:1
+}
+
+.contact-clients-caption{
+  font-size:13px;
+  line-height:1.55;
+  color:rgba(255,255,255,.45);
+  max-width:280px
+}
+
 .contact-h{
   font-family:'Google Sans Flex','Google Sans',var(--f);
   font-size:clamp(46px,6vw,102px);
