@@ -1070,17 +1070,20 @@ nav.scrolled{
   display:grid;
   grid-template-columns:1.05fr .95fr;
   gap:clamp(40px,5vw,96px);
-  align-items:start
+  align-items:stretch
 }
 
 .contact-left{
   color:#fff;
   padding-left:clamp(8px,2vw,40px);
-  padding-top:clamp(12px,3vw,52px)
+  padding-top:clamp(12px,3vw,52px);
+  display:flex;
+  flex-direction:column
 }
 
 .contact-clients{
-  margin-top:48px
+  margin-top:auto;
+  padding-top:32px
 }
 
 .contact-clients-logos{
@@ -1092,7 +1095,7 @@ nav.scrolled{
 }
 
 .cc-logo{
-  height:34px;
+  height:51px;
   width:auto;
   -o-object-fit:contain;
      object-fit:contain;
@@ -1102,6 +1105,31 @@ nav.scrolled{
 
 .cc-logo:hover{
   opacity:1
+}
+
+.cc-placeholder{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  height:51px;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.06em;
+  color:#fff;
+  opacity:.8;
+  transition:opacity .25s var(--ease)
+}
+
+.cc-placeholder:hover{
+  opacity:1
+}
+
+.cc-placeholder-mark{
+  width:22px;
+  height:22px;
+  border-radius:6px;
+  background:#fff;
+  flex-shrink:0
 }
 
 .contact-clients-caption{
