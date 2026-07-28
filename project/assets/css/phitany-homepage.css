@@ -1784,7 +1784,17 @@ section{
   transition:background-color .3s var(--ease)
 }
 
-.tcard.tcard-big:hover,.tcard.t-person:hover{
+/* Person+quote pairs hover as one unit (hovering either box lights up
+   both, via :has() on their shared .testi-col); a person card paired
+   with a video card instead has no quote to pair with, so it keeps its
+   own individual hover. */
+
+.testi-col:has(.tcard-big):hover .tcard.tcard-big,
+.testi-col:has(.tcard-big):hover .tcard.t-person{
+  background:var(--green)
+}
+
+.testi-col:not(:has(.tcard-big)) .tcard.t-person:hover{
   background:var(--green)
 }
 
@@ -1805,7 +1815,7 @@ section{
   transition:color .3s var(--ease)
 }
 
-.tcard-big:hover .t-quote{
+.testi-col:has(.tcard-big):hover .t-quote{
   color:#fff
 }
 
@@ -1829,7 +1839,7 @@ section{
   overflow-y:auto
 }
 
-.tcard-big:hover .t-more-text{
+.testi-col:has(.tcard-big):hover .t-more-text{
   color:#fff
 }
 
@@ -1847,7 +1857,7 @@ section{
   transition:color .3s var(--ease)
 }
 
-.tcard-big:hover .t-more-btn{
+.testi-col:has(.tcard-big):hover .t-more-btn{
   color:#fff;
   font-weight:700
 }
@@ -1877,7 +1887,8 @@ section{
   transition:background-color .3s var(--ease),color .3s var(--ease)
 }
 
-.t-person:hover .t-avatar{
+.testi-col:has(.tcard-big):hover .t-avatar,
+.testi-col:not(:has(.tcard-big)) .t-person:hover .t-avatar{
   background:rgba(255,255,255,.22);
   color:#fff
 }
@@ -1900,7 +1911,10 @@ section{
   transition:color .3s var(--ease)
 }
 
-.t-person:hover .t-name,.t-person:hover .t-role{
+.testi-col:has(.tcard-big):hover .t-name,
+.testi-col:has(.tcard-big):hover .t-role,
+.testi-col:not(:has(.tcard-big)) .t-person:hover .t-name,
+.testi-col:not(:has(.tcard-big)) .t-person:hover .t-role{
   color:#fff
 }
 
