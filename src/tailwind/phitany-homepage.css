@@ -281,9 +281,10 @@ section{scroll-margin-top:140px}
 .tcard{background:#fff;border-radius:16px}
 .tcard-big{flex:1;padding:clamp(28px,2.2vw,38px);display:flex;flex-direction:column;min-height:430px}
 .t-quote{font-size:clamp(16px,1.5vw,22px);line-height:1.32;font-weight:500;color:#111;letter-spacing:-.01em}
-.t-stars{font-size:20px;letter-spacing:4px;line-height:1;white-space:nowrap}
-.t-stars i{font-style:normal;color:#dcdcdc}
-.t-stars i.on{color:#F5A623}
+.t-more{display:flex;flex-direction:column;gap:8px}
+.t-more-text{font-size:14px;line-height:1.5;color:rgba(0,0,0,.55);max-height:63px;overflow:hidden;transition:max-height .35s var(--ease)}
+.t-more.expanded .t-more-text{max-height:180px;overflow-y:auto}
+.t-more-btn{align-self:flex-start;font-size:13px;font-weight:600;color:#111;background:none;border:none;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .t-person{display:flex;align-items:center;gap:14px;padding:20px 22px}
 .t-avatar{width:46px;height:46px;border-radius:12px;flex-shrink:0;object-fit:cover;background:#e6e6e6;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:600;color:rgba(0,0,0,.42)}
 .t-name{font-weight:700;font-size:14px;color:#111;display:block;line-height:1.2}
@@ -613,6 +614,8 @@ html[data-theme="dark"] .t-quote,
 html[data-theme="dark"] .t-name{color:#f5f5f5}
 html[data-theme="dark"] .t-avatar{background:#2a2a2a;color:rgba(255,255,255,.5)}
 html[data-theme="dark"] .t-role{color:rgba(255,255,255,.5)}
+html[data-theme="dark"] .t-more-text{color:rgba(255,255,255,.55)}
+html[data-theme="dark"] .t-more-btn{color:#f5f5f5}
 
 /* insights */
 html[data-theme="dark"] .ipost-read{background:#1a1a1a;color:#f5f5f5;box-shadow:0 4px 14px rgba(0,0,0,.4)}

@@ -128,7 +128,7 @@
       <div class="testi-col">
         <div class="tcard tcard-big">
           <p class="t-quote">14 years focused on pure utility, providing thoughtful solutions to consistent success.</p>
-          <div class="t-stars mt-auto"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+          <div class="t-more mt-auto"><p class="t-more-text">That&rsquo;s the standard we hold every vendor to, and Phitany was the first agency in years that actually matched it. The redesign didn&rsquo;t just look sharper, it held up under real traffic from day one.</p><button type="button" class="t-more-btn">Read more</button></div>
         </div>
         <div class="tcard t-person">
           <div class="t-avatar">JB</div>
@@ -153,7 +153,7 @@
           <div><span class="t-name">Rahul Menon</span><span class="t-role">Intersight Holidays</span></div>
         </div>
         <div class="tcard tcard-big">
-          <div class="t-stars"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i></div>
+          <div class="t-more"><p class="t-more-text">What stood out was how little hand-holding it needed after launch. The checkout flow they built has barely needed a fix in eight months, and support tickets around booking dropped by half.</p><button type="button" class="t-more-btn">Read more</button></div>
           <p class="t-quote mt-auto">Phitany rebuilt our booking site end to end and our conversion rate hasn&rsquo;t looked back since launch.</p>
         </div>
       </div>
@@ -180,12 +180,12 @@
         </div>
         <div class="tcard tcard-big">
           <p class="t-quote">Clear communication, sharp design instincts, and they actually hit the timelines they promise.</p>
-          <div class="t-stars mt-auto"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+          <div class="t-more mt-auto"><p class="t-more-text">We&rsquo;d worked with three other studios before this one, and Phitany was the only team that sent a weekly update without us asking for it. Small thing, but it changed how much we trusted the process.</p><button type="button" class="t-more-btn">Read more</button></div>
         </div>
       </div>
       <div class="testi-col">
         <div class="tcard tcard-big">
-          <div class="t-stars"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i></div>
+          <div class="t-more"><p class="t-more-text">Clients used to ask if we were a two-person shop before they saw our actual work. That question stopped the week the new site went live.</p><button type="button" class="t-more-btn">Read more</button></div>
           <p class="t-quote mt-auto">The new brand identity gave us a presence that finally matches the quality of our work.</p>
         </div>
         <div class="tcard t-person">
@@ -204,12 +204,12 @@
         </div>
         <div class="tcard tcard-big">
           <p class="t-quote">Our organic traffic more than doubled within two quarters of the SEO overhaul.</p>
-          <div class="t-stars mt-auto"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+          <div class="t-more mt-auto"><p class="t-more-text">More importantly, the traffic actually converts. Qualified inbound leads from search are now our second-largest channel, right behind referrals, which wasn&rsquo;t true a year ago.</p><button type="button" class="t-more-btn">Read more</button></div>
         </div>
       </div>
       <div class="testi-col">
         <div class="tcard tcard-big">
-          <div class="t-stars"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i></div>
+          <div class="t-more"><p class="t-more-text">Follow-ups that used to fall through the cracks during peak season now happen automatically, and our close rate on warm leads has noticeably improved since the workflows went live.</p><button type="button" class="t-more-btn">Read more</button></div>
           <p class="t-quote mt-auto">The CRM automation alone saved our sales team hours every single week.</p>
         </div>
         <div class="tcard t-person">
@@ -240,12 +240,12 @@
         </div>
         <div class="tcard tcard-big">
           <p class="t-quote">Every deadline, met. Every question, answered same day. That reliability is rare to find.</p>
-          <div class="t-stars mt-auto"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i></div>
+          <div class="t-more mt-auto"><p class="t-more-text">In manufacturing we&rsquo;re used to vendors who go quiet the moment a project ships. Phitany has stayed just as responsive six months post-launch as they were during the build.</p><button type="button" class="t-more-btn">Read more</button></div>
         </div>
       </div>
       <div class="testi-col">
         <div class="tcard tcard-big">
-          <div class="t-stars"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+          <div class="t-more"><p class="t-more-text">They joined our internal planning calls and pushed back when our first idea wasn&rsquo;t the right one. That kind of pushback is rare from an outside vendor, and the project is better for it.</p><button type="button" class="t-more-btn">Read more</button></div>
           <p class="t-quote mt-auto">Working with Phitany felt less like hiring an agency and more like adding a team.</p>
         </div>
         <div class="tcard t-person">
@@ -407,6 +407,18 @@ document.querySelector('.contact-form').addEventListener('submit',function(e){
   lbl.textContent='Sent ✓';
   btn.style.background='#26AE68';
   setTimeout(()=>{lbl.textContent=orig;btn.style.background='';},3000);
+});
+</script>
+<script>
+document.querySelectorAll('.t-more').forEach(function(m){
+  var text=m.querySelector('.t-more-text');
+  var btn=m.querySelector('.t-more-btn');
+  if (!(text && btn)) return;
+  if(text.scrollHeight<=text.clientHeight+2){ btn.remove(); return; }
+  btn.addEventListener('click',function(){
+    var expanded=m.classList.toggle('expanded');
+    btn.textContent=expanded?'Read less':'Read more';
+  });
 });
 </script>
 <script>

@@ -106,6 +106,10 @@
   --tw-contain-style: 
 }
 
+.container{
+  width:100%
+}
+
 :root{
   --black:#000;
   --white:#fff;

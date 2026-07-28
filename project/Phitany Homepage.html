@@ -515,7 +515,7 @@
       <div class="testi-col">
         <div class="tcard tcard-big">
           <p class="t-quote">14 years focused on pure utility, providing thoughtful solutions to consistent success.</p>
-          <div class="t-stars mt-auto"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+          <div class="t-more mt-auto"><p class="t-more-text">That&rsquo;s the standard we hold every vendor to, and Phitany was the first agency in years that actually matched it. The redesign didn&rsquo;t just look sharper, it held up under real traffic from day one.</p><button type="button" class="t-more-btn">Read more</button></div>
         </div>
         <div class="tcard t-person">
           <div class="t-avatar">JB</div>
@@ -540,7 +540,7 @@
           <div><span class="t-name">Jayanth Balan</span><span class="t-role">Evergreen Co Pvt Ltd.</span></div>
         </div>
         <div class="tcard tcard-big">
-          <div class="t-stars"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+          <div class="t-more"><p class="t-more-text">That&rsquo;s the standard we hold every vendor to, and Phitany was the first agency in years that actually matched it. The redesign didn&rsquo;t just look sharper, it held up under real traffic from day one.</p><button type="button" class="t-more-btn">Read more</button></div>
           <p class="t-quote mt-auto">14 years focused on pure utility, providing thoughtful solutions to consistent success.</p>
         </div>
       </div>
@@ -809,6 +809,18 @@ document.querySelectorAll('.faq-q').forEach(q=>{
     const wasOpen=item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
     if(!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ── TESTIMONIALS: READ MORE ─────────────────────── */
+document.querySelectorAll('.t-more').forEach(m=>{
+  const text=m.querySelector('.t-more-text');
+  const btn=m.querySelector('.t-more-btn');
+  if(!(text&&btn)) return;
+  if(text.scrollHeight<=text.clientHeight+2){ btn.remove(); return; }
+  btn.addEventListener('click',()=>{
+    const expanded=m.classList.toggle('expanded');
+    btn.textContent=expanded?'Read less':'Read more';
   });
 });
 
