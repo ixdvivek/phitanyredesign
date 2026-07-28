@@ -1206,12 +1206,12 @@ nav.scrolled{
 .cs2-scrim{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.3));
+  background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.12) 55%,rgba(0,0,0,.58) 100%);
   transition:background .45s var(--ease)
 }
 
 .cs2-card:hover .cs2-scrim{
-  background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.42))
+  background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.2) 55%,rgba(0,0,0,.68) 100%)
 }
 
 .cs2-logo{
@@ -1234,23 +1234,20 @@ nav.scrolled{
   filter:drop-shadow(0 2px 14px rgba(0,0,0,.45))
 }
 
-.cs2-vert{
+.cs2-tags{
   position:absolute;
   left:14px;
+  right:14px;
   bottom:14px;
   z-index:3;
-  display:inline-flex;
-  align-items:center;
-  border:1px solid rgba(255,255,255,.5);
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
   color:#fff;
   font-size:13px;
   font-weight:500;
   letter-spacing:.01em;
-  padding:8px 16px;
-  border-radius:8px
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
 }
 
 /* FAQ accordion (from homepage — only page with this component) */
