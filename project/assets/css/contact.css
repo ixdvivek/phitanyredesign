@@ -285,6 +285,11 @@ a{
   color:#fff
 }
 
+.btn-green{
+  background:var(--green);
+  color:#fff
+}
+
 .btn-outline-white{
   background:transparent;
   color:#fff;
