@@ -101,6 +101,8 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .gt-h{font-size:clamp(52px,7vw,118px);font-weight:300;line-height:1.0;letter-spacing:-.025em;margin-bottom:clamp(26px,3vw,38px);font-family:'Google Sans Flex','Google Sans',sans-serif}
 .gt-sub{font-size:clamp(16px,1.4vw,21px);line-height:1.5;color:rgba(0,0,0,.85);max-width:360px;margin-bottom:clamp(44px,6vw,88px)}
 .gt-contact{display:flex;flex-direction:column;gap:12px}
+.gt-contact a{display:inline-flex;align-items:center;gap:10px}
+.gt-contact-icon{flex-shrink:0;color:rgba(0,0,0,.55)}
 .gt-phone{font-size:clamp(15px,1.3vw,19px);color:#111}
 .gt-email{font-size:clamp(18px,1.55vw,24px);font-weight:700;color:#111;letter-spacing:-.01em}
 
@@ -151,10 +153,19 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .bk-slot.dark{background:#1f2b39;color:#fff;border-color:#1f2b39}
 .bk-slot.confirm{background:#2b6fff;color:#fff;border-color:#2b6fff}
 
-/* TEAM / OFFICE */
-.places{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,24px);max-width:var(--mw);margin:0 auto;padding:calc(var(--py)/2) var(--px) var(--py)}
-.place img{width:100%;aspect-ratio:16/10.5;object-fit:cover;border-radius:14px}
-.place-label{font-size:15px;color:rgba(0,0,0,.55);margin-top:14px}
+/* OFFICES */
+.offices{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2vw,32px);max-width:var(--mw);margin:0 auto;padding:calc(var(--py)/2) var(--px) var(--py)}
+.office-card{background:#fff;border-radius:20px;overflow:hidden}
+.office-img{width:100%;aspect-ratio:16/10.5;object-fit:cover;display:block}
+.office-body{padding:clamp(24px,2.2vw,36px)}
+.office-name{font-size:clamp(20px,1.8vw,26px);font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.office-entity{font-size:14px;color:rgba(0,0,0,.45);margin-bottom:18px}
+.office-address{font-size:15px;line-height:1.6;color:rgba(0,0,0,.7);margin-bottom:22px}
+.office-links{display:flex;flex-direction:column;gap:12px}
+.office-link{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#111;transition:color .2s}
+.office-link:hover{color:var(--green)}
+.office-icon{flex-shrink:0;color:rgba(0,0,0,.5);transition:color .2s}
+.office-link:hover .office-icon{color:var(--green)}
 
 /* ── FOOTER ─────────────────────────────────────────── */
 footer{background:transparent}
@@ -195,7 +206,7 @@ footer{background:transparent}
 }
 
 @media(max-width:860px){.bk{grid-template-columns:1fr}.bk-l,.bk-m{border-right:none;border-bottom:1px solid #eef0f2}}
-@media(max-width:760px){.gt-grid,.places{grid-template-columns:1fr}.footer-body{grid-template-columns:1fr}}
+@media(max-width:760px){.gt-grid,.offices{grid-template-columns:1fr}.footer-body{grid-template-columns:1fr}}
 
 @media(max-width:640px){:root{--px:20px}}
 /* ===== RESPONSIVE (shared) ===== */

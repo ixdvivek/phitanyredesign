@@ -829,6 +829,17 @@ nav.scrolled{
   gap:12px
 }
 
+.gt-contact a{
+  display:inline-flex;
+  align-items:center;
+  gap:10px
+}
+
+.gt-contact-icon{
+  flex-shrink:0;
+  color:rgba(0,0,0,.55)
+}
+
 .gt-phone{
   font-size:clamp(15px,1.3vw,19px);
   color:#111
@@ -1165,29 +1176,83 @@ nav.scrolled{
   border-color:#2b6fff
 }
 
-/* TEAM / OFFICE */
+/* OFFICES */
 
-.places{
+.offices{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:clamp(14px,1.6vw,24px);
+  gap:clamp(20px,2vw,32px);
   max-width:var(--mw);
   margin:0 auto;
   padding:calc(var(--py)/2) var(--px) var(--py)
 }
 
-.place img{
+.office-card{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden
+}
+
+.office-img{
   width:100%;
   aspect-ratio:16/10.5;
   -o-object-fit:cover;
      object-fit:cover;
-  border-radius:14px
+  display:block
 }
 
-.place-label{
+.office-body{
+  padding:clamp(24px,2.2vw,36px)
+}
+
+.office-name{
+  font-size:clamp(20px,1.8vw,26px);
+  font-weight:700;
+  letter-spacing:-.01em;
+  margin-bottom:6px
+}
+
+.office-entity{
+  font-size:14px;
+  color:rgba(0,0,0,.45);
+  margin-bottom:18px
+}
+
+.office-address{
   font-size:15px;
-  color:rgba(0,0,0,.55);
-  margin-top:14px
+  line-height:1.6;
+  color:rgba(0,0,0,.7);
+  margin-bottom:22px
+}
+
+.office-links{
+  display:flex;
+  flex-direction:column;
+  gap:12px
+}
+
+.office-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  font-weight:500;
+  color:#111;
+  transition:color .2s
+}
+
+.office-link:hover{
+  color:var(--green)
+}
+
+.office-icon{
+  flex-shrink:0;
+  color:rgba(0,0,0,.5);
+  transition:color .2s
+}
+
+.office-link:hover .office-icon{
+  color:var(--green)
 }
 
 /* ── FOOTER ─────────────────────────────────────────── */
@@ -1411,7 +1476,7 @@ footer{
 }
 
 @media(max-width:760px){
-  .gt-grid,.places{
+  .gt-grid,.offices{
     grid-template-columns:1fr
   }
 
