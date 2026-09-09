@@ -95,7 +95,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);transform:scale(.8)}
 .ns-empty{padding:26px 14px;font-size:14px;color:rgba(0,0,0,.4);text-align:center}
 
 /* BACK LINK */
-.author-back-wrap{padding:clamp(140px,15vw,220px) var(--px) 0}
+.author-back-wrap{padding:clamp(96px,10vw,130px) var(--px) 0}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:rgba(0,0,0,.55);transition:color .2s}
 .back-link:hover{color:#111}
 

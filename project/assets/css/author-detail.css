@@ -789,7 +789,7 @@ nav.scrolled{
 /* BACK LINK */
 
 .author-back-wrap{
-  padding:clamp(140px,15vw,220px) var(--px) 0
+  padding:clamp(96px,10vw,130px) var(--px) 0
 }
 
 .back-link{
