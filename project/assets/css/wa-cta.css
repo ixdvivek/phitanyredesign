@@ -3,11 +3,11 @@
    up above the footer ticker without fighting GSAP's child transforms. */
 .wa-cta{--wa-green:#2aa81a;--wa-lift:0px;position:fixed;right:48px;bottom:48px;z-index:150;width:224px;display:flex;flex-direction:column;align-items:stretch;transform:translateY(calc(-1 * var(--wa-lift)));font-family:'Google Sans Flex','Google Sans',-apple-system,BlinkMacSystemFont,sans-serif}
 
-.wa-pill{display:flex;align-items:center;justify-content:center;gap:8px;width:224px;padding:16px 24px;border-radius:99px;background:#fff;color:var(--wa-green);font-size:16px;line-height:24px;font-weight:500;letter-spacing:.32px;text-decoration:none;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.08);transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s cubic-bezier(.4,0,.2,1)}
+.wa-pill{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;width:224px;padding:16px 24px;border-radius:99px;background:#fff;color:var(--wa-green);font-size:16px;line-height:24px;font-weight:500;letter-spacing:.32px;text-decoration:none;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.08);transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s cubic-bezier(.4,0,.2,1)}
 .wa-pill:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
 .wa-pill svg{width:24px;height:24px;flex-shrink:0}
 
-.wa-card{position:relative;width:224px;height:248px;margin-bottom:8px;border-radius:12px;overflow:hidden;background:#111}
+.wa-card{position:absolute;left:0;bottom:calc(100% + 8px);width:224px;height:248px;border-radius:12px;overflow:hidden;background:#111;will-change:transform,opacity,clip-path}
 .wa-card[hidden]{display:none}
 .wa-card-link{position:absolute;inset:0;display:flex;color:#fff;text-decoration:none}
 .wa-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}

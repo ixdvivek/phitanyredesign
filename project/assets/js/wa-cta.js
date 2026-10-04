@@ -76,17 +76,24 @@
     var isExpanded = false;
     var tl = null;
     var timer = null;
+    var warmTimer = null;
     var events = ['scroll', 'mousemove', 'mousedown', 'keydown', 'wheel', 'touchstart'];
 
     // Idle time only counts while the tab is on screen — otherwise a
     // backgrounded tab would expand unseen and burn the once-per-session
-    // showing before the visitor ever comes back.
+    // showing before the visitor ever comes back. Halfway through the idle
+    // window everything the reveal needs is fetched quietly, so nothing
+    // is still downloading or decoding when the animation runs.
     function resetTimer() {
       clearTimeout(timer);
-      if (!document.hidden) timer = setTimeout(expand, IDLE_MS);
+      clearTimeout(warmTimer);
+      if (document.hidden) return;
+      warmTimer = setTimeout(warm, IDLE_MS / 2);
+      timer = setTimeout(expand, IDLE_MS);
     }
     function stopWatching() {
       clearTimeout(timer);
+      clearTimeout(warmTimer);
       events.forEach(function (ev) { window.removeEventListener(ev, resetTimer); });
       document.removeEventListener('visibilitychange', resetTimer);
     }
@@ -94,27 +101,55 @@
     document.addEventListener('visibilitychange', resetTimer);
     resetTimer();
 
-    function loadGsap(cb) {
-      if (window.gsap) return cb(true);
-      var s = document.createElement('script');
-      s.src = GSAP_SRC;
-      s.onload = function () { cb(true); };
-      s.onerror = function () { cb(false); };
-      document.head.appendChild(s);
+    var gsapReady = null;
+    var videoReady = null;
+    function loadGsap() {
+      if (gsapReady) return gsapReady;
+      gsapReady = new Promise(function (res) {
+        if (window.gsap) return res(true);
+        var s = document.createElement('script');
+        s.src = GSAP_SRC;
+        s.onload = function () { res(true); };
+        s.onerror = function () { res(false); };
+        document.head.appendChild(s);
+      });
+      return gsapReady;
+    }
+    function loadVideo() {
+      if (videoReady) return videoReady;
+      videoReady = new Promise(function (res) {
+        if (video.readyState >= 3) return res();
+        video.addEventListener('canplay', function () { res(); }, { once: true });
+        video.addEventListener('error', function () { res(); }, { once: true });
+        video.preload = 'auto';
+        video.load();
+      });
+      return videoReady;
+    }
+    function warm() {
+      if (reduceMotion) { loadVideo(); return; }
+      loadGsap();
+      loadVideo();
     }
 
+    // Only GPU-friendly properties are tweened (clip-path, translate,
+    // opacity, colors); the card sits above the pill so nothing reflows.
     function buildTimeline() {
       var g = window.gsap;
       tl = g.timeline({ paused: true, defaults: { ease: 'expo.out' } });
       tl.fromTo(card,
-          { height: 0, marginBottom: 0, opacity: 0, y: 24, scale: .94, clipPath: 'inset(100% 0% 0% 0% round 12px)' },
-          { height: 248, marginBottom: 8, opacity: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 12px)', duration: .9, transformOrigin: '50% 100%' }, 0)
+          { autoAlpha: 0, y: 28, clipPath: 'inset(100% 0% 0% 0% round 12px)' },
+          { autoAlpha: 1, y: 0, clipPath: 'inset(0% 0% 0% 0% round 12px)', duration: 1 }, 0)
         .fromTo(pill,
           { backgroundColor: '#ffffff', color: GREEN },
-          { backgroundColor: GREEN, color: '#ffffff', duration: .5, ease: 'power2.out' }, 0)
+          { backgroundColor: GREEN, color: '#ffffff', duration: .55, ease: 'power2.out' }, 0)
         .fromTo(lines,
-          { y: 16, opacity: 0 },
-          { y: 0, opacity: 1, duration: .6, stagger: .12 }, .35);
+          { y: 16, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: .7, stagger: .12 }, .35);
+    }
+
+    function withTimeout(promise, ms) {
+      return Promise.race([promise, new Promise(function (res) { setTimeout(res, ms); })]);
     }
 
     function expand() {
@@ -122,15 +157,21 @@
       isExpanded = true;
       stopWatching();
       markSeen();
-      card.hidden = false;
-      var p = video.play();
-      if (p && p.catch) p.catch(function () {});
-      if (reduceMotion) { root.classList.add('is-open'); return; }
-      loadGsap(function (ok) {
-        if (!ok) { root.classList.add('is-open'); return; }
+      warm();
+      // Normally already settled by the warm-up; the cap stops a slow
+      // network from delaying the reveal indefinitely.
+      withTimeout(Promise.all([reduceMotion ? false : loadGsap(), loadVideo()]), 2500).then(function (r) {
+        if (!isExpanded) return;
+        var ok = !reduceMotion && r && r[0] && window.gsap;
+        if (ok) {
+          if (!tl) buildTimeline();
+          tl.progress(0).pause();
+        }
+        card.hidden = false;
         root.classList.add('is-open');
-        if (!tl) buildTimeline();
-        tl.timeScale(1).play();
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+        if (ok) requestAnimationFrame(function () { tl.timeScale(1).play(); });
       });
     }
 
