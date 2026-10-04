@@ -1,0 +1,27 @@
+/* WhatsApp CTA — shared across pages (hand-written, not part of the
+   per-page Tailwind build). Positioned via --wa-lift so it can be pushed
+   up above the footer ticker without fighting GSAP's child transforms. */
+.wa-cta{--wa-green:#2aa81a;--wa-lift:0px;position:fixed;right:48px;bottom:48px;z-index:150;width:224px;display:flex;flex-direction:column;align-items:stretch;transform:translateY(calc(-1 * var(--wa-lift)));font-family:'Google Sans Flex','Google Sans',-apple-system,BlinkMacSystemFont,sans-serif}
+
+.wa-pill{display:flex;align-items:center;justify-content:center;gap:8px;width:224px;padding:16px 24px;border-radius:99px;background:#fff;color:var(--wa-green);font-size:16px;line-height:24px;font-weight:500;letter-spacing:.32px;text-decoration:none;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.08);transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s cubic-bezier(.4,0,.2,1)}
+.wa-pill:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.wa-pill svg{width:24px;height:24px;flex-shrink:0}
+
+.wa-card{position:relative;width:224px;height:248px;margin-bottom:8px;border-radius:12px;overflow:hidden;background:#111}
+.wa-card[hidden]{display:none}
+.wa-card-link{position:absolute;inset:0;display:flex;color:#fff;text-decoration:none}
+.wa-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wa-card-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.3) 55%,rgba(0,0,0,.6) 100%)}
+.wa-card-copy{position:relative;padding:32px;font-size:24px;line-height:24px;letter-spacing:.48px}
+.wa-card-copy p{margin:0}
+.wa-card-l1{font-weight:400}
+.wa-card-l2{font-weight:600;margin-top:33px!important}
+.wa-close{position:absolute;top:10px;right:10px;z-index:2;width:28px;height:28px;border:none;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.wa-close:hover{background:rgba(255,255,255,.32)}
+
+/* open state — GSAP tweens these colors too, this is the no-GSAP fallback */
+.wa-cta.is-open .wa-pill{background:var(--wa-green);color:#fff;font-weight:700}
+
+@media(max-width:760px){
+  .wa-cta{right:20px;bottom:20px}
+}
