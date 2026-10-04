@@ -78,15 +78,20 @@
     var timer = null;
     var events = ['scroll', 'mousemove', 'mousedown', 'keydown', 'wheel', 'touchstart'];
 
+    // Idle time only counts while the tab is on screen — otherwise a
+    // backgrounded tab would expand unseen and burn the once-per-session
+    // showing before the visitor ever comes back.
     function resetTimer() {
       clearTimeout(timer);
-      timer = setTimeout(expand, IDLE_MS);
+      if (!document.hidden) timer = setTimeout(expand, IDLE_MS);
     }
     function stopWatching() {
       clearTimeout(timer);
       events.forEach(function (ev) { window.removeEventListener(ev, resetTimer); });
+      document.removeEventListener('visibilitychange', resetTimer);
     }
     events.forEach(function (ev) { window.addEventListener(ev, resetTimer, { passive: true }); });
+    document.addEventListener('visibilitychange', resetTimer);
     resetTimer();
 
     function loadGsap(cb) {
@@ -113,7 +118,7 @@
     }
 
     function expand() {
-      if (isExpanded) return;
+      if (isExpanded || document.hidden) return;
       isExpanded = true;
       stopWatching();
       markSeen();
