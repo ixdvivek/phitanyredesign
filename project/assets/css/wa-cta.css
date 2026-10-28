@@ -1,4 +1,4 @@
-/* WhatsApp CTA — "Hello" bubble mascot (Figma: Chat widget, 200×200).
+/* WhatsApp CTA — "Hello" bubble mascot (Figma: Chat widget, 200×200, shipped at 75% = 150×150).
    Shared across pages, hand-written (not part of the Tailwind build).
    Positioned via --wa-lift so it can be pushed up above the footer ticker.
    Face, eyes and mouth are swapped through data-eyes / data-mouth on the
@@ -7,7 +7,7 @@
 .wa-cta{
   --wa-green:#26AE68;--wa-green-d:#1C9F5C;--wa-ink:#4C5A80;--wa-sh:.3;
   --wa-lift:0px;--wa-scale:1;
-  position:fixed;right:20px;bottom:12px;z-index:150;width:200px;height:200px;
+  position:fixed;right:20px;bottom:12px;z-index:150;width:150px;height:150px;
   pointer-events:none;transform-origin:100% 100%;
   transform:translateY(calc(-1 * var(--wa-lift))) scale(var(--wa-scale));
   font-family:'Google Sans','Google Sans Flex',-apple-system,BlinkMacSystemFont,sans-serif;
@@ -21,7 +21,7 @@
 .wa-svg *{transform-box:view-box}
 
 /* click target = the bubble only, so the empty corners never block the page */
-.wa-hit{position:absolute;left:11.5%;top:27.4%;width:58%;height:50.5%;border-radius:12px 12px 12px 4px;pointer-events:auto;cursor:pointer;outline:none}
+.wa-hit{position:absolute;left:11.5%;top:27.4%;width:58%;height:50.5%;border-radius:9px 9px 9px 3px;pointer-events:auto;cursor:pointer;outline:none}
 .wa-hit:focus-visible{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--wa-green)}
 
 /* ---------- entrance ---------- */
@@ -115,14 +115,14 @@
 
 /* ---------- hover label ---------- */
 /* sits above the bubble and the HELLO! arc, centred on the bubble */
-.wa-label{--wa-lbl:#fff;position:absolute;left:81px;bottom:184px;display:flex;align-items:center;gap:6px;padding:8px 14px 8px 10px;border-radius:99px;background:var(--wa-lbl);color:var(--wa-green-d);font-size:14px;line-height:20px;font-weight:500;letter-spacing:.2px;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.1);opacity:0;transform:translate(-50%,10px) scale(.92);transform-origin:center bottom;transition:opacity .2s ease,transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.wa-label{--wa-lbl:#fff;position:absolute;left:61px;bottom:138px;display:flex;align-items:center;gap:6px;padding:8px 14px 8px 10px;border-radius:99px;background:var(--wa-lbl);color:var(--wa-green-d);font-size:14px;line-height:20px;font-weight:500;letter-spacing:.2px;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.1);opacity:0;transform:translate(-50%,10px) scale(.92);transform-origin:center bottom;transition:opacity .2s ease,transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
 .wa-label::after{content:"";position:absolute;left:50%;top:100%;width:12px;height:7px;margin-left:-6px;background:var(--wa-lbl);clip-path:polygon(0 0,100% 0,50% 100%)}
 .wa-label svg{width:18px;height:18px;flex-shrink:0}
 .wa-cta[data-state="hover"] .wa-label{opacity:1;transform:translate(-50%,0)}
 [data-theme="dark"] .wa-label{--wa-lbl:#1f232b;color:#5fd796}
 
 /* ---------- nudge card (once per session) ---------- */
-.wa-nudge{position:absolute;right:158px;bottom:146px;width:216px;padding:16px 36px 16px 18px;border-radius:16px 16px 4px 16px;background:#fff;color:#14171f;font-size:15px;line-height:21px;letter-spacing:.2px;box-shadow:0 10px 36px rgba(0,0,0,.14);pointer-events:auto;opacity:0;transform:translateY(10px) scale(.9);transform-origin:100% 100%;transition:opacity .25s ease,transform .45s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
+.wa-nudge{position:absolute;right:118px;bottom:110px;width:216px;padding:16px 36px 16px 18px;border-radius:16px 16px 4px 16px;background:#fff;color:#14171f;font-size:15px;line-height:21px;letter-spacing:.2px;box-shadow:0 10px 36px rgba(0,0,0,.14);pointer-events:auto;opacity:0;transform:translateY(10px) scale(.9);transform-origin:100% 100%;transition:opacity .25s ease,transform .45s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 .wa-nudge.is-on{opacity:1;transform:none;visibility:visible}
 .wa-nudge p{margin:0}
 .wa-nudge b{display:block;margin-top:4px;color:var(--wa-green-d);font-weight:700}
@@ -136,7 +136,7 @@
 @media(max-width:760px){
   .wa-cta{--wa-scale:.72;right:4px;bottom:0}
   .wa-label{display:none}
-  .wa-nudge{right:16px;bottom:182px;width:230px;font-size:16px;line-height:22px}
+  .wa-nudge{right:16px;bottom:137px;width:230px;font-size:16px;line-height:22px}
 }
 
 @media(prefers-reduced-motion:reduce){
